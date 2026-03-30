@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The DAF Network — GiftingNetwork</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --teal:#00777B;--teal-light:#009499;--teal-dark:#005558;
+  --navy:#144270;--navy-dark:#0D2D4F;--navy-deeper:#081E36;
+  --blue:#098DCA;--amber:#C89A3A;
+  --border:rgba(0,119,123,0.2);--border-w:rgba(255,255,255,0.1);
+  --glass:rgba(255,255,255,0.04);
+  --font-head:'Montserrat',sans-serif;--font-body:'Lato',sans-serif;
+  --max:1100px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--navy-deeper);color:#fff;line-height:1.6;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--navy-deeper);}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:2px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;padding:0 60px;background:rgba(8,30,54,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.nav-wordmark{font-family:var(--font-head);font-size:17px;font-weight:700;letter-spacing:-.01em;}
+.nav-wordmark .g{color:var(--teal-light);}
+.nav-wordmark span:not(.g){color:#fff;}
+.nav-back{font-family:var(--font-head);font-size:13px;font-weight:600;color:rgba(255,255,255,0.55);text-decoration:none;transition:color .2s;}
+.nav-back:hover{color:var(--teal-light);}
+.nav-cta{padding:9px 22px;font-family:var(--font-head);font-size:13px;font-weight:700;color:#fff;background:var(--teal);border:none;border-radius:6px;cursor:pointer;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:var(--teal-light);}
+
+/* HERO */
+.hero{padding:140px 60px 100px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(9,141,202,0.2),transparent 60%),radial-gradient(ellipse 55% 55% at 15% 75%,rgba(0,119,123,0.22),transparent 55%),linear-gradient(150deg,var(--navy-deeper) 0%,#0A2240 55%,#061525 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,119,123,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,119,123,0.06) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 20%,transparent 75%);}
+.hero-inner{max-width:var(--max);margin:0 auto;position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;background:rgba(0,119,123,0.15);border:1px solid rgba(0,119,123,0.4);border-radius:100px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);letter-spacing:.1em;text-transform:uppercase;margin-bottom:26px;}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.6);}}
+h1{font-family:var(--font-head);font-size:clamp(38px,5.5vw,70px);font-weight:800;line-height:1.08;letter-spacing:-.025em;margin-bottom:22px;}
+h1 em{font-style:normal;color:var(--teal-light);}
+.hero-sub{font-family:var(--font-body);font-size:18px;font-weight:300;color:rgba(255,255,255,.62);max-width:680px;line-height:1.75;margin-bottom:44px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px;}
+.btn-p{padding:14px 32px;font-family:var(--font-head);font-size:14px;font-weight:700;color:#fff;background:var(--teal);border:none;border-radius:8px;cursor:pointer;text-decoration:none;box-shadow:0 6px 24px rgba(0,119,123,0.35);transition:background .2s,transform .15s;display:inline-block;}
+.btn-p:hover{background:var(--teal-light);transform:translateY(-1px);}
+.btn-g{padding:14px 32px;font-family:var(--font-head);font-size:14px;font-weight:600;color:rgba(255,255,255,.8);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:8px;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block;}
+.btn-g:hover{background:rgba(255,255,255,.1);border-color:var(--teal);}
+
+/* STAT ROW */
+.hero-stats{display:flex;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.hs{flex:1;padding:24px 28px;border-right:1px solid var(--border);background:rgba(255,255,255,0.03);}
+.hs:last-child{border-right:none;}
+.hs-num{font-family:var(--font-head);font-size:30px;font-weight:800;color:var(--teal-light);letter-spacing:-.02em;margin-bottom:4px;}
+.hs-lbl{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.5;}
+
+/* SHARED */
+section{padding:80px 60px;}
+.inner{max-width:var(--max);margin:0 auto;}
+.eyebrow{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:14px;display:block;}
+h2{font-family:var(--font-head);font-size:clamp(28px,3.5vw,44px);font-weight:800;line-height:1.15;letter-spacing:-.025em;margin-bottom:18px;}
+h2 em{font-style:normal;color:var(--teal-light);}
+.sec-lead{font-family:var(--font-body);font-size:16px;font-weight:300;color:rgba(255,255,255,.55);max-width:600px;line-height:1.8;}
+
+/* HOW IT WORKS — flow diagram */
+.flow-section{background:var(--navy-dark);}
+.flow-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:52px;}
+
+.flow-steps{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;gap:18px;align-items:flex-start;position:relative;}
+.flow-step-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;}
+.flow-node{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.fn-blue{background:rgba(9,141,202,0.2);border:1px solid rgba(9,141,202,0.45);}
+.fn-navy{background:rgba(20,66,112,0.5);border:1px solid rgba(20,66,112,0.8);}
+.fn-teal{background:var(--teal);border:1px solid var(--teal-light);box-shadow:0 0 24px rgba(0,119,123,0.4);}
+.fn-green{background:rgba(46,107,80,0.25);border:1px solid rgba(46,107,80,0.5);}
+.fn-pink{background:rgba(180,80,120,0.2);border:1px solid rgba(180,80,120,0.35);}
+.flow-line{width:2px;flex:1;min-height:28px;background:linear-gradient(to bottom,rgba(0,119,123,0.4),rgba(0,119,123,0.15));}
+.flow-step-content{padding:0 0 28px 0;}
+.flow-step-title{font-family:var(--font-head);font-size:15px;font-weight:700;margin-bottom:5px;padding-top:12px;}
+.flow-step-desc{font-family:var(--font-body);font-size:13.5px;font-weight:300;color:rgba(255,255,255,.52);line-height:1.65;}
+.flow-step-annotation{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-family:var(--font-body);font-size:12px;font-style:italic;color:rgba(255,255,255,.35);}
+
+/* Network value cards */
+.value-cards{display:flex;flex-direction:column;gap:14px;position:sticky;top:100px;}
+.vc{padding:22px 24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;transition:border-color .2s;}
+.vc:hover{border-color:rgba(0,119,123,.4);}
+.vc-title{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:6px;}
+.vc-body{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.65;}
+.vc-badge{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:100px;font-family:var(--font-head);font-size:10px;font-weight:700;color:var(--teal-light);background:rgba(0,119,123,.12);border:1px solid rgba(0,119,123,.25);}
+
+/* THREE SIDES */
+.three-section{background:var(--navy-deeper);}
+.three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+.side-card{padding:36px 30px;border:1px solid rgba(255,255,255,.08);border-radius:14px;position:relative;overflow:hidden;transition:border-color .3s,transform .25s;}
+.side-card:hover{border-color:rgba(0,119,123,.45);transform:translateY(-3px);}
+.side-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.side-card.s1::before{background:var(--teal);}
+.side-card.s2::before{background:var(--blue);}
+.side-card.s3::before{background:var(--amber);}
+.side-num{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px;}
+.side-icon{font-size:28px;margin-bottom:16px;}
+.side-title{font-family:var(--font-head);font-size:22px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px;line-height:1.2;}
+.side-body{font-family:var(--font-body);font-size:14px;font-weight:300;color:rgba(255,255,255,.52);line-height:1.75;margin-bottom:20px;}
+.side-list{display:flex;flex-direction:column;gap:8px;}
+.sl-item{display:flex;gap:9px;align-items:flex-start;font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,.62);line-height:1.5;}
+.sl-dot{width:16px;height:16px;border-radius:50%;background:rgba(0,119,123,.25);border:1px solid rgba(0,119,123,.5);display:flex;align-items:center;justify-content:center;font-size:7px;color:var(--teal-light);flex-shrink:0;margin-top:1px;}
+
+/* CUSTODIANS */
+.custodian-section{background:linear-gradient(160deg,var(--navy-dark) 0%,#052030 60%,var(--navy-deeper) 100%);position:relative;overflow:hidden;}
+.custodian-section::before{content:'';position:absolute;bottom:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,119,123,0.18),transparent 70%);pointer-events:none;}
+.custodian-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
+.cust-cards{display:flex;flex-direction:column;gap:14px;}
+.cust-card{display:flex;align-items:center;gap:20px;padding:20px 24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;transition:border-color .2s;}
+.cust-card:hover{border-color:rgba(0,119,123,.4);}
+.cust-icon{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ci-teal{background:rgba(0,119,123,.2);border:1px solid rgba(0,119,123,.4);}
+.ci-blue{background:rgba(9,141,202,.15);border:1px solid rgba(9,141,202,.35);}
+.ci-gold{background:rgba(200,154,58,.15);border:1px solid rgba(200,154,58,.3);}
+.cust-name{font-family:var(--font-head);font-size:15px;font-weight:700;}
+.cust-desc{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.45);margin-top:2px;}
+.cust-badge{margin-left:auto;padding:4px 11px;background:rgba(0,119,123,.15);border:1px solid rgba(0,119,123,.35);border-radius:100px;font-family:var(--font-head);font-size:10px;font-weight:700;color:var(--teal-light);white-space:nowrap;}
+
+/* ADVISOR SECTION */
+.advisor-section{background:var(--navy-deeper);}
+.advisor-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
+.advisor-sticky{position:sticky;top:100px;}
+.big-num{font-family:var(--font-head);font-size:72px;font-weight:800;color:var(--teal-light);line-height:1;letter-spacing:-.03em;margin:20px 0 6px;}
+.big-lbl{font-family:var(--font-body);font-size:14px;font-weight:300;color:rgba(255,255,255,.42);max-width:220px;line-height:1.6;}
+.partner-cards{display:flex;flex-direction:column;gap:12px;margin-top:28px;}
+.pc{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;background:rgba(255,255,255,.04);border:1px solid rgba(0,119,123,.2);border-radius:8px;transition:border-color .2s;}
+.pc:hover{border-color:rgba(0,119,123,.45);}
+.pc-name{font-family:var(--font-head);font-size:14px;font-weight:700;}
+.pc-sub{font-family:var(--font-body);font-size:12px;font-weight:300;color:rgba(255,255,255,.42);margin-top:2px;}
+.pc-badge{padding:4px 11px;background:rgba(0,119,123,.15);border:1px solid rgba(0,119,123,.35);border-radius:100px;font-family:var(--font-head);font-size:10px;font-weight:700;color:var(--teal-light);}
+.advisor-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.af{padding:26px 24px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;transition:background .2s,border-color .2s;}
+.af:hover{background:rgba(0,119,123,.07);border-color:rgba(0,119,123,.3);}
+.af-ico{font-size:24px;margin-bottom:12px;}
+.af-title{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:8px;}
+.af-body{font-family:var(--font-body);font-size:13.5px;font-weight:300;color:rgba(255,255,255,.48);line-height:1.7;}
+
+/* SPONSOR CTA */
+.sponsor-cta{background:linear-gradient(135deg,var(--teal-dark) 0%,#003A3D 50%,#002528 100%);position:relative;overflow:hidden;}
+.sponsor-cta::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:56px 56px;}
+.sponsor-cta::after{content:'';position:absolute;top:-80px;right:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(9,141,202,.25),transparent 65%);pointer-events:none;}
+.sponsor-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
+.sponsor-checks{display:flex;flex-direction:column;gap:14px;margin-top:26px;}
+.sc-item{display:flex;gap:12px;align-items:flex-start;}
+.sc-check{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px;}
+.sc-text{font-family:var(--font-body);font-size:15px;font-weight:300;color:rgba(255,255,255,.78);line-height:1.6;}
+.sponsor-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:44px 40px;backdrop-filter:blur(10px);}
+.sb-title{font-family:var(--font-head);font-size:24px;font-weight:800;line-height:1.25;margin-bottom:14px;letter-spacing:-.015em;}
+.sb-body{font-family:var(--font-body);font-size:14px;font-weight:300;color:rgba(255,255,255,.68);line-height:1.75;margin-bottom:28px;}
+.btn-white{padding:13px 28px;font-family:var(--font-head);font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--teal-dark);background:#fff;border:none;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;}
+.btn-white:hover{background:rgba(255,255,255,.92);transform:translateY(-1px);}
+
+/* FOOTER */
+footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119,123,.15);}
+.footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-legal{font-family:var(--font-head);font-size:11px;font-weight:600;color:rgba(255,255,255,.2);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--teal-light);}
+
+@media(max-width:900px){
+  nav,section,.hero,.sponsor-cta,footer{padding-left:24px;padding-right:24px;}
+  .flow-layout,.custodian-layout,.advisor-layout,.sponsor-layout,.three-grid{grid-template-columns:1fr;gap:40px;}
+  h1{font-size:38px;}
+  .hero-stats{flex-direction:column;}
+  .hs{border-right:none;border-bottom:1px solid var(--border);}
+  .hs:last-child{border-bottom:none;}
+  .advisor-sticky{position:relative;top:0;}
+  .advisor-features{grid-template-columns:1fr;}
+  .big-num{font-size:56px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+      <path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/>
+      <path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/>
+      <path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/>
+    </svg>
+    <div class="nav-wordmark"><span class="g">Gifting</span><span>Network</span></div>
+  </a>
+  <a href="index.html" class="nav-back">← Platform Overview</a>
+  <a href="#join" class="nav-cta">Join the Network</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span>The DAF Network</div>
+    <h1>The connective tissue of<br>institutional <em>philanthropy</em></h1>
+    <p class="hero-sub">The GiftingNetwork DAF Network is the marketplace that connects institutional DAF sponsors, financial advisors, donors, and nonprofits — on a custodian-agnostic, multi-sided platform built for the way charitable giving actually works. Every sponsor on GiftingNet gains near-automatic access to the network from day one.</p>
+    <div class="hero-btns">
+      <a href="#join" class="btn-p">Join as a DAF Sponsor</a>
+      <a href="#advisors" class="btn-g">Advisor Distribution →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-num">3-Sided</div><div class="hs-lbl">Marketplace connecting sponsors, advisors & donors</div></div>
+      <div class="hs"><div class="hs-num">Custodian<br>Agnostic</div><div class="hs-lbl">Works with Fidelity, Schwab, Goldman Sachs, and more</div></div>
+      <div class="hs"><div class="hs-num">Orion +<br>Envestnet</div><div class="hs-lbl">Distribution through two of the largest advisor networks</div></div>
+      <div class="hs"><div class="hs-num">Near-<br>Automatic</div><div class="hs-lbl">Every GiftingNet sponsor accesses the network from day one</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW A GIFT MOVES -->
+<section class="flow-section" id="how">
+  <div class="inner">
+    <div class="flow-layout">
+      <div>
+        <span class="eyebrow">How a gift moves</span>
+        <h2>The advisor is the<br>delivery layer —<br>not the <em>donor</em></h2>
+        <p class="sec-lead" style="margin-bottom:40px;">Like a delivery network where drivers carry the product to the customer, financial advisors are the intermediary between donors and the DAF ecosystem. Donors engage through their advisor. GiftingNetwork is the infrastructure underneath.</p>
+
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="flow-step-left">
+              <div class="flow-node fn-blue">👤</div>
+              <div class="flow-line"></div>
+            </div>
+            <div class="flow-step-content">
+              <div class="flow-step-title">Donor decides to give</div>
+              <div class="flow-step-desc">A client with philanthropic intent — a liquidity event, year-end tax planning, or ongoing charitable commitments — engages their financial advisor.</div>
+              <div class="flow-step-annotation">→ gift instruction flows through the advisor relationship</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-left">
+              <div class="flow-node fn-navy">💼</div>
+              <div class="flow-line"></div>
+            </div>
+            <div class="flow-step-content">
+              <div class="flow-step-title">Financial advisor manages the strategy</div>
+              <div class="flow-step-desc">The advisor handles the relationship, the asset selection, and the charitable planning strategy — directly within Orion, Envestnet, or their native platform. GiftingNetwork is embedded in their existing workflow.</div>
+              <div class="flow-step-annotation">→ routed through the GiftingNetwork platform</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-left">
+              <div class="flow-node fn-teal">
+                <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+                  <path d="M18 3L33 18L18 33L3 18Z" fill="rgba(255,255,255,0.15)"/>
+                  <path d="M18 9L27 18L18 27L9 18Z" fill="rgba(255,255,255,0.25)"/>
+                  <path d="M15.5 14L21.5 18L15.5 22V19.2L19 18L15.5 16.8V14Z" fill="white"/>
+                </svg>
+              </div>
+              <div class="flow-line"></div>
+            </div>
+            <div class="flow-step-content">
+              <div class="flow-step-title">GiftingNetwork processes & routes</div>
+              <div class="flow-step-desc">The gift is processed, routed, and administered through GiftingNetwork's custodian-agnostic infrastructure — connecting to Fidelity, Schwab, Goldman Sachs Custody, or whichever custodian the sponsor uses.</div>
+              <div class="flow-step-annotation">→ held, invested & administered at the sponsor</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-left">
+              <div class="flow-node fn-green">🏛️</div>
+              <div class="flow-line"></div>
+            </div>
+            <div class="flow-step-content">
+              <div class="flow-step-title">DAF Sponsor holds and administers</div>
+              <div class="flow-step-desc">The institutional sponsor — a community foundation, federation, or healthcare foundation — holds the fund, approves grant recommendations, and administers the charitable program under their own brand.</div>
+              <div class="flow-step-annotation">→ grant disbursed to charity upon approval</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-left">
+              <div class="flow-node fn-pink">❤️</div>
+            </div>
+            <div class="flow-step-content">
+              <div class="flow-step-title">Nonprofit receives the grant</div>
+              <div class="flow-step-desc">The grant reaches a vetted 501(c)(3) — discovered through the Charitable Catalog, recommended by the donor, or directed through a competitive grants program. Impact delivered.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-cards">
+        <div class="vc">
+          <div class="vc-title">Why the advisor model wins</div>
+          <div class="vc-body">Advisors already have the client relationship and the trust. GiftingNetwork doesn't displace them — it gives them the charitable planning infrastructure they need to deepen those relationships and retain assets across generational wealth events.</div>
+          <span class="vc-badge">Advisor-first</span>
+        </div>
+        <div class="vc">
+          <div class="vc-title">Sponsor brand stays front and center</div>
+          <div class="vc-body">Donors see the community foundation's brand, not GiftingNetwork's. The sponsor owns the relationship. GiftingNetwork owns the plumbing. That's by design.</div>
+          <span class="vc-badge">White-labeled</span>
+        </div>
+        <div class="vc">
+          <div class="vc-title">Complex assets handled</div>
+          <div class="vc-body">Publicly traded securities go directly to the DAF sponsor. Complex non-cash assets — real estate, restricted stock, private equity — are routed through Dechomai Foundation, a specialist complex-gift sponsor. Proceeds flow into the donor's DAF once liquidated.</div>
+          <span class="vc-badge">Dechomai Foundation</span>
+        </div>
+        <div class="vc">
+          <div class="vc-title">Charitable Solutions & Planned Giving Interactive</div>
+          <div class="vc-body">Specialized charitable planning expertise and planned giving tools are available through our partnerships with Charitable Solutions LLC and Planned Giving Interactive — extending the network's capabilities into complex gift planning.</div>
+          <span class="vc-badge">Partner network</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE-SIDED MARKETPLACE -->
+<section class="three-section">
+  <div class="inner">
+    <span class="eyebrow">A true marketplace</span>
+    <h2>Three sides, one network —<br>every relationship <em>connected</em></h2>
+    <p class="sec-lead">Unlike single-sided platforms built for one constituency, the GiftingNetwork DAF Network is a genuine three-sided marketplace. Value flows in every direction.</p>
+    <div class="three-grid">
+      <div class="side-card s1">
+        <div class="side-num">01 — Sponsors</div>
+        <div class="side-icon">🏛️</div>
+        <div class="side-title">DAF Sponsors</div>
+        <div class="side-body">Community foundations, Jewish federations, healthcare foundations, and institutional sponsors who run donor-advised fund programs. The network gives them distribution reach they couldn't build alone.</div>
+        <div class="side-list">
+          <div class="sl-item"><div class="sl-dot">✓</div>Access to advisor distribution networks — Orion & Envestnet</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Compete with Fidelity Charitable & Schwab Charitable on even terms</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Keep your brand, your donors, and your assets</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Custodian-agnostic — works with your existing custodial relationships</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>GiftingNet platform included — full DAF sponsor technology stack</div>
+        </div>
+      </div>
+      <div class="side-card s2">
+        <div class="side-num">02 — Advisors</div>
+        <div class="side-icon">💼</div>
+        <div class="side-title">Financial Advisors</div>
+        <div class="side-body">RIAs, wealth managers, and broker-dealers who want to make charitable planning a seamless part of client conversations — without disrupting their existing workflow or platform.</div>
+        <div class="side-list">
+          <div class="sl-item"><div class="sl-dot">✓</div>Native integration within Orion Advisor Solutions and Envestnet</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>White-labeled DAF experience — firm-branded giving for clients</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Deeper client relationships through charitable planning conversations</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Asset retention across generational wealth transfers</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Tax-smart strategies: appreciated assets, bunching, QCDs, PIFs</div>
+        </div>
+      </div>
+      <div class="side-card s3">
+        <div class="side-num">03 — Donors & Nonprofits</div>
+        <div class="side-icon">❤️</div>
+        <div class="side-title">Donors & Nonprofits</div>
+        <div class="side-body">Philanthropic individuals who give through their advisor-managed DAF, and the nonprofits who receive those grants — connected through the Charitable Catalog and grant management system.</div>
+        <div class="side-list">
+          <div class="sl-item"><div class="sl-dot">✓</div>Branded donor portal — fund balances, statements, giving history</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Charitable Catalog — searchable, interest-filtered nonprofit directory</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Grant recommendations, complex asset giving, pledge scheduling</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Nonprofits manage their own profiles and grant applications</div>
+          <div class="sl-item"><div class="sl-dot">✓</div>Full grant lifecycle — application to payment to progress report</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTODIANS -->
+<section class="custodian-section">
+  <div class="inner">
+    <div class="custodian-layout">
+      <div>
+        <span class="eyebrow">Custodian-Agnostic Infrastructure</span>
+        <h2>Works with the custodian<br>you <em>already have</em></h2>
+        <p class="sec-lead" style="margin-bottom:36px;">GiftingNetwork's DAF Network is built on a flexible, multi-custodian architecture — not locked to any single custodial relationship. Sponsors work with their preferred custodian, and the network handles the rest.</p>
+        <p style="font-family:var(--font-body);font-size:15px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.75;">The custodian-agnostic model means sponsors aren't forced to move assets to qualify for the network. It also means the network can grow with new custodian relationships over time — without disrupting existing sponsors.</p>
+      </div>
+      <div class="cust-cards">
+        <div class="cust-card">
+          <div class="cust-icon ci-teal">🏦</div>
+          <div><div class="cust-name">Fidelity Custody</div><div class="cust-desc">Institutional custodial services</div></div>
+          <div class="cust-badge">Live</div>
+        </div>
+        <div class="cust-card">
+          <div class="cust-icon ci-blue">🏦</div>
+          <div><div class="cust-name">Schwab Custody</div><div class="cust-desc">Institutional custodial services</div></div>
+          <div class="cust-badge">Live</div>
+        </div>
+        <div class="cust-card">
+          <div class="cust-icon ci-gold">🏦</div>
+          <div><div class="cust-name">Goldman Sachs Custody</div><div class="cust-desc">Custodial & asset management services</div></div>
+          <div class="cust-badge">Live</div>
+        </div>
+        <div class="cust-card" style="border-style:dashed;opacity:0.6;">
+          <div class="cust-icon" style="background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.2);font-size:18px;">+</div>
+          <div><div class="cust-name" style="color:rgba(255,255,255,.4);">Additional custodians</div><div class="cust-desc">Architecture designed to onboard new custodial relationships as the network grows</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVISOR DISTRIBUTION -->
+<section class="advisor-section" id="advisors">
+  <div class="inner">
+    <div class="advisor-layout">
+      <div class="advisor-sticky">
+        <span class="eyebrow">Advisor Distribution</span>
+        <h2>The advisor<br>channel —<br><em>built in</em></h2>
+        <p class="sec-lead">Distribution through the Orion and Envestnet advisor networks is embedded in the GiftingNetwork platform — not a separate enrollment, not an additional fee, not a negotiation.</p>
+        <div class="big-num">200K+</div>
+        <div class="big-lbl">Advisors in the Orion & Envestnet networks — reachable through our platform distribution partnerships</div>
+        <div class="partner-cards">
+          <div class="pc"><div><div class="pc-name">Orion Advisor Solutions</div><div class="pc-sub">Portfolio management & CRM integration</div></div><div class="pc-badge">Live</div></div>
+          <div class="pc"><div><div class="pc-name">Envestnet</div><div class="pc-sub">Wealth management platform integration</div></div><div class="pc-badge">Live</div></div>
+          <div class="pc"><div><div class="pc-name">Goldman Sachs Custody</div><div class="pc-sub">Custodial services & asset management</div></div><div class="pc-badge">Live</div></div>
+        </div>
+      </div>
+      <div class="advisor-features">
+        <div class="af"><div class="af-ico">📋</div><div class="af-title">Native workflow integration</div><div class="af-body">DAF access, grant recommendations, and charitable planning tools appear directly within Orion and Envestnet advisor interfaces — no separate login, no context switching.</div></div>
+        <div class="af"><div class="af-ico">💰</div><div class="af-title">Tax-smart giving strategies</div><div class="af-body">Advisors can present bunching strategies, appreciated asset gifting, qualified charitable distributions, and pooled income fund options to clients at the right moment in the planning cycle.</div></div>
+        <div class="af"><div class="af-ico">🎨</div><div class="af-title">Firm-branded DAF experience</div><div class="af-body">Advisors can offer a white-labeled DAF experience under their firm's brand — deepening the client relationship without ceding the giving experience to a commercial provider.</div></div>
+        <div class="af"><div class="af-ico">📈</div><div class="af-title">Asset retention across generations</div><div class="af-body">Charitable planning creates multi-decade client relationships. DAF assets managed through the advisor stay under their oversight — including the ongoing investment management of donor-advised fund balances.</div></div>
+        <div class="af"><div class="af-ico">🔐</div><div class="af-title">Institutional-grade compliance</div><div class="af-body">IRS compliance, 501(c)(3) verification, UPMIFA-aligned investment governance, and gift acceptance policies are built into the platform — not bolted on.</div></div>
+        <div class="af"><div class="af-ico">📡</div><div class="af-title">Real-time reporting</div><div class="af-body">Advisors and sponsors see live DAF balances, grant activity, and investment performance. The AI-powered reporting engine answers questions in plain language, instantly.</div></div>
+      </div>
+    </div>
+
+    <!-- SPONSOR REFERRAL OPPORTUNITY -->
+    <div style="margin-top:56px;padding:36px 40px;background:rgba(0,119,123,0.08);border:1px solid rgba(0,119,123,0.25);border-radius:14px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;right:0;width:300px;height:100%;background:radial-gradient(ellipse at 80% 50%,rgba(9,141,202,0.1),transparent 70%);pointer-events:none;"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;position:relative;z-index:1;">
+        <div>
+          <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:14px;">For Advisors with Nonprofit Relationships</div>
+          <h3 style="font-family:var(--font-head);font-size:clamp(22px,2.5vw,30px);font-weight:800;line-height:1.15;letter-spacing:-.02em;color:#fff;margin-bottom:16px;">Introduce a sponsor.<br><span style="color:var(--teal-light);">Earn on the AUM.</span></h3>
+          <p style="font-family:var(--font-body);font-size:15px;font-weight:300;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:20px;">Advisors who work with community foundations, Jewish federations, healthcare foundations, or other nonprofits considering a DAF or Young PIF program can introduce them directly to GiftingNetwork — and earn on that relationship in two concrete ways.</p>
+          <p style="font-family:var(--font-body);font-size:15px;font-weight:300;color:rgba(255,255,255,0.6);line-height:1.75;">The opportunity compounds over time. A sponsor with $50M in DAF assets under management generates a meaningful, recurring advisory fee relationship — across the entire fund lineup, not just individual donor accounts.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="padding:20px 22px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:rgba(0,119,123,0.25);border:1px solid rgba(0,119,123,0.5);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">1</div>
+              <div style="font-family:var(--font-head);font-size:14px;font-weight:700;color:#fff;">Default investment products in the sponsor's fund setup</div>
+            </div>
+            <p style="font-family:var(--font-body);font-size:13.5px;color:rgba(255,255,255,0.55);line-height:1.65;margin-left:44px;">As part of onboarding the sponsor to GiftingNetwork, the referring advisor's investment-managed products can be configured as the default investment options presented to the sponsor's development team and donors. Every new donor fund launched at that sponsor defaults to the advisor's managed lineup — without requiring individual donor conversations to establish the relationship.</p>
+          </div>
+          <div style="padding:20px 22px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:rgba(0,119,123,0.25);border:1px solid rgba(0,119,123,0.5);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">2</div>
+              <div style="font-family:var(--font-head);font-size:14px;font-weight:700;color:#fff;">Ongoing advisory fees on sponsor-level AUM</div>
+            </div>
+            <p style="font-family:var(--font-body);font-size:13.5px;color:rgba(255,255,255,0.55);line-height:1.65;margin-left:44px;">The advisor earns ongoing advisory fees on the AUM flowing through the sponsor's platform — not limited to the donors they personally advise. As the sponsor grows its fund program, the advisor's fee relationship grows with it. The AUM stickiness operates at the institutional level, not the individual account level.</p>
+          </div>
+          <a href="mailto:info@giftingnetwork.com?subject=Sponsor Referral Inquiry" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;background:var(--teal);color:#fff;font-family:var(--font-head);font-size:13px;font-weight:700;border-radius:7px;text-decoration:none;transition:background .15s;box-shadow:0 6px 20px rgba(0,119,123,0.3);" onmouseover="this.style.background='#009499'" onmouseout="this.style.background='var(--teal)'">Discuss a Sponsor Referral →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SPONSOR CTA -->
+<section class="sponsor-cta" id="join">
+  <div class="inner">
+    <div class="sponsor-layout">
+      <div>
+        <span class="eyebrow" style="color:rgba(255,255,255,.6);">Are you a DAF Sponsor?</span>
+        <h2 style="color:#fff;">Join the GiftingNetwork<br>DAF <em style="color:#7AE8EC;">Network</em></h2>
+        <p style="font-family:var(--font-body);font-size:15px;font-weight:300;color:rgba(255,255,255,.65);line-height:1.75;max-width:480px;">Community foundations, Jewish federations, healthcare foundations, and other institutional DAF sponsors are joining the network to access advisor distribution, increase donor assets under management, and compete with national commercial DAF providers — on their own terms.</p>
+        <div class="sponsor-checks">
+          <div class="sc-item"><div class="sc-check">✓</div><div class="sc-text">Distribution through the Orion & Envestnet advisor networks — from day one</div></div>
+          <div class="sc-item"><div class="sc-check">✓</div><div class="sc-text">Keep your brand, your donors, and your assets under management</div></div>
+          <div class="sc-item"><div class="sc-check">✓</div><div class="sc-text">Compete with Fidelity Charitable & Schwab Charitable on even terms</div></div>
+          <div class="sc-item"><div class="sc-check">✓</div><div class="sc-text">Custodian-agnostic — works with your existing custodial relationships</div></div>
+          <div class="sc-item"><div class="sc-check">✓</div><div class="sc-text">Purpose-built technology, not repurposed software</div></div>
+        </div>
+      </div>
+      <div class="sponsor-box">
+        <div class="sb-title">Ready to join the network?</div>
+        <div class="sb-body">Schedule a conversation with our team to discuss your foundation's goals, current technology, and how the GiftingNetwork DAF Network can extend your reach into the advisor channel without disrupting what you've built.</div>
+        <a href="mailto:info@giftingnetwork.com" class="btn-white">Apply to Join the Network</a>
+        <div style="margin-top:18px;font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,.35);">Or email us directly: info@giftingnetwork.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-row">
+    <div class="footer-legal">© 2026 GiftingNetwork LLC · Morristown, NJ · All Rights Reserved</div>
+    <div class="footer-links">
+      <a href="index.html">Platform Home</a>
+      <a href="giftingnet-platform.html">GiftingNet</a>
+      <a href="pbo-services.html">Back Office</a>
+      <a href="mailto:info@giftingnetwork.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+var nav = document.querySelector('nav');
+window.addEventListener('scroll', function() {
+  nav.style.ba

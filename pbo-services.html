@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Philanthropic Back Office — GiftingNetwork</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --teal:#00777B; --teal-light:#009499; --teal-dark:#005558;
+  --navy:#144270; --navy-dark:#0D2D4F; --navy-deeper:#081E36;
+  --blue:#098DCA; --amber:#C89A3A;
+  --white:#FFFFFF;
+  --border:rgba(0,119,123,0.2);
+  --border-w:rgba(255,255,255,0.1);
+  --glass:rgba(255,255,255,0.04);
+  --font-head:'Montserrat',sans-serif;
+  --font-body:'Lato',sans-serif;
+  --max:1100px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--navy-deeper);color:#fff;line-height:1.6;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--navy-deeper);}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:2px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;padding:0 60px;background:rgba(8,30,54,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.nav-logo-mark{width:34px;height:34px;flex-shrink:0;}
+.nav-wordmark{font-family:var(--font-head);font-size:17px;font-weight:700;letter-spacing:-.01em;}
+.nav-wordmark .g{color:var(--teal-light);}
+.nav-wordmark span:not(.g){color:#fff;}
+.nav-back{font-family:var(--font-head);font-size:13px;font-weight:600;color:rgba(255,255,255,0.55);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.nav-back:hover{color:var(--teal-light);}
+.nav-cta{padding:9px 22px;font-family:var(--font-head);font-size:13px;font-weight:700;color:#fff;background:var(--teal);border:none;border-radius:6px;cursor:pointer;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:var(--teal-light);}
+
+/* HERO */
+.hero{padding:140px 60px 80px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 65% 60% at 75% 30%,rgba(9,141,202,0.16) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 20% 75%,rgba(0,119,123,0.18) 0%,transparent 55%),linear-gradient(150deg,var(--navy-deeper) 0%,#0A2240 55%,#061525 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,119,123,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,119,123,0.06) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 20%,transparent 75%);}
+.hero-inner{max-width:var(--max);margin:0 auto;position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;background:rgba(0,119,123,0.15);border:1px solid rgba(0,119,123,0.4);border-radius:100px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px;}
+.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.6);}}
+h1{font-family:var(--font-head);font-size:clamp(38px,5.5vw,68px);font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:24px;}
+h1 em{font-style:normal;color:var(--teal-light);}
+.hero-sub{font-family:var(--font-body);font-size:18px;font-weight:300;color:rgba(255,255,255,.62);max-width:620px;line-height:1.75;margin-bottom:44px;}
+.hero-stats{display:flex;align-items:center;gap:44px;padding-top:36px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;}
+.hs-num{font-family:var(--font-head);font-size:32px;font-weight:800;color:var(--teal-light);letter-spacing:-.02em;}
+.hs-lbl{font-family:var(--font-body);font-size:12.5px;font-weight:300;color:rgba(255,255,255,.42);margin-top:4px;line-height:1.5;}
+.hs-div{width:1px;height:40px;background:rgba(255,255,255,.1);}
+
+/* SECTION HELPERS */
+section{padding:80px 60px;}
+.inner{max-width:var(--max);margin:0 auto;}
+.eyebrow{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:14px;display:block;}
+h2{font-family:var(--font-head);font-size:clamp(28px,3.5vw,42px);font-weight:800;line-height:1.15;letter-spacing:-.025em;margin-bottom:18px;}
+h2 em{font-style:normal;color:var(--teal-light);}
+.sec-lead{font-family:var(--font-body);font-size:16px;font-weight:300;color:rgba(255,255,255,.55);max-width:600px;line-height:1.8;}
+
+/* OVERVIEW STRIP */
+.overview{background:var(--navy-dark);}
+.overview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,119,123,0.15);border-radius:12px;overflow:hidden;margin-top:52px;}
+.og-card{background:var(--navy-deeper);padding:28px 24px;transition:background .2s;}
+.og-card:hover{background:#0A2140;}
+.og-icon{font-size:24px;margin-bottom:14px;}
+.og-title{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:6px;line-height:1.3;}
+.og-desc{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.65;}
+
+/* DETAILED SECTIONS */
+.detail-section{background:var(--navy-deeper);}
+.detail-section.alt{background:var(--navy-dark);}
+
+.section-block{margin-bottom:64px;}
+.section-block:last-child{margin-bottom:0;}
+
+.block-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid rgba(0,119,123,0.2);}
+.block-num{width:36px;height:36px;border-radius:50%;background:rgba(0,119,123,0.2);border:1px solid rgba(0,119,123,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);flex-shrink:0;}
+.block-title{font-family:var(--font-head);font-size:20px;font-weight:800;letter-spacing:-.01em;}
+.block-subtitle{font-family:var(--font-body);font-size:13.5px;font-weight:300;color:rgba(255,255,255,.45);margin-top:2px;}
+
+.tasks-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.tasks-grid.three{grid-template-columns:repeat(3,1fr);}
+.task{display:flex;gap:10px;align-items:flex-start;padding:12px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;transition:border-color .2s,background .2s;}
+.task:hover{background:rgba(0,119,123,.07);border-color:rgba(0,119,123,.3);}
+.task-check{width:18px;height:18px;border-radius:50%;background:rgba(0,119,123,.25);border:1px solid rgba(0,119,123,.5);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--teal-light);flex-shrink:0;margin-top:1px;}
+.task-text{font-family:var(--font-body);font-size:13.5px;font-weight:400;color:rgba(255,255,255,.7);line-height:1.5;}
+
+/* GROUPS LAYOUT */
+.groups-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+
+/* WHO USES WHAT */
+.roles{background:var(--navy-dark);}
+.roles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+.role-card{padding:24px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;transition:border-color .2s;}
+.role-card:hover{border-color:rgba(0,119,123,.35);}
+.role-icon{font-size:22px;margin-bottom:12px;}
+.role-name{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:8px;}
+.role-desc{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.48);line-height:1.6;}
+.role-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.role-tag{padding:3px 9px;background:rgba(0,119,123,.12);border:1px solid rgba(0,119,123,.25);border-radius:100px;font-family:var(--font-head);font-size:10px;font-weight:600;color:var(--teal-light);}
+
+/* CTA */
+.cta-band{background:var(--teal);padding:72px 60px;text-align:center;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:52px 52px;}
+.cta-band::after{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(9,141,202,.25),transparent 65%);pointer-events:none;}
+.cta-band>*{position:relative;z-index:1;}
+.cta-h{font-family:var(--font-head);font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px;}
+.cta-sub{font-family:var(--font-body);font-size:17px;font-weight:300;color:rgba(255,255,255,.75);margin-bottom:36px;}
+.cta-btns{display:flex;justify-content:center;gap:14px;}
+.btn-cta-w{padding:14px 32px;font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--teal-dark);background:#fff;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.btn-cta-w:hover{background:rgba(255,255,255,.92);transform:translateY(-1px);}
+.btn-cta-o{padding:14px 32px;font-family:var(--font-head);font-size:14px;font-weight:700;color:rgba(255,255,255,.9);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;text-decoration:none;transition:background .2s;}
+.btn-cta-o:hover{background:rgba(255,255,255,.18);}
+
+/* FOOTER */
+footer{background:#050D18;padding:40px 60px 28px;border-top:1px solid rgba(0,119,123,.15);}
+.footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-legal{font-family:var(--font-head);font-size:11px;font-weight:600;color:rgba(255,255,255,.2);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--teal-light);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav,section,.hero,.cta-band,footer{padding-left:24px;padding-right:24px;}
+  .overview-grid,.groups-layout,.roles-grid{grid-template-columns:1fr;}
+  .tasks-grid,.tasks-grid.three{grid-template-columns:1fr;}
+  .hero-stats{gap:20px;}
+  .hs-div{display:none;}
+  h1{font-size:38px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg class="nav-logo-mark" viewBox="0 0 36 36" fill="none">
+      <path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/>
+      <path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/>
+      <path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/>
+    </svg>
+    <div class="nav-wordmark"><span class="g">Gifting</span><span>Network</span></div>
+  </a>
+  <a href="index.html" class="nav-back">← Back to Platform</a>
+  <a href="mailto:support@giftingnetwork.com" class="nav-cta">Talk to Us</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Philanthropic Back Office</div>
+    <h1>Your back office,<br><em>fully managed.</em></h1>
+    <p class="hero-sub">GiftingNetwork's Philanthropic Back Office (PBO) provides fully outsourced DAF administration for institutional sponsors — handling every operational function so your team can focus on donor relationships, not paperwork.</p>
+    <div class="hero-stats">
+      <div><div class="hs-num">12</div><div class="hs-lbl">Core operational<br>function areas</div></div>
+      <div class="hs-div"></div>
+      <div><div class="hs-num">End-to-End</div><div class="hs-lbl">From donor onboarding<br>through grant disbursement</div></div>
+      <div class="hs-div"></div>
+      <div><div class="hs-num">Zero</div><div class="hs-lbl">Internal operations staff<br>required at the sponsor</div></div>
+      <div class="hs-div"></div>
+      <div><div class="hs-num">IRS</div><div class="hs-lbl">Compliant gift receipts,<br>due diligence & reporting</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="overview">
+  <div class="inner">
+    <span class="eyebrow">What We Handle</span>
+    <h2>Everything between the donor<br>and the <em>grant check</em></h2>
+    <p class="sec-lead">The PBO covers the full lifecycle of a donor-advised fund program — from prospecting and fund setup through gift processing, grantmaking, asset management, and reporting. Your brand stays front and center. Our team handles the rest.</p>
+    <div class="overview-grid">
+      <div class="og-card">
+        <div class="og-icon">🤝</div>
+        <div class="og-title">Donor Development & Onboarding</div>
+        <div class="og-desc">Lead tracking, prospect conversion, donor contact records, fund agreements, and establishing gifts.</div>
+      </div>
+      <div class="og-card">
+        <div class="og-icon">💳</div>
+        <div class="og-title">Gift & Pledge Processing</div>
+        <div class="og-desc">Cash, check, wire, securities, and credit card gifts. Pledge schedules, reminders, and acknowledgements.</div>
+      </div>
+      <div class="og-card">
+        <div class="og-icon">📋</div>
+        <div class="og-title">Grantmaking Operations</div>
+        <div class="og-desc">Donor-advised recommendations, discretionary competitive grants, scholarships, and administrative payments.</div>
+      </div>
+      <div class="og-card">
+        <div class="og-icon">📊</div>
+        <div class="og-title">Finance, Assets & Reporting</div>
+        <div class="og-desc">Investment reconciliation, admin fee assessment, fund accounting, donor statements, and custom exports.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILED FUNCTIONS -->
+<section class="detail-section">
+  <div class="inner">
+    <span class="eyebrow">Functional Detail</span>
+    <h2>The complete operational<br><em>capability set</em></h2>
+    <p class="sec-lead" style="margin-bottom:56px;">Every function below is handled by GiftingNetwork's PBO team, integrated with the GiftingNet platform, and coordinated with your foundation's advisors, donors, and finance systems.</p>
+
+    <div class="groups-layout">
+
+      <!-- LEFT COLUMN -->
+      <div>
+
+        <div class="section-block">
+          <div class="block-header">
+            <div class="block-num">01</div>
+            <div>
+              <div class="block-title">Donor Development & Fund Pipeline</div>
+              <div class="block-subtitle">Prospect to fund — every step tracked</div>
+            </div>
+          </div>
+          <div class="tasks-grid">
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Establish and manage lead records, sync from GN</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Convert leads to prospects with CRM account records</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Track prospecting contacts and pipeline status</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Select fund product for each prospect</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Record new fund details and close sale</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Manage donor service follow-up cases</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Dashboard to-do review and pipeline reporting</div></div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <div class="block-header">
+            <div class="block-num">02</div>
+            <div>
+              <div class="block-title">Contact Records & Platform Users</div>
+              <div class="block-subtitle">All user types managed across roles</div>
+            </div>
+          </div>
+          <div class="tasks-grid">
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Create contact records and register platform credentials</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Manage donor, advisor, grant seeker, and scholar access</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Grant seeker self-registration activation workflow</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Contact maintenance and credential self-service</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Philanthropic preferences and nonprofit catalog opt-in</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Nonprofit organization profiles for the charitable catalog</div></div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <div class="block-header">
+            <div class="block-num">03</div>
+            <div>
+              <div class="block-title">Donor Fund Setup</div>
+              <div class="block-subtitle">Every fund characteristic, configured correctly</div>
+            </div>
+          </div>
+          <div class="tasks-grid">
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Enter fund name, type, and endowment designation</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">FASB classification (Permanently, Temporarily, Unrestricted)</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Spending policy, investment option, and liquidity selection</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Admin fee setup and succession rules</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Primary and secondary advisor designation</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Print and retain fund agreement; capture establishing gift</div></div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <div class="block-header">
+            <div class="block-num">04–05</div>
+            <div>
+              <div class="block-title">Gift & Pledge Processing</div>
+              <div class="block-subtitle">All gift types, properly receipted</div>
+            </div>
+          </div>
+          <div class="tasks-grid">
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Cash, check, wire transfer, and credit card gifts</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Publicly traded securities — CUSIP, shares, valuation</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Complex assets via Dechomai Foundation specialist sponsor</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Pledge schedules with payment plans and email reminders</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Endowed fund principal/income allocation</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Anonymous gift processing and donor comments</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">IRS-compliant custom tax receipts — email and mail</div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+
+        <div class="section-block">
+          <div class="block-header">
+            <div class="block-num">06</div>
+            <div>
+              <div class="block-title">New Fund & Gift Processing</div>
+              <div class="block-subtitle">Deposit confirmation through GL posting</div>
+            </div>
+          </div>
+          <div class="tasks-grid">
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Confirm deposit, value, and date into foundation account</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Calculate security gift value at deposit-day midpoint</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Create sub-account with investment allocation template</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Transfer gift value and post in GL with endowment allocation</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Update GiftingNet with confirmed deposit and valuation</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Generate branded tax receipt; email and post to donor portal</div></div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <div class="block-header">
+            <div class="block-num">07</div>
+            <div>
+              <div class="block-title">Donor-Advised Grantmaking</div>
+              <div class="block-subtitle">Recommendation to disbursement</div>
+            </div>
+          </div>
+          <div class="tasks-grid">
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Donor selects grantee from charitable catalog or ad hoc</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Available-to-spend balance check and warning</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Anonymous grant option and donor comment</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Due diligence, 501(c)(3) verification, and approval workflow</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Grant to component fund as recipient</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Approval/decline notification with GL integration</div></div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <div class="block-header">
+            <div class="block-num">08</div>
+            <div>
+              <div class="block-title">Competitive Grants & Scholarships</div>
+              <div class="block-subtitle">Full program administration, start to finish</div>
+            </div>
+          </div>
+          <div class="tasks-grid">
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Online application forms — single phase or LOI/full proposal</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Public or restricted access application publishing</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Review panel setup, review sheets, and assignment</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">LOI to full proposal status workflow</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Grant approval, conditions, and payment plan setup</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Scholarship payments — institution, student, or joint payee</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">MICR check printing, branded cover docs, and mailing</div></div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <div class="block-header">
+            <div class="block-num">09–12</div>
+            <div>
+              <div class="block-title">Operations, Assets & Reporting</div>
+              <div class="block-subtitle">Finance, investment reconciliation, and visibility</div>
+            </div>
+          </div>
+          <div class="tasks-grid">
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Vendor payment vouchers and recurring expense management</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">EFT and MICR check disbursements for operational expenses</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Daily deposit/disbursement tracking and reconciliation</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Investment statement reconciliation and revenue recording</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Investment change approvals and portfolio transfer orders</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Admin fee calculation per fund, aggregated per sponsor</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Donor fund browser — balances, gifts, grants, investments</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Custom branded donor statements — printable and archived</div></div>
+            <div class="task"><div class="task-check">✓</div><div class="task-text">Full reporting suite and data exports</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO USES IT -->
+<section class="roles">
+  <div class="inner">
+    <span class="eyebrow">Who the Platform Serves</span>
+    <h2>Built for every person<br>in the <em>philanthropy ecosystem</em></h2>
+    <p class="sec-lead">The PBO platform provides role-specific access and workflows for every participant — from foundation staff to donors, advisors, grant seekers, reviewers, and scholars.</p>
+    <div class="roles-grid">
+      <div class="role-card">
+        <div class="role-icon">🏛️</div>
+        <div class="role-name">Foundation Administration</div>
+        <div class="role-desc">Full platform access — pipeline reporting, fund setup, administrative oversight, and operational management.</div>
+        <div class="role-tags"><span class="role-tag">All Functions</span><span class="role-tag">Admin</span></div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">💰</div>
+        <div class="role-name">Foundation Finance</div>
+        <div class="role-desc">Gift processing, GL posting, investment reconciliation, fee assessment, and financial reporting.</div>
+        <div class="role-tags"><span class="role-tag">Gift Processing</span><span class="role-tag">Asset Mgmt</span></div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">📢</div>
+        <div class="role-name">Development Staff</div>
+        <div class="role-desc">Lead management, prospect pipeline, fund onboarding, CRM contact records, and donor service follow-up.</div>
+        <div class="role-tags"><span class="role-tag">Pipeline</span><span class="role-tag">Onboarding</span></div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">💼</div>
+        <div class="role-name">Donors & Financial Advisors</div>
+        <div class="role-desc">Grant recommendations, fund balances, gift entry, investment change requests, and donor statements — via branded portal.</div>
+        <div class="role-tags"><span class="role-tag">Portal Access</span><span class="role-tag">Grantmaking</span></div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">📝</div>
+        <div class="role-name">Grant Seekers & Reviewers</div>
+        <div class="role-desc">Online application submission, self-registration, review sheet completion, and status notifications.</div>
+        <div class="role-tags"><span class="role-tag">Applications</span><span class="role-tag">Review</span></div>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🎓</div>
+        <div class="role-name">Scholarship Recipients</div>
+        <div class="role-desc">Self-registration, application submission, approval notifications, and payment coordination with institutions.</div>
+        <div class="role-tags"><span class="role-tag">Scholarships</span><span class="role-tag">Payments</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2 class="cta-h">Ready to hand off<br>your back office?</h2>
+  <p class="cta-sub">Schedule a conversation with our team to discuss your foundation's operational needs,<br>current pain points, and how the GiftingNetwork PBO can remove them.</p>
+  <div class="cta-btns">
+    <a href="mailto:support@giftingnetwork.com" class="btn-cta-w">Talk to Our Team</a>
+    <a href="index.html" class="btn-cta-o">← Back to Platform</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-row">
+    <div class="footer-legal">© 2026 GiftingNetwork LLC. All Rights Reserved. · Morristown, NJ</div>
+    <div class="footer-links">
+      <a href="index.html">Platform Home</a>
+      <a href="mailto:support@giftingnetwork.com">Contact</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-c

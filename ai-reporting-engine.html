@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI-Powered Reporting Engine — GiftingNetwork</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --teal:        #00777B;
+    --teal-light:  #009499;
+    --teal-pale:   #E0F4F4;
+    --teal-dark:   #005558;
+    --navy:        #144270;
+    --navy-dark:   #0D2D4F;
+    --navy-deeper: #081E36;
+    --blue:        #098DCA;
+    --black:       #1A1A1A;
+    --white:       #FFFFFF;
+    --muted:       rgba(255,255,255,0.55);
+    --border:      rgba(0,119,123,0.25);
+    --glass:       rgba(255,255,255,0.05);
+    --font-head:   'Montserrat', sans-serif;
+    --font-body:   'Lato', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--navy-deeper); color: #fff; overflow-x: hidden; line-height: 1.6; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--navy-deeper); }
+  ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 2px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: 72px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    background: rgba(8,30,54,0.94); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,119,123,0.2); transition: background 0.3s;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .nav-wordmark { font-family: var(--font-head); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; }
+  .nav-wordmark .g { color: var(--teal-light); }
+  .nav-wordmark span:not(.g) { color: #fff; }
+  .nav-wordmark .n { color: #fff; }
+  .nav-actions { display: flex; align-items: center; gap: 10px; }
+  .btn-ghost {
+    padding: 8px 18px; font-family: var(--font-head); font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.8); background: none; border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 6px; cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--teal); color: var(--teal-light); }
+  .btn-teal {
+    padding: 9px 22px; font-family: var(--font-head); font-size: 13px; font-weight: 700;
+    color: #fff; background: var(--teal); border: none; border-radius: 6px;
+    cursor: pointer; text-decoration: none; letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-teal:hover { background: var(--teal-light); transform: translateY(-1px); }
+  .nav-back {
+    display: flex; align-items: center; gap: 8px; font-family: var(--font-head);
+    font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,0.5);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--teal-light); }
+  .nav-back svg { transition: transform 0.2s; }
+  .nav-back:hover svg { transform: translateX(-3px); }
+
+  /* HERO */
+  #hero {
+    min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 60px 80px; position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 55% 50% at 85% 30%, rgba(9,141,202,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 55% at 15% 70%, rgba(0,119,123,0.2) 0%, transparent 55%),
+      linear-gradient(150deg, var(--navy-deeper) 0%, #0A2240 55%, #061525 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(0,119,123,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,119,123,0.07) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 20%, transparent 75%);
+  }
+  .hero-accent {
+    position: absolute; left: 0; top: 28%; bottom: 28%; width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--teal), transparent); z-index: 1;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 820px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px;
+    background: rgba(0,119,123,0.15); border: 1px solid rgba(0,119,123,0.4);
+    border-radius: 100px; font-family: var(--font-head); font-size: 11px; font-weight: 700;
+    color: var(--teal-light); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 30px; animation: fadeUp 0.7s ease both;
+  }
+  .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); animation: pulse 2.5s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.6); } }
+  .hero-headline {
+    font-family: var(--font-head); font-size: clamp(38px, 5.5vw, 68px); font-weight: 800;
+    line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 26px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hl-teal { color: var(--teal-light); }
+  .hl-blue { color: var(--blue); }
+  .hero-sub {
+    font-family: var(--font-body); font-size: 18px; font-weight: 300;
+    color: rgba(255,255,255,0.62); max-width: 620px; line-height: 1.75;
+    margin-bottom: 44px; animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 16px; animation: fadeUp 0.7s 0.3s ease both; }
+  .btn-hero-p {
+    padding: 15px 34px; font-family: var(--font-head); font-size: 14px; font-weight: 700;
+    color: #fff; letter-spacing: 0.04em; text-transform: uppercase; background: var(--teal);
+    border: none; border-radius: 8px; cursor: pointer; text-decoration: none;
+    box-shadow: 0 8px 32px rgba(0,119,123,0.4); transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+  .btn-hero-p:hover { background: var(--teal-light); box-shadow: 0 12px 40px rgba(0,119,123,0.5); transform: translateY(-2px); }
+  .btn-hero-g {
+    padding: 15px 34px; font-family: var(--font-head); font-size: 14px; font-weight: 600;
+    color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
+    cursor: pointer; text-decoration: none; transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-hero-g:hover { background: rgba(255,255,255,0.1); border-color: var(--teal); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SECTION HELPERS */
+  section { padding: 96px 60px; }
+  .eyebrow { display: inline-block; font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 14px; }
+  .sh2 { font-family: var(--font-head); font-size: clamp(30px, 4vw, 50px); font-weight: 800; line-height: 1.15; letter-spacing: -0.025em; margin-bottom: 18px; }
+  .sh2 em { font-style: normal; color: var(--teal-light); }
+  .sec-sub { font-family: var(--font-body); font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.55); max-width: 540px; line-height: 1.8; }
+
+  /* HOW IT WORKS */
+  #how { background: var(--navy-dark); }
+  .how-intro { max-width: 720px; margin-bottom: 60px; }
+  .flow-steps { display: flex; align-items: flex-start; gap: 0; position: relative; }
+  .flow-step { flex: 1; padding: 0 20px; text-align: center; position: relative; }
+  .flow-step:first-child { padding-left: 0; }
+  .flow-step:last-child { padding-right: 0; }
+  .fs-num {
+    width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: 20px; font-weight: 800;
+    position: relative; z-index: 2;
+  }
+  .fs-num.nt { background: var(--teal); box-shadow: 0 0 30px rgba(0,119,123,0.4); color: #fff; }
+  .fs-num.nb { background: var(--blue); box-shadow: 0 0 30px rgba(9,141,202,0.3); color: #fff; }
+  .fs-num.nn { background: var(--navy); box-shadow: 0 0 30px rgba(20,66,112,0.4); color: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.15); }
+  .fs-connector {
+    position: absolute; top: 28px; left: calc(50% + 28px); right: -20px;
+    height: 1px; background: linear-gradient(to right, rgba(0,119,123,0.4), rgba(0,119,123,0.1));
+    z-index: 1;
+  }
+  .flow-step:last-child .fs-connector { display: none; }
+  .fs-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; margin-bottom: 8px; line-height: 1.35; }
+  .fs-body { font-family: var(--font-body); font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.48); line-height: 1.65; }
+
+  /* CAPABILITIES */
+  #capabilities { background: var(--navy-deeper); }
+  .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(0,119,123,0.15); border-radius: 14px; overflow: hidden; margin-top: 52px; }
+  .cap-card {
+    background: var(--navy-dark); padding: 40px 36px; position: relative;
+    transition: background 0.3s;
+  }
+  .cap-card:hover { background: #0A2140; }
+  .cap-card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--teal); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .cap-card:hover::after { transform: scaleX(1); }
+  .cap-ico {
+    width: 46px; height: 46px; border-radius: 10px; display: flex; align-items: center;
+    justify-content: center; font-size: 20px; margin-bottom: 22px;
+  }
+  .cap-ico.ci-t { background: rgba(0,119,123,0.2); border: 1px solid rgba(0,119,123,0.35); }
+  .cap-ico.ci-b { background: rgba(9,141,202,0.15); border: 1px solid rgba(9,141,202,0.3); }
+  .cap-ico.ci-n { background: rgba(20,66,112,0.4); border: 1px solid rgba(20,66,112,0.7); }
+  .cap-title { font-family: var(--font-head); font-size: 16px; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+  .cap-body { font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.52); line-height: 1.75; }
+  .cap-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .cap-tag { padding: 4px 10px; background: rgba(0,119,123,0.1); border: 1px solid rgba(0,119,123,0.2); border-radius: 100px; font-family: var(--font-head); font-size: 10px; font-weight: 600; color: var(--teal-light); letter-spacing: 0.03em; }
+
+  /* DEMO */
+  #demo { background: var(--navy-dark); position: relative; overflow: hidden; }
+  #demo::before { content: ''; position: absolute; bottom: -120px; right: -120px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,119,123,0.18), transparent 70%); pointer-events: none; }
+  .demo-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: start; position: relative; z-index: 1; }
+  .demo-sticky { position: sticky; top: 96px; }
+  .demo-window {
+    border: 1px solid rgba(0,119,123,0.3); border-radius: 12px; overflow: hidden;
+    background: var(--navy-deeper); box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .demo-titlebar {
+    display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+    background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(0,119,123,0.2);
+  }
+  .dt-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dt-r { background: #FF5F57; }
+  .dt-y { background: #FFBD2E; }
+  .dt-g { background: #28CA41; }
+  .dt-title { margin-left: 8px; font-family: var(--font-head); font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.35); }
+  .demo-content { padding: 24px; max-height: 480px; overflow-y: auto; }
+  .demo-msg {
+    margin-bottom: 16px; display: flex; gap: 10px;
+  }
+  .demo-msg.user { justify-content: flex-end; }
+  .dm-ava {
+    width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: 11px; font-weight: 800; color: #fff;
+  }
+  .dm-bubble-user {
+    background: linear-gradient(135deg, #1a4a7a, #2d6baa);
+    padding: 10px 16px; border-radius: 14px 14px 4px 14px;
+    font-family: var(--font-body); font-size: 13px; color: #fff; max-width: 80%;
+  }
+  .dm-bubble-ai {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(0,119,123,0.2);
+    padding: 14px 18px; border-radius: 4px 14px 14px 14px;
+    font-family: var(--font-body); font-size: 13px; color: rgba(255,255,255,0.8);
+    line-height: 1.65; flex: 1;
+  }
+  .dm-bubble-ai strong { color: var(--teal-light); font-weight: 700; }
+  .dm-table {
+    width: 100%; border-collapse: collapse; font-family: var(--font-head);
+    font-size: 11px; margin: 10px 0;
+  }
+  .dm-table th {
+    text-align: left; padding: 6px 10px; border-bottom: 1px solid rgba(0,119,123,0.25);
+    color: rgba(255,255,255,0.5); font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; font-size: 9px;
+  }
+  .dm-table td {
+    padding: 5px 10px; border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.7); font-weight: 400; font-size: 11px;
+    font-variant-numeric: tabular-nums;
+  }
+  .dm-table tr:last-child td { border-bottom: none; }
+  .dm-meta {
+    display: flex; align-items: center; gap: 8px; margin-top: 10px;
+    font-family: var(--font-head); font-size: 10px; color: rgba(255,255,255,0.25); font-weight: 600;
+  }
+  .dm-view-tag {
+    padding: 2px 8px; border-radius: 4px; background: rgba(0,119,123,0.12);
+    color: var(--teal-light); font-size: 9px; font-weight: 700;
+  }
+  .demo-input-bar {
+    display: flex; align-items: center; gap: 8px; padding: 14px 16px;
+    border-top: 1px solid rgba(0,119,123,0.2); background: rgba(0,0,0,0.15);
+  }
+  .demo-input {
+    flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 10px 14px; font-family: var(--font-body);
+    font-size: 13px; color: rgba(255,255,255,0.3); outline: none;
+  }
+  .demo-send {
+    width: 36px; height: 36px; border-radius: 8px; background: var(--teal);
+    border: none; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .demo-send:hover { background: var(--teal-light); }
+
+  /* VIEWS */
+  #views { background: var(--navy-deeper); }
+  .views-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .views-sticky { position: sticky; top: 96px; }
+  .view-list { display: flex; flex-direction: column; gap: 12px; }
+  .vl-card {
+    padding: 22px 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px; display: flex; gap: 18px; align-items: flex-start;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .vl-card:hover { border-color: rgba(0,119,123,0.35); background: rgba(0,119,123,0.05); }
+  .vl-ico { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .vl-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .vl-sub { font-family: var(--font-body); font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .vl-badge {
+    margin-top: 8px; display: inline-block; padding: 3px 10px; border-radius: 100px;
+    font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .vb-rt { background: rgba(0,119,123,0.15); color: var(--teal-light); border: 1px solid rgba(0,119,123,0.3); }
+  .vb-hr { background: rgba(9,141,202,0.12); color: #6BC5F0; border: 1px solid rgba(9,141,202,0.25); }
+  .vb-dy { background: rgba(20,66,112,0.25); color: #7AA8DC; border: 1px solid rgba(20,66,112,0.4); }
+
+  /* SECURITY */
+  #security { background: var(--navy-dark); }
+  .sec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 52px; }
+  .sec-card {
+    padding: 40px; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+    position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.25s;
+  }
+  .sec-card:hover { border-color: rgba(0,119,123,0.5); transform: translateY(-3px); }
+  .sec-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .sec-card.ct::before { background: var(--teal); }
+  .sec-card.cb::before { background: var(--blue); }
+  .sec-card.cn::before { background: var(--navy); }
+  .sec-card.ct2::before { background: var(--teal-light); }
+  .sc-ico { font-size: 32px; margin-bottom: 20px; }
+  .sc-title { font-family: var(--font-head); font-size: 21px; font-weight: 800; margin-bottom: 12px; line-height: 1.25; letter-spacing: -0.01em; }
+  .sc-body { font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.52); line-height: 1.75; }
+
+  /* ADVISOR */
+  #advisor { background: var(--teal-dark); position: relative; overflow: hidden; }
+  #advisor::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 85% 50%, rgba(9,141,202,0.25), transparent 60%), linear-gradient(135deg, var(--teal-dark) 0%, #003A3D 50%, #002528 100%); }
+  .advisor-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 56px 56px; }
+  .advisor-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+  .advisor-points { display: flex; flex-direction: column; gap: 14px; margin-top: 26px; }
+  .ap { display: flex; gap: 14px; align-items: flex-start; }
+  .ap-check { width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 10px; margin-top: 2px; }
+  .ap-text { font-family: var(--font-body); font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.8); line-height: 1.65; }
+  .advisor-box { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 16px; padding: 44px 40px; backdrop-filter: blur(10px); }
+  .advisor-box-title { font-family: var(--font-head); font-size: 24px; font-weight: 800; line-height: 1.25; margin-bottom: 14px; letter-spacing: -0.015em; }
+  .advisor-box-body { font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.75; margin-bottom: 28px; }
+  .btn-white { padding: 13px 28px; font-family: var(--font-head); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--teal-dark); background: #fff; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
+  .btn-white:hover { background: rgba(255,255,255,0.92); transform: translateY(-1px); }
+
+  /* CTA */
+  #cta { padding: 88px 60px; text-align: center; background: var(--teal); position: relative; overflow: hidden; }
+  #cta::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 52px 52px; }
+  #cta::after { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(9,141,202,0.3), transparent 65%); pointer-events: none; }
+  #cta > * { position: relative; z-index: 1; }
+  .cta-headline { font-family: var(--font-head); font-size: clamp(32px, 4.5vw, 54px); font-weight: 800; line-height: 1.15; margin-bottom: 18px; letter-spacing: -0.025em; }
+  .cta-sub { font-family: var(--font-body); font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.75); margin-bottom: 38px; }
+  .cta-btns { display: flex; justify-content: center; gap: 14px; }
+  .btn-cta-w { padding: 14px 32px; font-family: var(--font-head); font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: var(--teal-dark); background: #fff; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+  .btn-cta-w:hover { background: rgba(255,255,255,0.92); transform: translateY(-2px); }
+  .btn-cta-o { padding: 14px 32px; font-family: var(--font-head); font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.35); border-radius: 8px; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+  .btn-cta-o:hover { background: rgba(255,255,255,0.18); }
+
+  /* FOOTER */
+  footer { background: #050D18; padding: 60px 60px 32px; border-top: 1px solid rgba(0,119,123,0.2); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 52px; }
+  .footer-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .footer-desc { font-family: var(--font-body); font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1.75; max-width: 270px; margin-bottom: 20px; }
+  .footer-contact { font-family: var(--font-body); font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.3); line-height: 2.2; }
+  .footer-contact a { color: rgba(255,255,255,0.45); text-decoration: none; }
+  .footer-contact a:hover { color: var(--teal-light); }
+  .fc-head { font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 18px; }
+  .fc-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .fc-links a { font-family: var(--font-body); font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,0.42); text-decoration: none; transition: color 0.2s; }
+  .fc-links a:hover { color: var(--teal-light); }
+  .footer-bottom { padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
+  .footer-legal { font-family: var(--font-head); font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.2); letter-spacing: 0.03em; }
+  .footer-social { display: flex; gap: 10px; }
+  .soc { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+  .soc:hover { border-color: var(--teal); color: var(--teal-light); background: rgba(0,119,123,0.12); }
+
+  .fi { opacity: 1; transform: none; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+  .hamburger span { width: 22px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 2px; }
+  @media (max-width: 1100px) {
+    .cap-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .flow-steps { flex-wrap: wrap; }
+    .flow-step { flex: 0 0 50%; margin-bottom: 24px; }
+    .fs-connector { display: none; }
+  }
+  @media (max-width: 860px) {
+    nav { padding: 0 24px; }
+    .nav-actions { display: none; }
+    .hamburger { display: flex; }
+    section, #hero, footer { padding-left: 24px; padding-right: 24px; }
+    .cap-grid { grid-template-columns: 1fr; }
+    .demo-layout, .views-layout, .sec-grid, .advisor-layout { grid-template-columns: 1fr; }
+    .flow-step { flex: 0 0 100%; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .cta-btns { flex-direction: column; align-items: center; }
+    .demo-sticky, .views-sticky { position: relative; top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/><path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/><path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/></svg>
+    <div class="nav-wordmark"><span class="g">Gifting</span><span class="n">Network</span></div>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
+  <div class="nav-actions">
+    <a href="#" class="btn-ghost">Sign In</a>
+    <a href="#cta" class="btn-teal">Request Demo</a>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span> Reporting Capabilities</div>
+    <h1 class="hero-headline">
+      <span class="hl-teal">Ask anything.</span><br>
+      Get answers from<br>
+      your <span class="hl-blue">live data.</span>
+    </h1>
+    <p class="hero-sub">
+      The AI-Powered Reporting Engine translates plain-English questions into real-time queries across your entire DAF platform — fund balances, grant activity, donor engagement, compliance, and more — and returns narrative analysis in seconds.
+    </p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn-hero-p">See It In Action</a>
+      <a href="#capabilities" class="btn-hero-g">Explore Capabilities</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-intro fi">
+    <div class="eyebrow">How It Works</div>
+    <h2 class="sh2">From question to <em>insight</em> in seconds</h2>
+    <p class="sec-sub">No report builder. No SQL. No waiting on your operations team. Just ask what you want to know — the engine handles the rest.</p>
+  </div>
+  <div class="flow-steps fi d1">
+    <div class="flow-step">
+      <div class="fs-num nt">1</div>
+      <div class="fs-connector"></div>
+      <div class="fs-title">Ask in Plain English</div>
+      <div class="fs-body">Type your question exactly the way you'd ask a colleague. "How many grants did we process last quarter over $10K?"</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-num nb">2</div>
+      <div class="fs-connector"></div>
+      <div class="fs-title">AI Generates the Query</div>
+      <div class="fs-body">The engine selects the right reporting views, writes a validated SQL query, and runs it against your live data — all within safety guardrails.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-num nt">3</div>
+      <div class="fs-connector"></div>
+      <div class="fs-title">Data Returns Instantly</div>
+      <div class="fs-body">Structured results appear in a clean table — sortable, exportable, and ready for board decks or committee reports.</div>
+    </div>
+    <div class="flow-step">
+      <div class="fs-num nn">4</div>
+      <div class="fs-title">Narrative Analysis Streams</div>
+      <div class="fs-body">AI reads the results and writes a concise, contextual summary — highlighting trends, outliers, and actionable observations.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="fi">
+    <div class="eyebrow">Capabilities</div>
+    <h2 class="sh2">Everything your team <em>actually asks for</em></h2>
+    <p class="sec-sub">Built from the real questions sponsor admins, financial advisors, and operations teams ask every day.</p>
+  </div>
+  <div class="cap-grid fi d1">
+    <div class="cap-card">
+      <div class="cap-ico ci-t">💰</div>
+      <div class="cap-title">Fund Balances &amp; AUM</div>
+      <div class="cap-body">Real-time available balances, pending grants, investment positions, and total AUM — by fund, by type, by advisor, or across your entire portfolio.</div>
+      <div class="cap-tags"><span class="cap-tag">5-min refresh</span><span class="cap-tag">advisor-scoped</span></div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-ico ci-b">📊</div>
+      <div class="cap-title">Grant Activity &amp; Trends</div>
+      <div class="cap-body">Complete grant history with processing times, status breakdowns, year-over-year comparisons, and cause-area analysis by NTEE code.</div>
+      <div class="cap-tags"><span class="cap-tag">15-min refresh</span><span class="cap-tag">temporal</span></div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-ico ci-t">👥</div>
+      <div class="cap-title">Donor Engagement</div>
+      <div class="cap-body">Lifetime giving metrics, activity recency, engagement scoring (active / moderate / dormant), and advisor attribution across every donor relationship.</div>
+      <div class="cap-tags"><span class="cap-tag">hourly refresh</span><span class="cap-tag">engagement tiers</span></div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-ico ci-n">⏳</div>
+      <div class="cap-title">Operational Queues</div>
+      <div class="cap-body">Pending grants with aging tiers and SLA tracking, disbursement pipeline status (ACH, check, wire), and insufficient-funds alerts.</div>
+      <div class="cap-tags"><span class="cap-tag">5-min refresh</span><span class="cap-tag">aging alerts</span></div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-ico ci-b">🔍</div>
+      <div class="cap-title">Compliance Monitoring</div>
+      <div class="cap-body">Automated flagging of dormant funds, large-grant reviews, single-nonprofit concentration risk, and IRS Schedule I reporting triggers.</div>
+      <div class="cap-tags"><span class="cap-tag">daily refresh</span><span class="cap-tag">severity levels</span></div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-ico ci-n">📈</div>
+      <div class="cap-title">Benchmarking &amp; KPIs</div>
+      <div class="cap-body">Compare your AUM, grant velocity, processing times, and donor retention against anonymized peer benchmarks across the GiftingNetwork platform.</div>
+      <div class="cap-tags"><span class="cap-tag">weekly refresh</span><span class="cap-tag">cross-sponsor</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section id="demo">
+  <div class="demo-layout">
+    <div class="demo-sticky fi">
+      <div class="eyebrow">Live Experience</div>
+      <h2 class="sh2">A conversation with <em>your data</em></h2>
+      <p class="sec-sub" style="margin-bottom:28px;">No dashboards to build. No report templates to configure. Just a natural conversation that understands your platform, your sponsors, and your terminology.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:center;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--teal-light);"></div>
+          <span style="font-family:var(--font-body);font-size:14px;font-weight:300;color:rgba(255,255,255,0.55);">Results stream in real-time as the AI writes</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--teal-light);"></div>
+          <span style="font-family:var(--font-body);font-size:14px;font-weight:300;color:rgba(255,255,255,0.55);">Data tables render instantly — export to CSV or PDF</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--teal-light);"></div>
+          <span style="font-family:var(--font-body);font-size:14px;font-weight:300;color:rgba(255,255,255,0.55);">Follow-up questions maintain conversational context</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--teal-light);"></div>
+          <span style="font-family:var(--font-body);font-size:14px;font-weight:300;color:rgba(255,255,255,0.55);">SQL toggle for technical users who want to inspect queries</span>
+        </div>
+      </div>
+    </div>
+    <div class="demo-window fi d1">
+      <div class="demo-titlebar">
+        <div class="dt-dot dt-r"></div>
+        <div class="dt-dot dt-y"></div>
+        <div class="dt-dot dt-g"></div>
+        <span class="dt-title">AI Reporting Engine — Sponsor Admin Portal</span>
+      </div>
+      <div class="demo-content">
+        <!-- User question -->
+        <div class="demo-msg user">
+          <div class="dm-bubble-user">Show me pending grants waiting more than 14 days</div>
+        </div>
+        <!-- AI response -->
+        <div class="demo-msg">
+          <div class="dm-ava">G</div>
+          <div class="dm-bubble-ai">
+            <table class="dm-table">
+              <thead><tr><th>Grant #</th><th>Donor</th><th>Nonprofit</th><th>Amount</th><th>Days</th><th>Aging</th></tr></thead>
+              <tbody>
+                <tr><td>G-78234</td><td>Harrington Family</td><td>Metro Housing Alliance</td><td>$250,000</td><td>31</td><td style="color:#FF6B6B;">● Critical</td></tr>
+                <tr><td>G-78301</td><td>Caldwell Foundation</td><td>Regional Art Museum</td><td>$175,000</td><td>28</td><td style="color:#FF6B6B;">● Critical</td></tr>
+                <tr><td>G-78456</td><td>Mercer Trust</td><td>Community Learning Ctr</td><td>$85,000</td><td>22</td><td style="color:#FFD93D;">● Warning</td></tr>
+                <tr><td>G-78512</td><td>Thornton Family</td><td>Crisis Response Network</td><td>$67,500</td><td>19</td><td style="color:#FFD93D;">● Warning</td></tr>
+              </tbody>
+            </table>
+            There are <strong>6 grants pending more than 14 days</strong>, totaling <strong>$654,500</strong>. Two are in critical status — the Harrington Family's $250K grant to Metro Housing Alliance (31 days) and the Caldwell Foundation's $175K to Regional Art Museum (28 days). I'd recommend prioritizing the Harrington grant immediately — at 31 days it's approaching your board's escalation threshold.
+            <div class="dm-meta">
+              <span>1,562ms</span>
+              <span class="dm-view-tag">vw_pending_grants</span>
+              <span style="margin-left:auto;">Copy</span>
+              <span>Export</span>
+            </div>
+          </div>
+        </div>
+        <!-- Follow-up -->
+        <div class="demo-msg user">
+          <div class="dm-bubble-user">What's the Harrington fund balance? Can they cover that grant?</div>
+        </div>
+        <div class="demo-msg">
+          <div class="dm-ava">G</div>
+          <div class="dm-bubble-ai">
+            The Harrington Family Fund has an <strong>available balance of $412,800</strong> with an additional $287,500 in investments. The $250,000 grant is well within the available cash balance — <strong>no funding issue here</strong>. The delay appears to be an approval workflow bottleneck, not an insufficient-funds hold.
+            <div class="dm-meta">
+              <span>987ms</span>
+              <span class="dm-view-tag">vw_fund_balances</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-input-bar">
+        <div class="demo-input">Ask about your fund data...</div>
+        <div class="demo-send">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIEWS -->
+<section id="views">
+  <div class="views-layout">
+    <div class="views-sticky fi">
+      <div class="eyebrow">Reporting Views</div>
+      <h2 class="sh2">15 materialized views, <em>always fresh</em></h2>
+      <p class="sec-sub" style="margin-bottom:28px;">A dedicated reporting layer sits between the AI and your production database. Pre-joined, indexed, and optimized — so queries are fast, safe, and never touch your live data.</p>
+      <div style="padding:24px 28px;background:rgba(0,119,123,0.1);border:1px solid rgba(0,119,123,0.3);border-radius:10px;">
+        <div style="font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-light);margin-bottom:10px;">Refresh Tiers</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,0.6);line-height:1.6;">
+          <div><strong style="color:var(--teal-light);font-family:var(--font-head);font-size:12px;font-weight:700;">Every 5 min</strong> — Balances, pending grants, sync status</div>
+          <div><strong style="color:#6BC5F0;font-family:var(--font-head);font-size:12px;font-weight:700;">Every 15 min</strong> — Grant & contribution activity, disbursements</div>
+          <div><strong style="color:#7AA8DC;font-family:var(--font-head);font-size:12px;font-weight:700;">Hourly</strong> — Donor summaries, advisor rollups</div>
+          <div><strong style="color:rgba(255,255,255,0.45);font-family:var(--font-head);font-size:12px;font-weight:700;">Daily</strong> — Sponsor KPIs, compliance, nonprofits, tax data</div>
+          <div><strong style="color:rgba(255,255,255,0.3);font-family:var(--font-head);font-size:12px;font-weight:700;">Weekly</strong> — Benchmarks, impact analysis</div>
+        </div>
+      </div>
+    </div>
+    <div class="view-list fi d1">
+      <div class="vl-card">
+        <div class="vl-ico">💰</div>
+        <div>
+          <div class="vl-title">vw_fund_balances</div>
+          <div class="vl-sub">Available balance, pending grants, investment positions, advisor attribution, and fund metadata per account.</div>
+          <div class="vl-badge vb-rt">Real-time</div>
+        </div>
+      </div>
+      <div class="vl-card">
+        <div class="vl-ico">⏳</div>
+        <div>
+          <div class="vl-title">vw_pending_grants</div>
+          <div class="vl-sub">Operational queue with aging tiers, SLA tracking, and insufficient-funds alerts per pending grant.</div>
+          <div class="vl-badge vb-rt">Real-time</div>
+        </div>
+      </div>
+      <div class="vl-card">
+        <div class="vl-ico">🔗</div>
+        <div>
+          <div class="vl-title">vw_blackbaud_sync_status</div>
+          <div class="vl-sub">SKY API integration health — webhook events, polling cycles, sync errors, and record reconciliation.</div>
+          <div class="vl-badge vb-rt">Real-time</div>
+        </div>
+      </div>
+      <div class="vl-card">
+        <div class="vl-ico">📊</div>
+        <div>
+          <div class="vl-title">vw_grant_activity</div>
+          <div class="vl-sub">Complete grant transaction history with donor, nonprofit, payment method, processing time, and NTEE classification.</div>
+          <div class="vl-badge vb-hr">Near Real-time</div>
+        </div>
+      </div>
+      <div class="vl-card">
+        <div class="vl-ico">📥</div>
+        <div>
+          <div class="vl-title">vw_contribution_activity</div>
+          <div class="vl-sub">All inbound contributions — cash, stock, crypto, IRA QCDs — with asset valuations and advisor attribution.</div>
+          <div class="vl-badge vb-hr">Near Real-time</div>
+        </div>
+      </div>
+      <div class="vl-card">
+        <div class="vl-ico">👥</div>
+        <div>
+          <div class="vl-title">vw_donor_summary</div>
+          <div class="vl-sub">Aggregated donor profiles with lifetime metrics, engagement scoring, and activity recency across all their funds.</div>
+          <div class="vl-badge vb-hr">Hourly</div>
+        </div>
+      </div>
+      <div class="vl-card">
+        <div class="vl-ico">🏦</div>
+        <div>
+          <div class="vl-title">vw_advisor_client_summary</div>
+          <div class="vl-sub">Advisor-centric rollup of client AUM, YTD activity, and top clients — powers the Orion &amp; Envestnet channel.</div>
+          <div class="vl-badge vb-hr">Hourly</div>
+        </div>
+      </div>
+      <div class="vl-card">
+        <div class="vl-ico">📈</div>
+        <div>
+          <div class="vl-title">vw_sponsor_analytics</div>
+          <div class="vl-sub">Sponsor-level KPI dashboard with YoY comparisons, processing efficiency, and grant size distribution.</div>
+          <div class="vl-badge vb-dy">Daily</div>
+        </div>
+      </div>
+      <div class="vl-card">
+        <div class="vl-ico">🔍</div>
+        <div>
+          <div class="vl-title">vw_compliance_flags</div>
+          <div class="vl-sub">Automated alerts — dormant funds, large grants, concentration risk, and regulatory reporting triggers.</div>
+          <div class="vl-badge vb-dy">Daily</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security">
+  <div class="fi">
+    <div class="eyebrow">Architecture &amp; Security</div>
+    <h2 class="sh2">Enterprise-grade from <em>the ground up</em></h2>
+    <p class="sec-sub">Your data never leaves your infrastructure. Every AI-generated query is validated, sandboxed, and executed against a read-only replica.</p>
+  </div>
+  <div class="sec-grid fi d1">
+    <div class="sec-card ct">
+      <div class="sc-ico">🛡️</div>
+      <div class="sc-title">7-Stage SQL Validation</div>
+      <div class="sc-body">Every AI-generated query passes through parsing, statement type checks, schema whitelisting, function blacklisting, cost estimation, row limits, and parameterized tenant binding — before it touches the database.</div>
+    </div>
+    <div class="sec-card cb">
+      <div class="sc-ico">🔒</div>
+      <div class="sc-title">Row-Level Security</div>
+      <div class="sc-body">PostgreSQL RLS enforces tenant isolation at the database level. Each session sets a sponsor context — so no matter what SQL the AI generates, sponsors can only see their own data.</div>
+    </div>
+    <div class="sec-card cn">
+      <div class="sc-ico">📡</div>
+      <div class="sc-title">Read-Only Replica</div>
+      <div class="sc-body">All reporting queries run against a dedicated streaming replica. Your production database is never touched by reporting workloads, and the AI service role has SELECT-only permissions.</div>
+    </div>
+    <div class="sec-card ct2">
+      <div class="sc-ico">⚡</div>
+      <div class="sc-title">Intelligent Caching</div>
+      <div class="sc-body">Semantic similarity matching caches results for equivalent questions. Cache TTLs align to each view's refresh frequency, and pg_notify triggers automatic invalidation when data updates.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVISOR CHANNEL -->
+<section id="advisor">
+  <div class="advisor-grid-bg"></div>
+  <div class="advisor-layout">
+    <div class="fi" style="position:relative;z-index:1;">
+      <div class="eyebrow" style="color:rgba(255,255,255,0.6);">Advisor Channel</div>
+      <h2 class="sh2" style="font-size:clamp(28px,3.5vw,42px);">Built for the<br>wealth management<br>ecosystem</h2>
+      <p style="font-family:var(--font-body);font-size:16px;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:28px;max-width:440px;">Financial advisors on Orion and Envestnet get their own scoped view of client DAF activity — embedded directly in the platforms they already use.</p>
+      <div class="advisor-points">
+        <div class="ap"><div class="ap-check">✓</div><div class="ap-text">"Show me my top 5 clients by charitable giving this year"</div></div>
+        <div class="ap"><div class="ap-check">✓</div><div class="ap-text">"Which clients haven't made a grant in over 6 months?"</div></div>
+        <div class="ap"><div class="ap-check">✓</div><div class="ap-text">"Generate a year-end charitable giving summary for the Thornton account"</div></div>
+        <div class="ap"><div class="ap-check">✓</div><div class="ap-text">"How does my client mix compare to the platform average?"</div></div>
+      </div>
+    </div>
+    <div class="fi d1" style="position:relative;z-index:1;">
+      <div class="advisor-box">
+        <div class="advisor-box-title">The reporting layer your advisors have been asking for</div>
+        <div class="advisor-box-body">200,000 financial advisors on Orion and Envestnet can access real-time DAF intelligence for their clients — without calling your operations desk. OAuth2-scoped, rate-limited, and audit-logged. No competitor in the DAF infrastructure space offers anything comparable.</div>
+        <a href="#cta" class="btn-white">Request a Demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2 class="cta-headline">Ready to stop building<br>reports manually?</h2>
+  <p class="cta-sub">See how the AI-Powered Reporting Engine transforms the way your sponsors,<br>advisors, and operations teams access their data.</p>
+  <div class="cta-btns">
+    <a href="mailto:support@giftingnetwork.com" class="btn-cta-w">Request a Demo</a>
+    <a href="mailto:support@giftingnetwork.com" class="btn-cta-o">Contact Our Team →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-row">
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none"><path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/><path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/><path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/></svg>
+        <div class="nav-wordmark" style="font-size:16px;"><span class="g">Gifting</span><span class="n">Network</span></div>
+      </div>
+      <p class="footer-desc">The philanthropic infrastructure platform powering donor-advised funds, grants, and giving programs for community foundations, institutional sponsors, and the wealth management ecosystem.</p>
+      <div class="footer-contact">
+        <div>89 Headquarters Plaza, Suite 1446</div>
+        <div>Morristown, New Jersey 07960</div>
+        <div><a href="tel:9739848200">973.984.8200</a></div>
+        <div><a href="mailto:info@giftingnetwork.com">info@giftingnetwork.com</a></div>
+      </div>
+    </div>
+    <div>
+      <div class="fc-head">Platform</div>
+      <ul class="fc-links">
+        <li><a href="index.html">GiftingNet — Sponsor Platform</a></li>
+        <li><a href="index.html">DAF Network</a></li>
+        <li><a href="index.html">Philanthropic Back Office</a></li>
+        <li><a href="index.html">Grant Administration</a></li>
+        <li><a href="index.html">Donor Portals</a></li>
+        <li><a href="#">Analytics & Reporting</a></li>
+        <li><a href="index.html">GiftingPension</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-head">Who We Serve</div>
+      <ul class="fc-links">
+        <li><a href="index.html">Community Foundations</a></li>
+        <li><a href="index.html">Jewish Federations</a></li>
+        <li><a href="index.html">Religious Foundations</a></li>
+        <li><a href="index.html">Healthcare Foundations</a></li>
+        <li><a href="index.html">Financial Advisors</a></li>
+        <li><a href="index.html">Wealth Managers</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-head">Company</div>
+      <ul class="fc-links">
+        <li><a href="index.html">About Us</a></li>
+        <li><a href="index.html">Leadership</a></li>
+        <li><a href="index.html">News & Insights</a></li>
+        <li><a href="index.html">Partnerships</a></li>
+        <li><a href="mailto:support@giftingnetwork.com">Contact Us</a></li>
+        <li><a href="#">Privacy Statement</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2026 GiftingNetwork LLC. All Rights Reserved. &nbsp;·&nbsp; Morristown, NJ</div>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/company/giftingnetwork" class="soc">in</a>
+      <a href="#" class="soc">𝕏</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav darken on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 50 ? 'rgba(5,13,24,0.98)' : 'rgba(8,30,54,0.94)';
+  });
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.fi');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target

@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GiftingNet — The DAF Sponsor Platform | GiftingNetwork</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --teal:#00777B;--teal-light:#009499;--teal-dark:#005558;
+  --navy:#144270;--navy-dark:#0D2D4F;--navy-deeper:#081E36;
+  --blue:#098DCA;--amber:#C89A3A;
+  --border:rgba(0,119,123,0.2);--border-w:rgba(255,255,255,0.1);
+  --glass:rgba(255,255,255,0.04);
+  --font-head:'Montserrat',sans-serif;--font-body:'Lato',sans-serif;
+  --max:1100px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--navy-deeper);color:#fff;line-height:1.6;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--navy-deeper);}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:2px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;padding:0 60px;background:rgba(8,30,54,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.nav-wordmark{font-family:var(--font-head);font-size:17px;font-weight:700;letter-spacing:-.01em;}
+.nav-wordmark .g{color:var(--teal-light);}
+.nav-wordmark span:not(.g){color:#fff;}
+.nav-back{font-family:var(--font-head);font-size:13px;font-weight:600;color:rgba(255,255,255,0.55);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.nav-back:hover{color:var(--teal-light);}
+.nav-cta{padding:9px 22px;font-family:var(--font-head);font-size:13px;font-weight:700;color:#fff;background:var(--teal);border:none;border-radius:6px;cursor:pointer;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:var(--teal-light);}
+
+/* HERO */
+.hero{padding:140px 60px 90px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 65% 60% at 80% 25%,rgba(9,141,202,0.18),transparent 60%),radial-gradient(ellipse 55% 55% at 15% 75%,rgba(0,119,123,0.2),transparent 55%),linear-gradient(150deg,var(--navy-deeper) 0%,#0A2240 55%,#061525 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,119,123,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,119,123,0.06) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 20%,transparent 75%);}
+.hero-inner{max-width:var(--max);margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;background:rgba(0,119,123,0.15);border:1px solid rgba(0,119,123,0.4);border-radius:100px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);letter-spacing:.1em;text-transform:uppercase;margin-bottom:26px;}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.6);}}
+h1{font-family:var(--font-head);font-size:clamp(38px,5.5vw,66px);font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:22px;}
+h1 em{font-style:normal;color:var(--teal-light);}
+.hero-sub{font-family:var(--font-body);font-size:17px;font-weight:300;color:rgba(255,255,255,.62);line-height:1.75;margin-bottom:36px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-primary{padding:13px 28px;font-family:var(--font-head);font-size:13px;font-weight:700;color:#fff;background:var(--teal);border:none;border-radius:7px;cursor:pointer;text-decoration:none;box-shadow:0 6px 24px rgba(0,119,123,0.35);transition:background .2s,transform .15s;display:inline-block;}
+.btn-primary:hover{background:var(--teal-light);transform:translateY(-1px);}
+.btn-ghost{padding:13px 28px;font-family:var(--font-head);font-size:13px;font-weight:600;color:rgba(255,255,255,.8);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:7px;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block;}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:var(--teal);}
+
+/* Hero right — network access card */
+.network-card{background:rgba(255,255,255,0.04);border:1px solid rgba(0,119,123,0.3);border-radius:14px;padding:32px;position:relative;overflow:hidden;}
+.network-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--blue));}
+.nc-label{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:18px;}
+.nc-headline{font-family:var(--font-head);font-size:22px;font-weight:800;letter-spacing:-.015em;margin-bottom:12px;line-height:1.25;}
+.nc-body{font-family:var(--font-body);font-size:14px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:24px;}
+.nc-items{display:flex;flex-direction:column;gap:10px;}
+.nc-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,119,123,0.1);border:1px solid rgba(0,119,123,0.2);border-radius:8px;}
+.nc-item-ico{font-size:18px;flex-shrink:0;}
+.nc-item-text{font-family:var(--font-body);font-size:13.5px;font-weight:400;color:rgba(255,255,255,.75);}
+.nc-item-text strong{color:#fff;font-weight:700;}
+
+/* SHARED */
+section{padding:80px 60px;}
+.inner{max-width:var(--max);margin:0 auto;}
+.eyebrow{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:14px;display:block;}
+h2{font-family:var(--font-head);font-size:clamp(28px,3.5vw,44px);font-weight:800;line-height:1.15;letter-spacing:-.025em;margin-bottom:18px;}
+h2 em{font-style:normal;color:var(--teal-light);}
+.sec-lead{font-family:var(--font-body);font-size:16px;font-weight:300;color:rgba(255,255,255,.55);max-width:620px;line-height:1.8;}
+
+/* CAPABILITY GRID */
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+.cap-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:28px;position:relative;overflow:hidden;transition:border-color .25s,background .25s,transform .25s;}
+.cap-card:hover{border-color:rgba(0,119,123,0.4);background:rgba(0,119,123,.06);transform:translateY(-2px);}
+.cap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.cap-card:hover::before{transform:scaleX(1);}
+.cap-icon{font-size:26px;margin-bottom:16px;}
+.cap-title{font-family:var(--font-head);font-size:15px;font-weight:700;margin-bottom:10px;line-height:1.3;}
+.cap-body{font-family:var(--font-body);font-size:13.5px;font-weight:300;color:rgba(255,255,255,.52);line-height:1.7;}
+
+/* FEATURE DEEP-DIVES */
+.feature-section{background:var(--navy-dark);}
+.feature-section.alt{background:var(--navy-deeper);}
+
+.feature-block{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;margin-bottom:72px;padding-bottom:72px;border-bottom:1px solid rgba(0,119,123,.15);}
+.feature-block:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.feature-block.flip .feature-content{order:2;}
+.feature-block.flip .feature-visual{order:1;}
+
+.feature-tag{display:inline-flex;align-items:center;gap:7px;padding:4px 12px;background:rgba(0,119,123,.15);border:1px solid rgba(0,119,123,.3);border-radius:100px;font-family:var(--font-head);font-size:10px;font-weight:700;color:var(--teal-light);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;}
+.feature-h{font-family:var(--font-head);font-size:clamp(22px,2.8vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px;}
+.feature-h em{font-style:normal;color:var(--teal-light);}
+.feature-desc{font-family:var(--font-body);font-size:15px;font-weight:300;color:rgba(255,255,255,.58);line-height:1.8;margin-bottom:22px;}
+.feature-list{display:flex;flex-direction:column;gap:9px;}
+.fl-item{display:flex;gap:10px;align-items:flex-start;font-family:var(--font-body);font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.55;}
+.fl-dot{width:18px;height:18px;border-radius:50%;background:rgba(0,119,123,.25);border:1px solid rgba(0,119,123,.5);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--teal-light);flex-shrink:0;margin-top:1px;}
+
+/* VISUAL PANELS */
+.feature-visual{display:flex;flex-direction:column;gap:12px;}
+.fv-card{padding:20px 22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;transition:border-color .2s;}
+.fv-card:hover{border-color:rgba(0,119,123,.35);}
+.fv-title{font-family:var(--font-head);font-size:13px;font-weight:700;margin-bottom:5px;}
+.fv-body{font-family:var(--font-body);font-size:12.5px;font-weight:300;color:rgba(255,255,255,.48);line-height:1.6;}
+.fv-tag{display:inline-block;margin-top:8px;padding:2px 9px;background:rgba(0,119,123,.12);border:1px solid rgba(0,119,123,.25);border-radius:100px;font-family:var(--font-head);font-size:10px;font-weight:600;color:var(--teal-light);}
+
+/* INTEGRATION STRIP */
+.integrations{background:var(--navy-dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px;}
+.int-card{padding:22px 20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;text-align:center;transition:border-color .2s;}
+.int-card:hover{border-color:rgba(0,119,123,.35);}
+.int-icon{font-size:24px;margin-bottom:10px;}
+.int-name{font-family:var(--font-head);font-size:13px;font-weight:700;margin-bottom:4px;}
+.int-desc{font-family:var(--font-body);font-size:12px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.55;}
+
+/* STATS BAR */
+.stats-bar{background:var(--teal-dark);padding:60px 60px;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);position:relative;overflow:hidden;}
+.stats-bar::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:48px 48px;}
+.stats-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative;z-index:1;}
+.stat-item{text-align:center;}
+.stat-num{font-family:var(--font-head);font-size:36px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:6px;}
+.stat-lbl{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.65);line-height:1.5;}
+
+/* CTA */
+.cta-band{background:var(--teal);padding:80px 60px;text-align:center;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:52px 52px;}
+.cta-band::after{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;background:radial-gradient(circle,rgba(9,141,202,.3),transparent 65%);pointer-events:none;}
+.cta-band>*{position:relative;z-index:1;}
+.cta-h{font-family:var(--font-head);font-size:clamp(28px,4vw,50px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px;}
+.cta-sub{font-family:var(--font-body);font-size:17px;font-weight:300;color:rgba(255,255,255,.72);margin-bottom:36px;}
+.cta-btns{display:flex;justify-content:center;gap:14px;}
+.btn-cta-w{padding:14px 32px;font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--teal-dark);background:#fff;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.btn-cta-w:hover{background:rgba(255,255,255,.92);transform:translateY(-1px);}
+.btn-cta-o{padding:14px 32px;font-family:var(--font-head);font-size:14px;font-weight:700;color:rgba(255,255,255,.9);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;text-decoration:none;transition:background .2s;}
+.btn-cta-o:hover{background:rgba(255,255,255,.18);}
+
+/* FOOTER */
+footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119,123,.15);}
+.footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-legal{font-family:var(--font-head);font-size:11px;font-weight:600;color:rgba(255,255,255,.2);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--teal-light);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav,section,.hero,.cta-band,.stats-bar,footer{padding-left:24px;padding-right:24px;}
+  .hero-inner,.feature-block,.feature-block.flip .feature-content,.feature-block.flip .feature-visual{grid-template-columns:1fr;order:0!important;}
+  .cap-grid,.int-grid{grid-template-columns:1fr 1fr;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  h1{font-size:38px;}
+  .cta-btns{flex-direction:column;align-items:center;}
+}
+@media(max-width:580px){
+  .cap-grid,.int-grid,.stats-inner{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+      <path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/>
+      <path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/>
+      <path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/>
+    </svg>
+    <div class="nav-wordmark"><span class="g">Gifting</span><span>Network</span></div>
+  </a>
+  <a href="index.html" class="nav-back">← Platform Overview</a>
+  <a href="mailto:support@giftingnetwork.com" class="nav-cta">Request Demo</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>GiftingNet</div>
+      <h1>The DAF sponsor platform — and your <em>on-ramp to the Network</em></h1>
+      <p class="hero-sub">GiftingNet is the complete SaaS platform for community foundations, Jewish federations, healthcare foundations, and institutional DAF sponsors. White-labeled, fully configurable, and synchronized with your back-office — with near-automatic access to the GiftingNetwork DAF Network and its advisor distribution built in.</p>
+      <div class="hero-btns">
+        <a href="mailto:support@giftingnetwork.com" class="btn-primary">See GiftingNet in Action</a>
+        <a href="#capabilities" class="btn-ghost">Explore Features →</a>
+      </div>
+    </div>
+    <div class="network-card">
+      <div class="nc-label">What makes GiftingNet different</div>
+      <div class="nc-headline">The platform that comes with a network</div>
+      <div class="nc-body">Every GiftingNet sponsor gains near-automatic access to the GiftingNetwork DAF Network — connecting your DAF program to advisor distribution through Orion and Envestnet, multi-custodian infrastructure, and a growing ecosystem of donors, advisors, and nonprofits.</div>
+      <div class="nc-items">
+        <div class="nc-item"><div class="nc-item-ico">🔗</div><div class="nc-item-text"><strong>Advisor distribution</strong> through the Orion & Envestnet networks — no separate enrollment</div></div>
+        <div class="nc-item"><div class="nc-item-ico">🏦</div><div class="nc-item-text"><strong>Multi-custodian</strong> — Fidelity, Schwab, Goldman Sachs Custody</div></div>
+        <div class="nc-item"><div class="nc-item-ico">🏛️</div><div class="nc-item-text"><strong>Your brand</strong> stays front and center — donors see you, not GiftingNetwork</div></div>
+        <div class="nc-item"><div class="nc-item-ico">⚙️</div><div class="nc-item-text"><strong>PBO optional</strong> — add fully outsourced back-office administration at any time</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num">White-Label</div><div class="stat-lbl">Fully branded to your foundation — donors never see GiftingNetwork</div></div>
+    <div class="stat-item"><div class="stat-num">Real-Time</div><div class="stat-lbl">Synchronized with your back-office accounting system via open API</div></div>
+    <div class="stat-item"><div class="stat-num">GCP/AWS</div><div class="stat-lbl">Hosted on Level 1 PCI-certified infrastructure with nightly backups</div></div>
+    <div class="stat-item"><div class="stat-num">Network</div><div class="stat-lbl">Near-automatic access to the GiftingNetwork advisor distribution network</div></div>
+  </div>
+</div>
+
+<!-- CAPABILITIES OVERVIEW -->
+<section id="capabilities">
+  <div class="inner">
+    <span class="eyebrow">Platform Capabilities</span>
+    <h2>Everything a modern DAF program<br>needs to <em>compete and grow</em></h2>
+    <p class="sec-lead">GiftingNet covers the complete lifecycle of institutional philanthropy — from donor onboarding and fund management through grants, scholarships, reporting, and network distribution.</p>
+    <div class="cap-grid">
+      <div class="cap-card">
+        <div class="cap-icon">🎨</div>
+        <div class="cap-title">Fully White-Labeled Donor Portal</div>
+        <div class="cap-body">Branded to your foundation with custom site skins, CSS, and configurable page modules. Donors see your identity on every screen — fund balances, statements, grant history, and giving tools.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">📋</div>
+        <div class="cap-title">Grant Lifecycle Management</div>
+        <div class="cap-body">End-to-end: one or two-phase applications (LOI/full proposal), qualification controls, reviewer panels, approval workflows, payment schedules, progress reports, and grantee portals.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🎓</div>
+        <div class="cap-title">Scholarship Administration</div>
+        <div class="cap-body">A complete scholarship system mirroring the grants lifecycle — online applications, student self-registration, review panels, approval workflows, and payment coordination with institutions.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🗂️</div>
+        <div class="cap-title">Charitable Catalog</div>
+        <div class="cap-body">An illustrated, searchable directory of vetted nonprofits and charitable programs — maintained by the organizations themselves, filtered by donor interests, and used as the basis for grant recommendations.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🔄</div>
+        <div class="cap-title">Back-Office Synchronization</div>
+        <div class="cap-body">Open web-service API synchronizes contacts, funds, gift history, grant history, fund statements, and investment performance with your back-office accounting software in real time.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">📊</div>
+        <div class="cap-title">Reporting & Analytics</div>
+        <div class="cap-body">SQL-based query builder against the GiftingNet database. Export to Excel, create bulk emails, run database maintenance, and schedule nightly auto-tag reports for data quality management.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">📰</div>
+        <div class="cap-title">Content & Communications</div>
+        <div class="cap-body">Article system with content calendar, interest-area targeting, and automated charitable guidance. Donors receive content matched to their philanthropic preferences — deepening engagement between giving cycles.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🔐</div>
+        <div class="cap-title">Role-Based Access Control</div>
+        <div class="cap-body">Nine user roles with granular permissions: Foundation Staff, Donor, Grant Seeker, Student, Reviewer, Article Publisher, Content Provider, Grant Publisher, and API Controller.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">⚙️</div>
+        <div class="cap-title">Administrative Control Panel</div>
+        <div class="cap-body">Complete administrative control over contacts, funds, giving, applications, notifications, site configuration, API settings, CMS, and every aspect of your DAF program's day-to-day operation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAL SHOWCASE -->
+<section style="padding:80px 60px;background:var(--navy-deeper);">
+  <div style="max-width:var(--max);margin:0 auto;">
+    <span class="eyebrow">Four Portals, Four Experiences</span>
+    <h2>One platform. Every<br>user sees <em>their world.</em></h2>
+    <p class="sec-lead" style="margin-bottom:40px;">GiftingNet delivers a completely different experience depending on who's logged in — all under your foundation's brand. Explore each portal below.</p>
+
+    <style>
+      .ps-wrap{font-family:var(--font-head);width:100%;}
+      .ps-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+      .ps-tab{padding:9px 20px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);font-family:var(--font-head);font-size:13px;font-weight:600;color:rgba(255,255,255,0.55);cursor:pointer;transition:all 0.15s;letter-spacing:0.01em;}
+      .ps-tab:hover{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);}
+      .ps-tab.active{background:rgba(0,119,123,0.2);color:var(--teal-light);border-color:rgba(0,119,123,0.5);font-weight:700;}
+      .ps-portal{display:none;}
+      .ps-portal.active{display:block;}
+      .ps-chrome{border:1px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.03);}
+      .ps-topbar{background:rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.08);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;}
+      .ps-logo{font-family:var(--font-head);font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);}
+      .ps-logo span{color:var(--teal-light);}
+      .ps-user{display:flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,0.5);}
+      .ps-avatar{width:26px;height:26px;border-radius:50%;background:rgba(0,119,123,0.3);border:1px solid rgba(0,119,123,0.5);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);}
+      .ps-body{display:grid;grid-template-columns:190px 1fr;min-height:400px;}
+      .ps-nav{background:rgba(0,0,0,0.2);border-right:1px solid rgba(255,255,255,0.07);padding:14px 0;}
+      .ps-nav-item{padding:9px 16px;font-family:var(--font-head);font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);cursor:default;display:flex;align-items:center;gap:8px;letter-spacing:0.01em;}
+      .ps-nav-item.sel{color:var(--teal-light);background:rgba(0,119,123,0.15);border-right:2px solid var(--teal);}
+      .ps-nav-divider{height:1px;background:rgba(255,255,255,0.07);margin:8px 0;}
+      .ps-content{padding:22px;}
+      .ps-section-label{font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:14px;}
+      .ps-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+      .ps-stat{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:13px 14px;}
+      .ps-stat-lbl{font-family:var(--font-head);font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:5px;}
+      .ps-stat-val{font-family:var(--font-head);font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.02em;}
+      .ps-stat-val.teal{color:var(--teal-light);}
+      .ps-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+      .ps-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+      .ps-card-title{font-family:var(--font-head);font-size:13px;font-weight:700;color:#fff;}
+      .ps-badge{font-family:var(--font-head);font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:0.04em;}
+      .ps-badge.green{background:rgba(46,180,100,0.2);color:#6FCF97;border:1px solid rgba(46,180,100,0.3);}
+      .ps-badge.amber{background:rgba(200,154,58,0.15);color:var(--amber);border:1px solid rgba(200,154,58,0.3);}
+      .ps-badge.blue{background:rgba(9,141,202,0.15);color:var(--blue);border:1px solid rgba(9,141,202,0.3);}
+      .ps-badge.gray{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.12);}
+      .ps-badge.red{background:rgba(220,80,80,0.15);color:#FF8A80;border:1px solid rgba(220,80,80,0.3);}
+      .ps-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+      .ps-row:last-child{border-bottom:none;}
+      .ps-row-lbl{font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,0.45);}
+      .ps-row-val{font-family:var(--font-body);font-size:12px;font-weight:700;color:rgba(255,255,255,0.8);}
+      .ps-progress{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:8px;overflow:hidden;}
+      .ps-progress-fill{height:100%;border-radius:2px;background:var(--teal);}
+      .ps-btn-row{display:flex;gap:8px;margin-top:12px;}
+      .ps-btn{padding:7px 14px;font-family:var(--font-head);font-size:11px;font-weight:700;border-radius:6px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);cursor:default;letter-spacing:0.02em;}
+      .ps-btn.primary{background:var(--teal);color:#fff;border-color:var(--teal);}
+      .ps-table{width:100%;font-size:12px;border-collapse:collapse;}
+      .ps-table th{font-family:var(--font-head);font-weight:700;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);text-align:left;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,0.08);}
+      .ps-table td{font-family:var(--font-body);padding:8px 8px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);}
+      .ps-table tr:last-child td{border-bottom:none;}
+      .ps-stars{color:var(--amber);font-size:13px;letter-spacing:2px;}
+      .ps-portal-caption{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,0.42);margin-top:12px;line-height:1.65;padding:0 2px;}
+      .ps-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+      @media(max-width:700px){
+        .ps-body{grid-template-columns:1fr;}
+        .ps-nav{display:none;}
+        .ps-stat-row{grid-template-columns:1fr 1fr;}
+      }
+    </style>
+
+    <div class="ps-wrap">
+      <div class="ps-tabs">
+        <button class="ps-tab active" onclick="switchPortal('donor',this)">Donor portal</button>
+        <button class="ps-tab" onclick="switchPortal('grantseeker',this)">Grant seeker portal</button>
+        <button class="ps-tab" onclick="switchPortal('reviewer',this)">Reviewer portal</button>
+        <button class="ps-tab" onclick="switchPortal('student',this)">Student portal</button>
+        <button class="ps-tab" onclick="switchPortal('advisor',this)">Financial advisor portal</button>
+      </div>
+
+      <!-- DONOR -->
+      <div id="portal-donor" class="ps-portal active">
+        <div class="ps-chrome">
+          <div class="ps-topbar" style="padding:10px 16px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg width="22" height="22" viewBox="0 0 36 36" fill="none"><path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/><path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/><path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/></svg>
+              <span style="font-family:var(--font-head);font-size:13px;font-weight:700;color:#fff;"><span style="color:var(--teal-light);">Gifting</span>Network</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="position:relative;font-size:16px;">🛒<span style="position:absolute;top:-4px;right:-6px;width:14px;height:14px;background:var(--amber);border-radius:50%;font-family:var(--font-head);font-size:8px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;">6</span></div>
+              <span style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.55);">Mary Jones</span>
+            </div>
+          </div>
+          <div class="ps-body" style="min-height:480px;">
+            <div class="ps-nav">
+              <div id="dpn-dashboard" class="ps-nav-item sel" onclick="switchDonor('dashboard')">Dashboard</div>
+              <div class="ps-nav-item" onclick="switchDonor('dashboard')">Make a Gift</div>
+              <div id="dpn-grant" class="ps-nav-item" onclick="switchDonor('grant')">Recommend a Grant</div>
+              <div class="ps-nav-item">Recent Online Gifts</div>
+              <div class="ps-nav-item">Fund Advisors</div>
+              <div class="ps-nav-item">My Documents</div>
+              <div class="ps-nav-item">My Cart (6)</div>
+              <div class="ps-nav-divider"></div>
+              <div style="padding:6px 16px;font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);">Catalog</div>
+              <div class="ps-nav-item">Charitable Catalog</div>
+              <div class="ps-nav-item">Organization Matches</div>
+              <div class="ps-nav-item">Program Matches</div>
+              <div class="ps-nav-divider"></div>
+              <div style="padding:6px 16px;font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);">Performance</div>
+              <div id="dpn-perf" class="ps-nav-item" onclick="switchDonor('perf')">Pool Performance</div>
+              <div class="ps-nav-divider"></div>
+              <div class="ps-nav-item">Profile</div>
+              <div class="ps-nav-item">Interest Profile</div>
+              <div class="ps-nav-item">Investments</div>
+            </div>
+
+            <!-- DASHBOARD -->
+            <div id="dp-dashboard" class="ps-content" style="overflow:auto;">
+              <div style="font-family:var(--font-head);font-size:16px;font-weight:800;margin-bottom:16px;color:#fff;">Dashboard</div>
+              <div style="font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px;">Funds</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+                <div style="padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="font-family:var(--font-head);font-size:13px;font-weight:700;">AROS Fund</span><span style="font-family:var(--font-head);font-size:15px;font-weight:800;color:var(--teal-light);">$1,082,130.46</span></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button onclick="switchDonor('overview')" style="padding:5px 10px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;">Fund Overview</button>
+                    <button onclick="switchDonor('granthistory')" style="padding:5px 10px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;">Grant History</button>
+                    <button style="padding:5px 10px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:default;">Gift History</button>
+                    <button onclick="switchDonor('grant')" style="padding:5px 10px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;">Recommend a Grant</button>
+                  </div>
+                </div>
+                <div style="padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span style="font-family:var(--font-head);font-size:13px;font-weight:700;">Welter Fund</span><span style="font-family:var(--font-head);font-size:15px;font-weight:800;color:var(--teal-light);">$459,430.58</span></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button style="padding:5px 10px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:default;">Fund Overview</button>
+                    <button onclick="switchDonor('granthistory')" style="padding:5px 10px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;">Grant History</button>
+                    <button style="padding:5px 10px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:default;">Gift History</button>
+                    <button onclick="switchDonor('grant')" style="padding:5px 10px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;">Recommend a Grant</button>
+                  </div>
+                </div>
+              </div>
+              <div style="font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px;">Pending Grants — From AROS Fund</div>
+              <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;">
+                <table style="width:100%;border-collapse:collapse;font-size:12px;">
+                  <thead><tr style="border-bottom:1px solid rgba(255,255,255,.1);"><th style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-align:left;padding:8px 12px;letter-spacing:.06em;">Organization</th><th style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:8px 12px;letter-spacing:.06em;">Amount</th><th style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:8px 12px;letter-spacing:.06em;">Status</th></tr></thead>
+                  <tbody>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:7px 12px;color:rgba(255,255,255,.75);">American Diabetes Association</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-weight:700;">$1,000</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-size:10px;color:var(--amber);">Approval Pending</td></tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:7px 12px;color:rgba(255,255,255,.75);">Boy Scouts of America Milwaukee</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-weight:700;">$2,000</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-size:10px;color:#6FCF97;">Approved 03-10-2026</td></tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:7px 12px;color:rgba(255,255,255,.75);">Boys and Girls Club of Dane County</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-weight:700;">$3,241</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-size:10px;color:var(--amber);">Approval Pending</td></tr>
+                    <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:7px 12px;color:rgba(255,255,255,.75);">Father Flanagans Boys Home</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-weight:700;">$500</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-size:10px;color:var(--amber);">Approval Pending</td></tr>
+                    <tr><td style="font-family:var(--font-body);padding:7px 12px;color:rgba(255,255,255,.75);">The Wildlife Org</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-weight:700;">$104</td><td style="font-family:var(--font-head);padding:7px 12px;text-align:right;font-size:10px;color:var(--amber);">Approval Pending</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- FUND OVERVIEW -->
+            <div id="dp-overview" class="ps-content" style="display:none;overflow:auto;">
+              <div style="font-family:var(--font-head);font-size:16px;font-weight:800;margin-bottom:4px;color:#fff;">Fund Overview</div>
+              <div style="display:grid;grid-template-columns:1fr 200px;gap:16px;align-items:start;">
+                <div>
+                  <div style="font-family:var(--font-head);font-size:13px;font-weight:800;color:var(--teal-light);letter-spacing:.05em;margin-bottom:14px;">AROS FUND <span style="font-size:10px;color:rgba(255,255,255,.35);font-weight:400;">03-23-2026</span></div>
+                  <div style="font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:6px;">Fund Balance</div>
+                  <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.07);"><span style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.6);">Total Invested Assets</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;">$1,082,130.46</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:8px 12px;margin:6px 0;background:rgba(0,119,123,.1);border:1px solid rgba(0,119,123,.25);border-radius:6px;"><span style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.7);">&#8853; Endowment Pool</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$1,082,130.46</span></div>
+                  <div style="font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin:12px 0 8px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:6px;">Fund Activities</div>
+                  <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);"><span style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.6);">Beginning Assets Balance</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;">$1,082,130.46</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);"><span style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.6);">Contributions</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:#6FCF97;">$65,652.25</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);"><span style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.6);">Disbursements</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:#E05555;">$24,326.23</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:8px 12px;margin:6px 0;background:rgba(0,119,123,.08);border:1px solid rgba(0,119,123,.2);border-radius:6px;"><span style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.7);">&#8853; Investment Activity</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$935,329.80</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);"><span style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.6);">Pending Disbursements</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--amber);">$3,241.00</span></div>
+                  <div style="font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin:12px 0 8px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:6px;">Ending Assets Balance</div>
+                  <div style="display:flex;justify-content:space-between;padding:6px 0;margin-bottom:14px;"><span style="font-family:var(--font-body);font-size:12px;font-weight:700;color:#fff;">ENDING ASSETS BALANCE</span><span style="font-family:var(--font-head);font-size:14px;font-weight:800;color:var(--teal-light);">$1,082,130.46</span></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <button onclick="switchDonor('granthistory')" style="padding:6px 11px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;">Grant History</button>
+                    <button style="padding:6px 11px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:default;">Gift History</button>
+                    <button onclick="switchDonor('grant')" style="padding:6px 11px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;">Recommend a Grant</button>
+                    <button onclick="switchDonor('perf')" style="padding:6px 11px;font-family:var(--font-head);font-size:10px;font-weight:700;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;">Fund Performance</button>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.4);margin-bottom:4px;">Total Pool Composition</div>
+                  <div style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.3);margin-bottom:10px;">As of 09-30-2025</div>
+                  <svg viewBox="0 0 120 120" width="120" height="120" style="display:block;margin:0 auto 10px;">
+                    <path d="M60,60 L60,10 A50,50 0 1,1 11.2,82.5 Z" fill="#144270"/>
+                    <path d="M60,60 L11.2,82.5 A50,50 0 0,1 35.4,14.8 Z" fill="#009499"/>
+                    <path d="M60,60 L35.4,14.8 A50,50 0 0,1 60,10 Z" fill="#C89A3A"/>
+                    <path d="M60,60 L58,10 A50,50 0 0,1 60,10 Z" fill="#EFC030"/>
+                    <circle cx="60" cy="60" r="22" fill="rgba(8,30,54,0.95)"/>
+                  </svg>
+                  <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px;">
+                    <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#144270;flex-shrink:0;"></div><span style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.6);">Equity</span></div>
+                    <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#009499;flex-shrink:0;"></div><span style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.6);">Fixed Income</span></div>
+                    <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#C89A3A;flex-shrink:0;"></div><span style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.6);">Alternatives</span></div>
+                    <div style="display:flex;align-items:center;gap:5px;"><div style="width:10px;height:10px;border-radius:2px;background:#EFC030;flex-shrink:0;"></div><span style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.6);">Cash &amp; Equiv</span></div>
+                  </div>
+                  <table style="width:100%;border-collapse:collapse;font-size:10px;">
+                    <thead><tr style="border-bottom:1px solid rgba(255,255,255,.1);"><th style="font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);text-align:left;padding:4px 0;"></th><th style="font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:4px 2px;">Value</th><th style="font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:4px 0;">%</th></tr></thead>
+                    <tbody>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:4px 0;color:rgba(255,255,255,.7);">Total Fund</td><td style="font-family:var(--font-head);text-align:right;padding:4px 2px;font-weight:700;">$1,530,000</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;font-weight:700;">100</td></tr>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:4px 0;color:rgba(255,255,255,.6);">Equity</td><td style="font-family:var(--font-head);text-align:right;padding:4px 2px;">$891,806</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;">58.29</td></tr>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:4px 0;color:rgba(255,255,255,.6);">Fixed Income</td><td style="font-family:var(--font-head);text-align:right;padding:4px 2px;">$308,861</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;">20.19</td></tr>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:4px 0;color:rgba(255,255,255,.6);">Alternatives</td><td style="font-family:var(--font-head);text-align:right;padding:4px 2px;">$311,826</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;">20.38</td></tr>
+                      <tr><td style="font-family:var(--font-body);padding:4px 0;color:rgba(255,255,255,.6);">Cash &amp; Equiv</td><td style="font-family:var(--font-head);text-align:right;padding:4px 2px;">$17,505</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;">1.14</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- GRANT HISTORY -->
+            <div id="dp-granthistory" class="ps-content" style="display:none;overflow:auto;">
+              <div style="font-family:var(--font-head);font-size:16px;font-weight:800;margin-bottom:14px;color:#fff;">Grant History</div>
+              <div style="display:grid;grid-template-columns:1fr 180px;gap:14px;align-items:start;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.1);">
+                    Welter Fund
+                    <div style="display:flex;gap:6px;">
+                      <span style="padding:3px 8px;background:rgba(255,255,255,.08);border-radius:4px;font-size:10px;cursor:default;">CSV</span>
+                      <span style="padding:3px 8px;background:rgba(255,255,255,.08);border-radius:4px;font-size:10px;cursor:default;">Print</span>
+                      <span style="padding:3px 8px;background:var(--teal);border-radius:4px;font-size:10px;color:#fff;cursor:default;">Filter</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:0;">
+                    <div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);"><div style="display:flex;justify-content:space-between;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);">10-26-2024</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$250.00</span></div><div style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.75);margin:2px 0;">Margaret Ann's Place in Kenosha</div><span style="display:inline-block;padding:2px 8px;border:1px solid rgba(255,255,255,.15);border-radius:4px;font-family:var(--font-head);font-size:9px;color:rgba(255,255,255,.4);">Repeat</span></div>
+                    <div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);"><div style="display:flex;justify-content:space-between;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);">10-22-2024</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$200.00</span></div><div style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.75);margin:2px 0;">Council for the Spanish Speaking</div><span style="display:inline-block;padding:2px 8px;border:1px solid rgba(255,255,255,.15);border-radius:4px;font-family:var(--font-head);font-size:9px;color:rgba(255,255,255,.4);">Repeat</span></div>
+                    <div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);"><div style="display:flex;justify-content:space-between;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);">10-17-2024</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$250.00</span></div><div style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.75);margin:2px 0;">Club Eichenlaub</div><span style="display:inline-block;padding:2px 8px;border:1px solid rgba(255,255,255,.15);border-radius:4px;font-family:var(--font-head);font-size:9px;color:rgba(255,255,255,.4);">Repeat</span></div>
+                    <div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);"><div style="display:flex;justify-content:space-between;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);">09-07-2024</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$228.00</span></div><div style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.75);margin:2px 0;">Ft. Lauderdale Children's Theatre</div><span style="display:inline-block;padding:2px 8px;border:1px solid rgba(255,255,255,.15);border-radius:4px;font-family:var(--font-head);font-size:9px;color:rgba(255,255,255,.4);">Repeat</span></div>
+                    <div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);"><div style="display:flex;justify-content:space-between;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);">05-05-2024</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$480.00</span></div><div style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.75);margin:2px 0;">San Juan Diego Middle School</div><span style="display:inline-block;padding:2px 8px;border:1px solid rgba(255,255,255,.15);border-radius:4px;font-family:var(--font-head);font-size:9px;color:rgba(255,255,255,.4);">Repeat</span></div>
+                    <div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);"><div style="display:flex;justify-content:space-between;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);">03-12-2024</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$1,000.00</span></div><div style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.75);margin:2px 0;">Ft. Lauderdale Children's Theatre</div><span style="display:inline-block;padding:2px 8px;border:1px solid rgba(255,255,255,.15);border-radius:4px;font-family:var(--font-head);font-size:9px;color:rgba(255,255,255,.4);">Repeat</span></div>
+                    <div style="padding:9px 0;"><div style="display:flex;justify-content:space-between;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);">03-06-2024</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$750.00</span></div><div style="font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.75);margin:2px 0;">Zink the Zebra Foundation, Inc.</div><span style="display:inline-block;padding:2px 8px;border:1px solid rgba(255,255,255,.15);border-radius:4px;font-family:var(--font-head);font-size:9px;color:rgba(255,255,255,.4);">Repeat</span></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;margin-bottom:10px;">
+                    <div style="background:var(--teal);padding:6px 10px;font-family:var(--font-head);font-size:10px;font-weight:700;color:#fff;">Grants by Month</div>
+                    <div style="padding:10px;display:flex;align-items:flex-end;gap:4px;height:72px;">
+                      <div style="flex:1;background:rgba(20,66,112,0.8);border-radius:2px 2px 0 0;height:12%;"></div>
+                      <div style="flex:1;background:rgba(20,66,112,0.8);border-radius:2px 2px 0 0;height:22%;"></div>
+                      <div style="flex:1;background:rgba(20,66,112,0.8);border-radius:2px 2px 0 0;height:30%;"></div>
+                      <div style="flex:1;background:rgba(20,66,112,0.8);border-radius:2px 2px 0 0;height:100%;"></div>
+                      <div style="flex:1;background:rgba(20,66,112,0.8);border-radius:2px 2px 0 0;height:28%;"></div>
+                      <div style="flex:1;background:rgba(20,66,112,0.8);border-radius:2px 2px 0 0;height:18%;"></div>
+                      <div style="flex:1;background:rgba(20,66,112,0.8);border-radius:2px 2px 0 0;height:42%;"></div>
+                    </div>
+                  </div>
+                  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;">
+                    <div style="background:var(--teal);padding:6px 10px;display:flex;justify-content:space-between;">
+                      <span style="font-family:var(--font-head);font-size:10px;font-weight:700;color:#fff;">Grant Distribution</span>
+                      <span style="font-family:var(--font-head);font-size:10px;color:rgba(255,255,255,.7);">$3,908.00</span>
+                    </div>
+                    <div style="padding:10px;display:flex;justify-content:center;">
+                      <svg viewBox="0 0 90 90" width="85" height="85">
+                        <path d="M45,45 L45,5 A40,40 0 0,1 80.8,62.5 Z" fill="#C89A3A"/>
+                        <path d="M45,45 L80.8,62.5 A40,40 0 0,1 45,85 Z" fill="#144270"/>
+                        <path d="M45,45 L45,85 A40,40 0 0,1 14.2,22.5 Z" fill="#7B3D8C"/>
+                        <path d="M45,45 L14.2,22.5 A40,40 0 0,1 45,5 Z" fill="#2D6B4A"/>
+                      </svg>
+                    </div>
+                    <div style="padding:0 10px 10px;display:flex;flex-direction:column;gap:4px;">
+                      <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;background:#C89A3A;border-radius:1px;flex-shrink:0;"></div><span style="font-family:var(--font-body);font-size:9px;color:rgba(255,255,255,.6);">Ft. Lauderdale Children's Theatre</span></div>
+                      <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;background:#144270;border-radius:1px;flex-shrink:0;"></div><span style="font-family:var(--font-body);font-size:9px;color:rgba(255,255,255,.6);">Zink the Zebra Foundation</span></div>
+                      <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;background:#7B3D8C;border-radius:1px;flex-shrink:0;"></div><span style="font-family:var(--font-body);font-size:9px;color:rgba(255,255,255,.6);">Club Eichenlaub</span></div>
+                      <div style="display:flex;align-items:center;gap:5px;"><div style="width:8px;height:8px;background:#2D6B4A;border-radius:1px;flex-shrink:0;"></div><span style="font-family:var(--font-body);font-size:9px;color:rgba(255,255,255,.6);">San Juan Diego Middle School</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- POOL PERFORMANCE -->
+            <div id="dp-perf" class="ps-content" style="display:none;overflow:auto;">
+              <div style="font-family:var(--font-head);font-size:16px;font-weight:800;margin-bottom:4px;color:#fff;">Pool Performance</div>
+              <div style="font-family:var(--font-body);font-size:11px;color:rgba(255,255,255,.35);margin-bottom:14px;">As of 09-30-2025</div>
+              <div style="display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1);flex-wrap:wrap;">
+                <div style="padding:7px 12px;font-family:var(--font-head);font-size:11px;color:rgba(255,255,255,.4);cursor:default;">Short Term</div>
+                <div style="padding:7px 12px;font-family:var(--font-head);font-size:11px;color:rgba(255,255,255,.4);cursor:default;">Mid Term</div>
+                <div style="padding:7px 12px;font-family:var(--font-head);font-size:11px;color:rgba(255,255,255,.4);cursor:default;">Long Term ESG</div>
+                <div style="padding:7px 12px;font-family:var(--font-head);font-size:11px;color:rgba(255,255,255,.4);cursor:default;">Impact Invt</div>
+                <div style="padding:7px 12px;font-family:var(--font-head);font-size:11px;font-weight:700;color:#fff;border-bottom:2px solid var(--teal);cursor:default;">Endowment</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 155px;gap:14px;align-items:start;">
+                <div>
+                  <div style="font-family:var(--font-head);font-size:13px;font-weight:700;margin-bottom:12px;">Endowment Pool — Performance Summary</div>
+                  <div style="display:flex;gap:6px;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:8px;">
+                    <div style="padding:5px 11px;font-family:var(--font-head);font-size:10px;font-weight:700;color:#fff;border-bottom:2px solid var(--teal);cursor:default;">Total Fund</div>
+                    <div style="padding:5px 11px;font-family:var(--font-head);font-size:10px;color:rgba(255,255,255,.4);cursor:default;">Equity</div>
+                    <div style="padding:5px 11px;font-family:var(--font-head);font-size:10px;color:rgba(255,255,255,.4);cursor:default;">Fixed Income</div>
+                    <div style="padding:5px 11px;font-family:var(--font-head);font-size:10px;color:rgba(255,255,255,.4);cursor:default;">Alternatives</div>
+                  </div>
+                  <div style="display:flex;align-items:flex-end;gap:8px;height:88px;margin-bottom:8px;padding:0 4px;">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;"><div style="display:flex;gap:3px;align-items:flex-end;width:100%;height:68px;"><div style="flex:1;background:#144270;border-radius:2px 2px 0 0;" style="height:11px;"></div><div style="flex:1;background:#C89A3A;border-radius:2px 2px 0 0;height:13px;"></div></div><div style="font-family:var(--font-body);font-size:8px;color:rgba(255,255,255,.3);">Curr Mo</div></div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;"><div style="display:flex;gap:3px;align-items:flex-end;width:100%;height:68px;"><div style="flex:1;background:#144270;height:29px;border-radius:2px 2px 0 0;"></div><div style="flex:1;background:#C89A3A;height:24px;border-radius:2px 2px 0 0;"></div></div><div style="font-family:var(--font-body);font-size:8px;color:rgba(255,255,255,.3);">Roll 3M</div></div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;"><div style="display:flex;gap:3px;align-items:flex-end;width:100%;height:68px;"><div style="flex:1;background:#144270;height:29px;border-radius:2px 2px 0 0;"></div><div style="flex:1;background:#C89A3A;height:24px;border-radius:2px 2px 0 0;"></div></div><div style="font-family:var(--font-body);font-size:8px;color:rgba(255,255,255,.3);">Fiscal YTD</div></div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;"><div style="display:flex;gap:3px;align-items:flex-end;width:100%;height:68px;"><div style="flex:1;background:#144270;height:65px;border-radius:2px 2px 0 0;"></div><div style="flex:1;background:#C89A3A;height:66px;border-radius:2px 2px 0 0;"></div></div><div style="font-family:var(--font-body);font-size:8px;color:rgba(255,255,255,.3);">Cal YTD</div></div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;"><div style="display:flex;gap:3px;align-items:flex-end;width:100%;height:68px;"><div style="flex:1;background:#144270;height:68px;border-radius:2px 2px 0 0;"></div><div style="flex:1;background:#C89A3A;height:68px;border-radius:2px 2px 0 0;"></div></div><div style="font-family:var(--font-body);font-size:8px;color:rgba(255,255,255,.3);">Latest 12M</div></div>
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;"><div style="display:flex;gap:3px;align-items:flex-end;width:100%;height:68px;"><div style="flex:1;background:#144270;height:68px;border-radius:2px 2px 0 0;"></div><div style="flex:1;background:#C89A3A;height:68px;border-radius:2px 2px 0 0;"></div></div><div style="font-family:var(--font-body);font-size:8px;color:rgba(255,255,255,.3);">Cal 2024</div></div>
+                  </div>
+                  <div style="display:flex;gap:14px;margin-bottom:12px;">
+                    <div style="display:flex;align-items:center;gap:4px;"><div style="width:10px;height:10px;background:#144270;border-radius:2px;"></div><span style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.5);">Total Fund</span></div>
+                    <div style="display:flex;align-items:center;gap:4px;"><div style="width:10px;height:10px;background:#C89A3A;border-radius:2px;"></div><span style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.5);">Endowment Policy</span></div>
+                  </div>
+                  <table style="width:100%;border-collapse:collapse;font-size:10px;">
+                    <thead><tr style="border-bottom:1px solid rgba(255,255,255,.1);"><th style="font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);text-align:left;padding:5px 4px;"></th><th style="font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:5px 4px;">Curr Mo</th><th style="font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:5px 4px;">Roll 3M</th><th style="font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:5px 4px;">Cal YTD</th><th style="font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:5px 4px;">Lat 12M</th><th style="font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:5px 4px;">CY 2024</th></tr></thead>
+                    <tbody>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-head);padding:5px 4px;font-weight:700;">Total Fund</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">1.46</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">4.52</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">10.26</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">10.58</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">11.17</td></tr>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:5px 4px;color:rgba(255,255,255,.55);">Endowment Policy</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;color:rgba(255,255,255,.55);">1.67</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;color:rgba(255,255,255,.55);">3.84</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;color:rgba(255,255,255,.55);">10.34</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;color:rgba(255,255,255,.55);">10.66</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;color:rgba(255,255,255,.55);">11.26</td></tr>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-head);padding:5px 4px;font-weight:700;">Equity</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">2.15</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">5.88</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">12.95</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">13.49</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">14.21</td></tr>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-head);padding:5px 4px;font-weight:700;">Fixed Income</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">0.60</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">1.77</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">6.32</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">3.40</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">3.23</td></tr>
+                      <tr><td style="font-family:var(--font-head);padding:5px 4px;font-weight:700;">Alternatives</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">-0.05</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">2.70</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">5.14</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">8.06</td><td style="font-family:var(--font-head);text-align:right;padding:5px 4px;font-weight:700;">10.14</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div>
+                  <svg viewBox="0 0 120 120" width="115" height="115" style="display:block;margin:0 auto 10px;">
+                    <path d="M60,60 L60,10 A50,50 0 1,1 11.2,82.5 Z" fill="#144270"/>
+                    <path d="M60,60 L11.2,82.5 A50,50 0 0,1 35.4,14.8 Z" fill="#009499"/>
+                    <path d="M60,60 L35.4,14.8 A50,50 0 0,1 60,10 Z" fill="#C89A3A"/>
+                    <circle cx="60" cy="60" r="22" fill="rgba(8,30,54,0.95)"/>
+                  </svg>
+                  <table style="width:100%;border-collapse:collapse;font-size:10px;">
+                    <thead><tr style="border-bottom:1px solid rgba(255,255,255,.1);"><th style="text-align:left;padding:4px 0;font-family:var(--font-head);font-size:9px;font-weight:700;color:rgba(255,255,255,.35);"></th><th style="text-align:right;padding:4px 2px;font-family:var(--font-head);font-size:9px;font-weight:700;color:rgba(255,255,255,.35);">Value</th><th style="text-align:right;padding:4px 0;font-family:var(--font-head);font-size:9px;font-weight:700;color:rgba(255,255,255,.35);">%</th></tr></thead>
+                    <tbody>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:4px 0;color:rgba(255,255,255,.7);font-size:9px;">Total Fund</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;font-weight:700;font-size:9px;">$214.2M</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;font-size:9px;">100</td></tr>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:4px 0;color:rgba(255,255,255,.6);font-size:9px;">Equity</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;font-size:9px;">$135.9M</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;font-size:9px;">63.49</td></tr>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);"><td style="font-family:var(--font-body);padding:4px 0;color:rgba(255,255,255,.6);font-size:9px;">Fixed Income</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;font-size:9px;">$40.3M</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;font-size:9px;">18.81</td></tr>
+                      <tr><td style="font-family:var(--font-body);padding:4px 0;color:rgba(255,255,255,.6);font-size:9px;">Alternatives</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;font-size:9px;">$37.9M</td><td style="font-family:var(--font-head);text-align:right;padding:4px 0;font-size:9px;">17.70</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- RECOMMEND A GRANT -->
+            <div id="dp-grant" class="ps-content" style="display:none;overflow:auto;">
+              <div style="font-family:var(--font-head);font-size:16px;font-weight:800;margin-bottom:4px;color:#fff;">Recommend a Grant</div>
+              <div style="font-family:var(--font-body);font-size:11px;color:rgba(255,255,255,.4);margin-bottom:16px;">Please provide the grant information in the form below.</div>
+              <div style="display:flex;flex-direction:column;gap:10px;max-width:500px;">
+                <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center;"><label style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:right;">Fund Name</label><div style="padding:7px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:5px;font-family:var(--font-body);font-size:12px;color:#fff;">AROS Fund &#9660;</div></div>
+                <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start;"><label style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:right;padding-top:7px;">Organization Name</label><div><div style="padding:7px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(0,119,123,.5);border-radius:5px;font-family:var(--font-body);font-size:12px;color:#fff;margin-bottom:3px;">American Heart Association - Milw</div><div style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.35);">660 E. Mason St., #200, Milwaukee, WI 53202</div></div></div>
+                <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center;"><label style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:right;">Amount ($)</label><div style="padding:7px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(0,119,123,.5);border-radius:5px;font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">1234.00</div></div>
+                <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center;padding-left:148px;"><label style="display:flex;align-items:center;gap:6px;font-family:var(--font-body);font-size:11px;color:rgba(255,255,255,.55);cursor:default;"><input type="checkbox" style="accent-color:var(--teal);"> Make this a Fund Closing Grant</label></div>
+                <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center;"><label style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:right;">Granting Frequency</label><div style="padding:7px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:5px;font-family:var(--font-body);font-size:12px;color:#fff;">One Time &#9660;</div></div>
+                <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center;"><label style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:right;">Payout Date</label><div style="padding:7px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:5px;font-family:var(--font-body);font-size:12px;color:#fff;">03-30-2026 &#9660;</div></div>
+                <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start;"><label style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:right;padding-top:7px;">Grant Purpose</label><div style="padding:7px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:5px;font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.3);min-height:50px;">Special grant purpose</div></div>
+                <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:start;"><label style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:right;padding-top:7px;">Instructions</label><div style="padding:7px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:5px;font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.3);min-height:50px;">Instructions to our staff</div></div>
+                <div style="display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center;"><label style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:right;">Grant Dedication</label><div style="padding:7px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:5px;font-family:var(--font-body);font-size:12px;color:#fff;">None &#9660;</div></div>
+                <div style="font-family:var(--font-head);font-size:13px;font-weight:700;color:#fff;margin-top:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);">Award Letter Options</div>
+                <div style="display:flex;flex-direction:column;gap:7px;padding-left:8px;">
+                  <label style="display:flex;align-items:flex-start;gap:7px;font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.65);cursor:default;line-height:1.5;"><input type="checkbox" style="accent-color:var(--teal);margin-top:2px;"> I wish to remain completely anonymous</label>
+                  <label style="display:flex;align-items:flex-start;gap:7px;font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.65);cursor:default;line-height:1.5;"><input type="checkbox" style="accent-color:var(--teal);margin-top:2px;"> Share Fund name with grantee, but do not allow grantee to recognize publicly</label>
+                  <label style="display:flex;align-items:flex-start;gap:7px;font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.65);cursor:default;line-height:1.5;"><input type="checkbox" style="accent-color:var(--teal);margin-top:2px;"> Share advisor name(s) with grantee</label>
+                </div>
+                <div style="padding-left:0;margin-top:8px;">
+                  <button style="padding:10px 24px;font-family:var(--font-head);font-size:12px;font-weight:700;background:var(--teal);border:none;border-radius:6px;color:#fff;cursor:default;box-shadow:0 4px 14px rgba(0,119,123,.35);">Submit Grant Recommendation</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <p class="ps-portal-caption">The actual GiftingNet donor portal — white-labeled to your foundation in production. Navigate the left menu above: Dashboard shows all your funds and pending grants. Fund Overview has live balances, investment pool composition, and activity. Grant History shows every disbursement with charts. Pool Performance shows returns across investment pools. Recommend a Grant walks through the full form.</p>
+      </div>
+
+
+      <!-- GRANT SEEKER -->
+      <div id="portal-grantseeker" class="ps-portal">
+        <div class="ps-chrome">
+          <div class="ps-topbar">
+            <div class="ps-logo"><span>Gifting</span>Network &nbsp;·&nbsp; Carolinas Community Foundation</div>
+            <div class="ps-user"><div class="ps-avatar">LP</div><span>Linda Park — Arts Council</span></div>
+          </div>
+          <div class="ps-body">
+            <div class="ps-nav">
+              <div class="ps-nav-item sel">My applications</div>
+              <div class="ps-nav-item">Available grants</div>
+              <div class="ps-nav-item">Awarded grants</div>
+              <div class="ps-nav-item">Progress reports</div>
+              <div class="ps-nav-divider"></div>
+              <div class="ps-nav-item">Organization profile</div>
+              <div class="ps-nav-item">Documents</div>
+              <div class="ps-nav-item">My account</div>
+            </div>
+            <div class="ps-content">
+              <div class="ps-section-label">Active applications</div>
+              <div class="ps-card">
+                <div class="ps-card-head"><div class="ps-card-title">2025 Arts & Culture Grant Program</div><span class="ps-badge amber">Under review</span></div>
+                <div class="ps-row"><div class="ps-row-lbl">Submitted</div><div class="ps-row-val">March 4, 2026</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Amount requested</div><div class="ps-row-val">$25,000</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Review stage</div><div class="ps-row-val">Panel review</div></div>
+                <div class="ps-progress"><div class="ps-progress-fill" style="width:60%"></div></div>
+                <div class="ps-btn-row"><button class="ps-btn">View submitted application</button></div>
+              </div>
+              <div class="ps-card">
+                <div class="ps-card-head"><div class="ps-card-title">2024 Community Impact Grant — Progress report due</div><span class="ps-badge green">Awarded $18,000</span></div>
+                <div class="ps-row"><div class="ps-row-lbl">Interim report due</div><div class="ps-row-val" style="color:var(--amber);font-weight:700;">April 1, 2026</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Payments received</div><div class="ps-row-val">$9,000 of $18,000</div></div>
+                <div class="ps-btn-row"><button class="ps-btn primary">Submit progress report</button></div>
+              </div>
+              <div class="ps-section-label" style="margin-top:4px;">Required documents</div>
+              <div class="ps-card">
+                <div class="ps-row"><div class="ps-row-lbl">IRS determination letter</div><div><span class="ps-badge green">Approved</span></div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Form 990 (2023)</div><div><span class="ps-badge green">Approved</span></div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Non-discrimination policy</div><div><span class="ps-badge amber">Expires Jun 2026</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="ps-portal-caption">Grant seekers track all active and awarded grants, progress report deadlines, payment schedules, and required document compliance — all in the same branded foundation portal.</p>
+      </div>
+
+      <!-- REVIEWER -->
+      <div id="portal-reviewer" class="ps-portal">
+        <div class="ps-chrome">
+          <div class="ps-topbar">
+            <div class="ps-logo"><span>Gifting</span>Network &nbsp;·&nbsp; Carolinas Community Foundation</div>
+            <div class="ps-user"><div class="ps-avatar">RK</div><span>Dr. Rachel Kim — Panel member</span></div>
+          </div>
+          <div class="ps-body">
+            <div class="ps-nav">
+              <div class="ps-nav-item sel">Assigned reviews</div>
+              <div class="ps-nav-item">Completed reviews</div>
+              <div class="ps-nav-divider"></div>
+              <div class="ps-nav-item">My account</div>
+            </div>
+            <div class="ps-content">
+              <div class="ps-section-label">2025 Arts & Culture Grant — 4 applications assigned</div>
+              <div class="ps-card">
+                <div class="ps-card-head"><div class="ps-card-title">Arts Council of Charlotte</div><span class="ps-badge amber">Not started</span></div>
+                <div class="ps-row"><div class="ps-row-lbl">Amount requested</div><div class="ps-row-val">$25,000</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Project type</div><div class="ps-row-val">Education & outreach</div></div>
+                <div class="ps-btn-row"><button class="ps-btn primary">Begin review</button><button class="ps-btn">View application</button></div>
+              </div>
+              <div class="ps-card">
+                <div class="ps-card-head"><div class="ps-card-title">Charlotte Symphony Orchestra</div><span class="ps-badge blue">In progress</span></div>
+                <div class="ps-row"><div class="ps-row-lbl">Amount requested</div><div class="ps-row-val">$40,000</div></div>
+                <div class="ps-section-label" style="margin-top:10px;margin-bottom:6px;">Review sheet progress</div>
+                <div class="ps-row"><div class="ps-row-lbl">Mission alignment</div><div class="ps-stars">★★★★☆</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Financial health</div><div class="ps-stars">★★★★★</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Community impact</div><div class="ps-stars">★★★☆☆</div></div>
+                <div class="ps-progress"><div class="ps-progress-fill" style="width:66%"></div></div>
+                <div class="ps-btn-row"><button class="ps-btn primary">Continue review</button></div>
+              </div>
+              <div class="ps-card">
+                <div class="ps-card-head"><div class="ps-card-title">Blumenthal Arts Center</div><span class="ps-badge green">Submitted</span></div>
+                <div class="ps-row"><div class="ps-row-lbl">Overall score</div><div class="ps-row-val">87 / 100</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Recommendation</div><div class="ps-row-val" style="color:#6FCF97;">Fund at full amount</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="ps-portal-caption">Reviewers only see their assigned applications. Custom scoring forms, criteria, and recommendation fields are configured by the grants manager — reviewers need no backend access.</p>
+      </div>
+
+      <!-- STUDENT -->
+      <div id="portal-student" class="ps-portal">
+        <div class="ps-chrome">
+          <div class="ps-topbar">
+            <div class="ps-logo"><span>Gifting</span>Network &nbsp;·&nbsp; Carolinas Community Foundation</div>
+            <div class="ps-user"><div class="ps-avatar">MJ</div><span>Marcus Johnson</span></div>
+          </div>
+          <div class="ps-body">
+            <div class="ps-nav">
+              <div class="ps-nav-item sel">My scholarships</div>
+              <div class="ps-nav-item">Apply for scholarships</div>
+              <div class="ps-nav-divider"></div>
+              <div class="ps-nav-item">My profile</div>
+              <div class="ps-nav-item">My account</div>
+            </div>
+            <div class="ps-content">
+              <div class="ps-section-label">Active scholarships</div>
+              <div class="ps-card">
+                <div class="ps-card-head"><div class="ps-card-title">Thomas L. Harris STEM Scholarship</div><span class="ps-badge green">Awarded</span></div>
+                <div class="ps-row"><div class="ps-row-lbl">Award amount</div><div class="ps-row-val">$8,000 / year</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Institution</div><div class="ps-row-val">UNC Charlotte</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Next payment</div><div class="ps-row-val">August 15, 2026</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Payable to</div><div class="ps-row-val">Institution (direct)</div></div>
+                <div class="ps-btn-row"><button class="ps-btn">View award letter</button><button class="ps-btn">Payment history</button></div>
+              </div>
+              <div class="ps-section-label" style="margin-top:4px;">Open scholarships</div>
+              <div class="ps-card">
+                <div class="ps-card-head"><div class="ps-card-title">Community Leaders Scholarship 2026</div><span class="ps-badge blue">Deadline: May 15</span></div>
+                <div class="ps-row"><div class="ps-row-lbl">Award</div><div class="ps-row-val">Up to $5,000</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Field of study</div><div class="ps-row-val">Any</div></div>
+                <div class="ps-btn-row"><button class="ps-btn primary">Start application</button></div>
+              </div>
+              <div class="ps-card">
+                <div class="ps-card-head"><div class="ps-card-title">Healthcare Workforce Scholarship</div><span class="ps-badge amber">Deadline: Apr 30</span></div>
+                <div class="ps-row"><div class="ps-row-lbl">Award</div><div class="ps-row-val">$10,000</div></div>
+                <div class="ps-row"><div class="ps-row-lbl">Field of study</div><div class="ps-row-val">Healthcare / Nursing</div></div>
+                <div class="ps-btn-row"><button class="ps-btn primary">Start application</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="ps-portal-caption">Students register and apply in a single visit — awarded scholarships, payment schedules, and open applications all in the same branded portal. Payments can be directed to the institution, the student, or jointly.</p>
+      </div>
+
+      <!-- FINANCIAL ADVISOR -->
+      <div id="portal-advisor" class="ps-portal">
+        <div class="ps-chrome">
+          <div class="ps-topbar" style="padding:10px 14px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg width="22" height="22" viewBox="0 0 36 36" fill="none" style="flex-shrink:0;"><path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/><path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/><path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/></svg>
+              <span style="font-family:var(--font-head);font-size:12px;font-weight:600;color:rgba(255,255,255,.5);">Home</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <button style="padding:6px 14px;background:var(--teal);border:none;border-radius:5px;font-family:var(--font-head);font-size:11px;font-weight:700;color:#fff;cursor:default;">Open a DAF Account</button>
+              <div class="ps-avatar" style="width:28px;height:28px;font-size:10px;background:rgba(9,141,202,0.3);border-color:rgba(9,141,202,0.5);color:var(--blue);">JPA</div>
+              <span style="font-family:var(--font-body);font-size:11px;color:rgba(255,255,255,.45);">John Paul Advisor</span>
+            </div>
+          </div>
+          <div class="ps-body" style="min-height:460px;">
+            <div class="ps-nav" style="width:175px;min-width:175px;">
+              <div class="ps-nav-item sel" style="font-size:11.5px;">Dashboard</div>
+              <div class="ps-nav-item" style="font-size:11.5px;">DAF Applications</div>
+              <div class="ps-nav-item" style="font-size:11.5px;position:relative;">Service Tickets <span style="margin-left:4px;padding:1px 6px;background:var(--teal);border-radius:100px;font-size:9px;color:#fff;">4</span></div>
+              <div class="ps-nav-item" style="font-size:11.5px;">Recommendation</div>
+              <div class="ps-nav-item" style="font-size:11.5px;">Clients</div>
+              <div class="ps-nav-item" style="font-size:11.5px;">Reports</div>
+              <div class="ps-nav-item" style="font-size:11.5px;">Events</div>
+              <div class="ps-nav-item" style="font-size:11.5px;">Notifications</div>
+              <div class="ps-nav-divider"></div>
+              <div style="padding:8px 16px;font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,.25);">Account & Profile</div>
+              <div class="ps-nav-item" style="font-size:11px;">Profile</div>
+              <div class="ps-nav-item" style="font-size:11px;">Change Password</div>
+              <div class="ps-nav-item" style="font-size:11px;">Preferences</div>
+              <div class="ps-nav-item" style="font-size:11px;">Log Out</div>
+            </div>
+            <div style="padding:16px;overflow:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start;">
+
+              <!-- Top left: Service Requests chart -->
+              <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;">
+                <div style="background:var(--teal);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;">
+                  <span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:#fff;">Service Requests</span>
+                  <div style="display:flex;gap:6px;">
+                    <select style="font-family:var(--font-head);font-size:10px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:4px;padding:3px 6px;">
+                      <option>Charitable Gifting Fund</option>
+                    </select>
+                  </div>
+                </div>
+                <div style="padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;">
+                  <div style="position:relative;width:90px;height:90px;margin:0 auto;">
+                    <svg viewBox="0 0 90 90" width="90" height="90">
+                      <circle cx="45" cy="45" r="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="14"/>
+                      <circle cx="45" cy="45" r="32" fill="none" stroke="#009499" stroke-width="14" stroke-dasharray="80 121" stroke-dashoffset="0"/>
+                      <circle cx="45" cy="45" r="32" fill="none" stroke="#EF9F27" stroke-width="14" stroke-dasharray="40 161" stroke-dashoffset="-80"/>
+                      <circle cx="45" cy="45" r="32" fill="none" stroke="#E05555" stroke-width="14" stroke-dasharray="40 161" stroke-dashoffset="-120"/>
+                    </svg>
+                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:16px;font-weight:800;color:#fff;">3</div>
+                  </div>
+                  <div>
+                    <div style="display:flex;flex-direction:column;gap:5px;">
+                      <div style="display:flex;justify-content:space-between;font-family:var(--font-body);font-size:11px;"><span style="color:rgba(255,255,255,.5);">Total Tickets</span><span style="font-weight:700;">3</span></div>
+                      <div style="display:flex;justify-content:space-between;font-family:var(--font-body);font-size:11px;"><span style="color:rgba(255,255,255,.5);">Open</span><span style="color:#6FCF97;font-weight:700;">0</span></div>
+                      <div style="display:flex;justify-content:space-between;font-family:var(--font-body);font-size:11px;"><span style="color:rgba(255,255,255,.5);">In Progress</span><span style="color:#EF9F27;font-weight:700;">1</span></div>
+                      <div style="display:flex;justify-content:space-between;font-family:var(--font-body);font-size:11px;"><span style="color:rgba(255,255,255,.5);">Hold</span><span style="color:#E05555;font-weight:700;">1</span></div>
+                      <div style="display:flex;justify-content:space-between;font-family:var(--font-body);font-size:11px;"><span style="color:rgba(255,255,255,.5);">Closed</span><span style="color:var(--teal-light);font-weight:700;">1</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:0 12px 10px;">
+                  <div style="font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:6px;">Recent Tickets</div>
+                  <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);"><div style="font-family:var(--font-body);font-size:11px;font-weight:700;">The Smith Fund Raise Cash $6,000</div><div style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.4);">Hold · High priority</div></div>
+                  <div style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);"><div style="font-family:var(--font-body);font-size:11px;font-weight:700;">Family philanthropy meeting</div><div style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.4);">In Progress · High priority</div></div>
+                  <div style="padding:5px 0;"><div style="font-family:var(--font-body);font-size:11px;font-weight:700;">The Smith Fund Raise Cash $9,000</div><div style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.4);">Closed · Medium priority</div></div>
+                </div>
+              </div>
+
+              <!-- Top right: Donor Funds Balances -->
+              <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;">
+                <div style="background:var(--teal);padding:8px 12px;">
+                  <span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:#fff;">Donor Funds Balances</span>
+                </div>
+                <div style="padding:8px 12px;display:flex;flex-direction:column;gap:4px;">
+                  <div style="padding:7px 10px;background:rgba(255,255,255,.05);border-radius:6px;border:1px solid rgba(0,119,123,.3);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-family:var(--font-body);font-size:12px;font-weight:700;">Charitable Gifting Fund</span><span style="font-family:var(--font-head);font-size:12px;font-weight:700;color:var(--teal-light);">$5,050.39</span></div>
+                    <div style="margin-top:6px;display:flex;flex-direction:column;gap:2px;padding:6px;background:rgba(0,0,0,.15);border-radius:4px;">
+                      <div style="display:flex;justify-content:space-between;"><span style="font-family:var(--font-body);font-size:11px;font-weight:700;">The Smith Fund</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);">$5,050.39</span></div>
+                      <div style="display:flex;gap:10px;margin-top:2px;"><span style="font-family:var(--font-body);font-size:10px;color:var(--blue);">Fund Overview</span><span style="font-family:var(--font-body);font-size:10px;color:var(--blue);">Disbursement History</span><span style="font-family:var(--font-body);font-size:10px;color:var(--blue);">Clients</span></div>
+                    </div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Bon Secours Mercy Health Foundation</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);">$1,990,890.84</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Foundation For The Carolinas</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">JCF San Diego</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Provision - Baptist Fdn of NC</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;"><span style="font-family:var(--font-body);font-size:11px;">Dechomai Foundation</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
+                </div>
+              </div>
+
+              <!-- Bottom left: Pending Recommendations -->
+              <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;">
+                <div style="background:var(--teal);padding:8px 12px;display:flex;align-items:center;justify-content:space-between;">
+                  <span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:#fff;">Pending Recommendations</span>
+                  <span style="font-family:var(--font-head);font-size:10px;color:rgba(255,255,255,.7);">View All</span>
+                </div>
+                <div style="padding:10px 12px;display:flex;flex-direction:column;gap:8px;">
+                  <div style="padding:8px 10px;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid rgba(255,255,255,.08);">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;">American Law Institute</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);">$9,000</span></div>
+                    <div style="display:inline-block;padding:2px 7px;background:rgba(200,154,58,.15);border-radius:100px;font-family:var(--font-head);font-size:9px;font-weight:700;color:var(--amber);margin-bottom:4px;">Recommended by Cliff Stevenson</div>
+                    <div style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.4);">Fund: The Smith Fund · Status: Approval Pending</div>
+                  </div>
+                  <div style="padding:8px 10px;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid rgba(255,255,255,.08);">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;">Acme Charitable Organization</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);">$6,000</span></div>
+                    <div style="display:inline-block;padding:2px 7px;background:rgba(200,154,58,.15);border-radius:100px;font-family:var(--font-head);font-size:9px;font-weight:700;color:var(--amber);margin-bottom:4px;">Recommended by Cliff Stevenson</div>
+                    <div style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.4);">Fund: The Smith Fund · Status: Approval Pending</div>
+                  </div>
+                  <div style="padding:8px 10px;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid rgba(255,255,255,.08);">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;"><span style="font-family:var(--font-head);font-size:11px;font-weight:700;">Acme Charitable Organization</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);">$6,000</span></div>
+                    <div style="display:inline-block;padding:2px 7px;background:rgba(200,154,58,.15);border-radius:100px;font-family:var(--font-head);font-size:9px;font-weight:700;color:var(--amber);margin-bottom:4px;">Recommended by Cliff Stevenson</div>
+                    <div style="font-family:var(--font-body);font-size:10px;color:rgba(255,255,255,.4);">Fund: The Smith Fund · Status: Approval Pending</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom right: Institutional Claims -->
+              <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;">
+                <div style="background:var(--teal);padding:8px 12px;">
+                  <span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:#fff;">Institutional Claims</span>
+                </div>
+                <div style="padding:8px 12px;">
+                  <table style="width:100%;border-collapse:collapse;">
+                    <thead>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.1);">
+                        <th style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-align:left;padding:5px 6px;letter-spacing:.06em;">Sponsor</th>
+                        <th style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-align:right;padding:5px 6px;letter-spacing:.06em;">Total AUM</th>
+                        <th style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.4);text-align:right;padding:5px 6px;letter-spacing:.06em;">Pending Grants</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);">
+                        <td style="font-family:var(--font-body);font-size:11px;padding:7px 6px;">Charitable Gifting Fund</td>
+                        <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;color:var(--teal-light);">$5,050</td>
+                        <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;">$21,000</td>
+                      </tr>
+                      <tr style="border-bottom:1px solid rgba(255,255,255,.06);">
+                        <td style="font-family:var(--font-body);font-size:11px;padding:7px 6px;">Bon Secours Mercy Health Fdn</td>
+                        <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;color:var(--teal-light);">$1,990,891</td>
+                        <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;">$110,000</td>
+                      </tr>
+                      <tr>
+                        <td style="font-family:var(--font-body);font-size:11px;padding:7px 6px;">Foundation For The Carolinas</td>
+                        <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;color:rgba(255,255,255,.35);">$0</td>
+                        <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;color:rgba(255,255,255,.35);">$0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div style="margin:0 12px 8px;padding:8px;background:rgba(0,119,123,.08);border:1px solid rgba(0,119,123,.2);border-radius:6px;">
+                  <div style="font-family:var(--font-head);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:5px;">DAF Applications Summary</div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.07);"><span style="font-family:var(--font-body);font-size:11px;">Ben Wise</span><span style="font-family:var(--font-head);font-size:9px;padding:2px 7px;background:rgba(200,154,58,.15);border-radius:100px;color:var(--amber);font-weight:700;">Incomplete</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;"><span style="font-family:var(--font-body);font-size:11px;">Megan Wise</span><span style="font-family:var(--font-head);font-size:9px;padding:2px 7px;background:rgba(200,154,58,.15);border-radius:100px;color:var(--amber);font-weight:700;">Incomplete</span></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <p class="ps-portal-caption">The financial advisor dashboard shows all client funds across every sponsor in the network — Bon Secours, Foundation For The Carolinas, JCF San Diego, Dechomai, and more — with pending recommendations, service tickets, institutional AUM claims, and DAF applications in a single view.</p>
+      </div>
+    </div>
+
+    <script>
+    function switchPortal(id, btn) {
+      document.querySelectorAll('.ps-portal').forEach(function(p){ p.classList.remove('active'); });
+      document.querySelectorAll('.ps-tab').forEach(function(t){ t.classList.remove('active'); });
+      document.getElementById('portal-'+id).classList.add('active');
+      btn.classList.add('active');
+    }
+    function switchDonor(view) {
+      var views = ['dashboard','overview','granthistory','perf','grant'];
+      views.forEach(function(v){
+        var el = document.getElementById('dp-'+v);
+        if(el) el.style.display = v===view ? 'block' : 'none';
+      });
+      var navMap = {dashboard:'dpn-dashboard',grant:'dpn-grant',perf:'dpn-perf'};
+      document.querySelectorAll('#portal-donor .ps-nav-item').forEach(function(n){ n.classList.remove('sel'); });
+      if(navMap[view]) { var n = document.getElementById(navMap[view]); if(n) n.classList.add('sel'); }
+    }
+    </script>
+  </div>
+</section>
+
+<!-- DEEP DIVES -->
+<section class="feature-section">
+  <div class="inner">
+    <span class="eyebrow">Feature Deep Dives</span>
+    <h2>Built for the full complexity<br>of <em>institutional grantmaking</em></h2>
+
+    <!-- DONOR PORTAL -->
+    <div class="feature-block" style="margin-top:52px;">
+      <div class="feature-content">
+        <div class="feature-tag">Donor Experience</div>
+        <div class="feature-h">A donor portal as good as your<br><em>best relationship</em></div>
+        <div class="feature-desc">Your donors log in to a branded, personal giving dashboard — where their funds, history, and giving tools live. Fund status, statements, grant history, and the Charitable Catalog are all one click away. The portal deepens donor engagement between major gift conversations.</div>
+        <div class="feature-list">
+          <div class="fl-item"><div class="fl-dot">✓</div>Fund balance and available-to-spend — live from back-office</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Historic fund statements — HTML with drill-down or uploaded PDF</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Grant recommendation worksheet — bulk recommendations, pre-populated from history</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Board vote capability for majority/unanimous fund types</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Gift entry — credit card, check, wire, or securities transfer</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Philanthropic interest preferences that filter the Charitable Catalog</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Investment performance page linked by fund type</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Targeted content articles based on donor interests — automated charitable guidance</div>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-card"><div class="fv-title">Fund Dashboard</div><div class="fv-body">Donors see real-time balances, available-to-spend, and a full history of gifts and grants — all synced directly from your fund accounting system.</div><span class="fv-tag">Live Data</span></div>
+        <div class="fv-card"><div class="fv-title">Grant Recommendation Worksheet</div><div class="fv-body">Donors make multiple grant recommendations at once from a pre-populated worksheet of previous grantees — or discover new nonprofits from the Charitable Catalog.</div><span class="fv-tag">Self-Service</span></div>
+        <div class="fv-card"><div class="fv-title">Personalized Content</div><div class="fv-body">Articles and funding opportunity notices are automatically surfaced based on each donor's self-reported philanthropic interests — keeping donors engaged between major gifts.</div><span class="fv-tag">Targeted</span></div>
+        <div class="fv-card"><div class="fv-title">Multi-Fund View</div><div class="fv-body">Donors associated with multiple funds see all funds in a single dashboard — with per-fund drill-down to balances, statements, and grantmaking tools.</div><span class="fv-tag">Multi-Fund</span></div>
+      </div>
+    </div>
+
+    <!-- GRANTS -->
+    <div class="feature-block flip">
+      <div class="feature-content">
+        <div class="feature-tag">Competitive Grantmaking</div>
+        <div class="feature-h">The most configurable grant<br>system in <em>the industry</em></div>
+        <div class="feature-desc">GiftingNet's grant lifecycle system handles every phase from application to final payment — for discretionary competitive grants, RFP processes, and scholarship programs. Every form component, qualification rule, and review workflow is configurable to your foundation's specific process.</div>
+        <div class="feature-list">
+          <div class="fl-item"><div class="fl-dot">✓</div>One or two-phase applications — LOI followed by full proposal</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Pre-qualifying questions that gate application access</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Limit applications by org type, profile completion, or invitation only (RFP)</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Custom form builder — questions, budgets, matrices, document uploads, board lists</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Assign review panels with custom evaluation forms — staff or committee</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Grantee progress reports — custom forms, published at set intervals</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Grant agreements and payment plans — grantees review, print, and sign online</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Syncs to back-office accounting software for posting and payment processing</div>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-card"><div class="fv-title">Application Form Builder</div><div class="fv-body">Build grant applications from reusable components: instruction pages, pre-qualifying questions, budget forms, matrix data collectors, document uploads, board lists, and custom question panels.</div><span class="fv-tag">No-Code Builder</span></div>
+        <div class="fv-card"><div class="fv-title">Reviewer Dashboard</div><div class="fv-body">Panel members log in to see assigned applications, complete custom evaluation forms, and submit reviews. Dockets are created directly from GiftingNet data.</div><span class="fv-tag">Panel Management</span></div>
+        <div class="fv-card"><div class="fv-title">Due Diligence System</div><div class="fv-body">Required documents (990s, IRS letters) are managed through a structured review, approval, and update workflow — with document expiry reminders and barcode-based FAX ingestion.</div><span class="fv-tag">Compliance</span></div>
+        <div class="fv-card"><div class="fv-title">Progress Reporting</div><div class="fv-body">Custom progress report forms are assigned to grants and automatically published to grantees at pre-selected intervals. Past-due reminders sent to both grantee and staff.</div><span class="fv-tag">Automated</span></div>
+      </div>
+    </div>
+
+    <!-- CHARITABLE CATALOG -->
+    <div class="feature-block">
+      <div class="feature-content">
+        <div class="feature-tag">Charitable Catalog</div>
+        <div class="feature-h">Your community's giving<br><em>marketplace</em></div>
+        <div class="feature-desc">The Charitable Catalog is an illustrated, searchable directory of vetted nonprofits and charitable programs — maintained by the organizations themselves. It powers donor grant recommendations, serves as the RFP invitation pool, and functions as an open community resource when you choose to share it publicly.</div>
+        <div class="feature-list">
+          <div class="fl-item"><div class="fl-dot">✓</div>Organization profiles — mission, history, interest areas, geographic reach, budgets, board</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Program-level profiles for specific charitable projects — earmarkable by donors</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Keyword search, interest area, geography, program type, and capital campaign calendar</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Catalog filtered to each donor's self-reported philanthropic interests</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Gift Basket — shopping cart for grant recommendations and outright contributions</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Foundation controls which catalog components are visible per user type</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Org Group Icons — visual identifiers for any organization category throughout the catalog</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>NTEE area codes supported — maps to standard nonprofit taxonomy</div>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-card"><div class="fv-title">Donor-Filtered Discovery</div><div class="fv-body">Each donor's catalog view is filtered by their self-reported philanthropic interests — surfacing the most relevant nonprofits and programs for their giving priorities.</div><span class="fv-tag">Personalized</span></div>
+        <div class="fv-card"><div class="fv-title">Nonprofit Self-Service Profiles</div><div class="fv-body">Grant seekers maintain their own organization and program profiles through the portal. Foundation staff reviews and approves profile changes before they appear in the catalog.</div><span class="fv-tag">Self-Maintained</span></div>
+        <div class="fv-card"><div class="fv-title">Capital Campaign Tracking</div><div class="fv-body">Capital campaigns have dedicated catalog search tools — donors can discover and contribute to capital projects as a distinct giving category separate from operating support.</div><span class="fv-tag">Capital Campaigns</span></div>
+        <div class="fv-card"><div class="fv-title">Community Resource</div><div class="fv-body">The catalog can be opened to the general public as an informational resource — or kept private for donors and advisors only. Your call, your configuration.</div><span class="fv-tag">Configurable Access</span></div>
+      </div>
+    </div>
+
+    <!-- API & INTEGRATIONS -->
+    <div class="feature-block flip">
+      <div class="feature-content">
+        <div class="feature-tag">API & Integrations</div>
+        <div class="feature-h">Open, real-time sync with<br><em>your back office</em></div>
+        <div class="feature-desc">GiftingNet's web service API is open to any third-party system and provides real-time, bidirectional synchronization with your fund accounting software. Every gift, grant, fund statement, and contact update flows seamlessly between your back office and the donor-facing platform.</div>
+        <div class="feature-list">
+          <div class="fl-item"><div class="fl-dot">✓</div>Bidirectional sync: contacts, funds, gifts, grants, statements, investment performance</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Compatible with FIMS, FoundationPower, and any third-party XML client</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Blackbaud SKY API integration — Raiser's Edge NXT and Financial Edge NXT</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Orion Advisor Solutions and Envestnet platform integrations</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Salesforce CRM, Black Diamond Trust, Greenhill, NetSuite</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>API Transfer Report monitors all data jobs — find by job number or record ID</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Alternative text file import for all data categories — no API required</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Hosted on Google Cloud / AWS — Level 1 PCI certified, nightly backups</div>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="fv-card"><div class="fv-title">Back-Office Sync</div><div class="fv-body">Fund values, gift confirmations, grant postings, and investment performance flow from your accounting system into GiftingNet — keeping every donor's portal view accurate in real time.</div><span class="fv-tag">Real-Time</span></div>
+        <div class="fv-card"><div class="fv-title">Advisor Platform Integration</div><div class="fv-body">Deep integrations with Orion Advisor Solutions and Envestnet put your DAF program directly in the workflow of advisors managing client relationships — distributed through their networks.</div><span class="fv-tag">Orion · Envestnet</span></div>
+        <div class="fv-card"><div class="fv-title">Open Architecture</div><div class="fv-body">GiftingNet's web-service API is open to any third-party XML client — so your existing technology stack can connect without proprietary lock-in. File import available as a fallback.</div><span class="fv-tag">Open API</span></div>
+        <div class="fv-card"><div class="fv-title">Security & Compliance</div><div class="fv-body">Hosted on Level 1 PCI-certified cloud infrastructure. Configurable file upload controls, auto-logout, document expiry management, and granular role permissions throughout.</div><span class="fv-tag">PCI Level 1</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATION LOGOS -->
+<section class="integrations">
+  <div class="inner">
+    <span class="eyebrow">Integrations & Ecosystem</span>
+    <h2>Connected to the platforms<br><em>you already use</em></h2>
+    <div class="int-grid">
+      <div class="int-card"><div class="int-icon">🔗</div><div class="int-name">Orion Advisor Solutions</div><div class="int-desc">Full portfolio & CRM integration — advisor distribution network</div></div>
+      <div class="int-card"><div class="int-icon">📊</div><div class="int-name">Envestnet</div><div class="int-desc">Wealth management platform — advisor channel access</div></div>
+      <div class="int-card"><div class="int-icon">🏦</div><div class="int-name">Blackbaud</div><div class="int-desc">Raiser's Edge NXT & Financial Edge NXT via SKY API</div></div>
+      <div class="int-card"><div class="int-icon">💼</div><div class="int-name">Salesforce</div><div class="int-desc">CRM & relationship management</div></div>
+      <div class="int-card"><div class="int-icon">💎</div><div class="int-name">Black Diamond Trust</div><div class="int-desc">Portfolio reporting & client portal</div></div>
+      <div class="int-card"><div class="int-icon">📈</div><div class="int-name">Greenhill</div><div class="int-desc">Investment advisory integration</div></div>
+      <div class="int-card"><div class="int-icon">🔢</div><div class="int-name">NetSuite</div><div class="int-desc">ERP & fund accounting</div></div>
+      <div class="int-card"><div class="int-icon">🏛️</div><div class="int-name">FIMS / FoundationPower</div><div class="int-desc">Native back-office accounting sync</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2 class="cta-h">Ready to see GiftingNet<br>in your foundation's brand?</h2>
+  <p class="cta-sub">Schedule a demo with our team — we'll show you the platform running in a live foundation environment<br>and walk through how the Network access works from day one.</p>
+  <div class="cta-btns">
+    <a href="mailto:support@giftingnetwork.com" class="btn-cta-w">Request a Demo</a>
+    <a href="index.html" class="btn-cta-o">← Platform Overview</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-row">
+    <div class="footer-legal">© 2026 GiftingNetwork LLC · Morristown, NJ · All Rights Reserved</div>
+    <div class="footer-links">
+      <a href="index.html">Platform Home</a>
+      <a href="pbo-services.html">Back Office</a>
+      <a href="mailto:support@giftingnetwork.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+var nav = document.querySelector('nav');
+window.addEventListener('scroll', function() {
+  nav.style.backgroun

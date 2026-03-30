@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Grant Administration — GiftingNetwork</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Lato:wght@300;400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --teal:#00777B;--teal-light:#009499;--teal-dark:#005558;
+  --navy:#144270;--navy-dark:#0D2D4F;--navy-deeper:#081E36;
+  --blue:#098DCA;--amber:#C89A3A;
+  --border:rgba(0,119,123,0.2);--border-w:rgba(255,255,255,0.1);
+  --glass:rgba(255,255,255,0.04);
+  --font-head:'Montserrat',sans-serif;
+  --font-body:'Lato',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --max:1100px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--navy-deeper);color:#fff;line-height:1.6;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--navy-deeper);}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:2px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;padding:0 60px;background:rgba(8,30,54,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.nav-wordmark{font-family:var(--font-head);font-size:17px;font-weight:700;letter-spacing:-.01em;}
+.nav-wordmark .g{color:var(--teal-light);}
+.nav-back{font-family:var(--font-head);font-size:13px;font-weight:600;color:rgba(255,255,255,0.55);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s;}
+.nav-back:hover{color:var(--teal-light);}
+.nav-cta{padding:9px 22px;font-family:var(--font-head);font-size:13px;font-weight:700;color:#fff;background:var(--teal);border:none;border-radius:6px;cursor:pointer;text-decoration:none;transition:background .2s;}
+.nav-cta:hover{background:var(--teal-light);}
+
+/* HERO */
+.hero{padding:140px 60px 80px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 80% 25%,rgba(0,119,123,0.22) 0%,transparent 60%),radial-gradient(ellipse 45% 50% at 15% 80%,rgba(9,141,202,0.14) 0%,transparent 55%),linear-gradient(150deg,var(--navy-deeper) 0%,#0A2240 55%,#061525 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,119,123,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,119,123,0.06) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black 20%,transparent 75%);}
+.hero-inner{max-width:var(--max);margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:6px 16px;background:rgba(0,119,123,0.15);border:1px solid rgba(0,119,123,0.4);border-radius:100px;font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px;}
+.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--teal-light);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.6);}}
+h1{font-family:var(--font-head);font-size:clamp(36px,4.5vw,60px);font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:22px;}
+h1 em{font-style:normal;color:var(--teal-light);}
+.hero-sub{font-size:17px;font-weight:300;color:rgba(255,255,255,.6);max-width:500px;line-height:1.75;margin-bottom:36px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{font-family:var(--font-head);font-size:13px;font-weight:700;padding:13px 28px;background:var(--teal);color:#fff;border:none;border-radius:7px;cursor:pointer;text-decoration:none;transition:background .15s,transform .15s;box-shadow:0 6px 24px rgba(0,119,123,0.35);}
+.btn-primary:hover{background:var(--teal-light);transform:translateY(-1px);}
+.btn-ghost{font-family:var(--font-head);font-size:13px;font-weight:600;padding:13px 24px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.18);border-radius:7px;cursor:pointer;text-decoration:none;transition:all .15s;}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:var(--teal);}
+/* HERO RIGHT — grant type pills */
+.grant-types{display:flex;flex-direction:column;gap:10px;}
+.gt-card{padding:18px 22px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;display:flex;align-items:center;gap:16px;transition:border-color .2s,background .2s;}
+.gt-card:hover{background:rgba(0,119,123,0.08);border-color:rgba(0,119,123,0.35);}
+.gt-icon{font-size:22px;flex-shrink:0;}
+.gt-name{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:3px;}
+.gt-desc{font-family:var(--font-body);font-size:12.5px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.5;}
+.gt-pill{margin-left:auto;padding:3px 10px;background:rgba(0,119,123,0.15);border:1px solid rgba(0,119,123,0.3);border-radius:100px;font-family:var(--font-mono);font-size:10px;color:var(--teal-light);flex-shrink:0;}
+
+/* SECTIONS */
+section{padding:80px 60px;}
+.inner{max-width:var(--max);margin:0 auto;}
+.eyebrow{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:14px;display:block;}
+h2{font-family:var(--font-head);font-size:clamp(28px,3.5vw,42px);font-weight:800;line-height:1.15;letter-spacing:-.025em;margin-bottom:18px;}
+h2 em{font-style:normal;color:var(--teal-light);}
+.sec-lead{font-size:16px;font-weight:300;color:rgba(255,255,255,.55);max-width:640px;line-height:1.8;}
+
+/* LIFECYCLE FLOW */
+.lifecycle{background:var(--navy-dark);}
+.flow{display:flex;flex-direction:column;gap:0;margin-top:52px;border:1px solid rgba(0,119,123,0.2);border-radius:12px;overflow:hidden;}
+.flow-step{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid rgba(255,255,255,0.06);}
+.flow-step:last-child{border-bottom:none;}
+.flow-step:hover .fs-left{background:rgba(0,119,123,0.12);}
+.fs-left{padding:24px 28px;background:rgba(0,0,0,0.2);border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:8px;transition:background .2s;}
+.fs-num{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.25);}
+.fs-title{font-family:var(--font-head);font-size:14px;font-weight:700;line-height:1.3;color:var(--teal-light);}
+.fs-right{padding:24px 32px;display:flex;flex-wrap:wrap;gap:8px;align-content:center;}
+.fs-task{padding:6px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:100px;font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,0.65);transition:all .15s;cursor:default;}
+.fs-task:hover{background:rgba(0,119,123,0.1);border-color:rgba(0,119,123,0.3);color:rgba(255,255,255,0.9);}
+
+/* THREE GRANT TYPES DETAIL */
+.grant-detail{background:var(--navy-deeper);}
+.gd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;}
+.gd-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;transition:border-color .2s,transform .2s;}
+.gd-card:hover{border-color:rgba(0,119,123,0.4);transform:translateY(-2px);}
+.gd-header{padding:24px 24px 20px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.gd-icon{font-size:28px;margin-bottom:14px;}
+.gd-title{font-family:var(--font-head);font-size:18px;font-weight:800;margin-bottom:8px;}
+.gd-sub{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.6;}
+.gd-body{padding:22px 24px;}
+.gd-feature{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;}
+.gd-feature:last-child{margin-bottom:0;}
+.gd-check{color:var(--teal-light);font-family:var(--font-mono);font-size:11px;margin-top:2px;flex-shrink:0;}
+.gd-text{font-family:var(--font-body);font-size:13.5px;color:rgba(255,255,255,.6);line-height:1.55;}
+.gd-accent{height:3px;}
+
+/* DUE DILIGENCE */
+.due-diligence{background:var(--navy-dark);}
+.dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:48px;}
+.dd-steps{display:flex;flex-direction:column;gap:0;}
+.dd-step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.dd-step:last-child{border-bottom:none;}
+.dd-step-num{width:32px;height:32px;border-radius:50%;background:rgba(0,119,123,0.2);border:1px solid rgba(0,119,123,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;color:var(--teal-light);flex-shrink:0;margin-top:2px;}
+.dd-step h4{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:5px;}
+.dd-step p{font-family:var(--font-body);font-size:13.5px;color:rgba(255,255,255,.5);line-height:1.6;}
+.dd-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:28px;position:sticky;top:90px;}
+.dd-box-title{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px;}
+.dd-stat{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;align-items:baseline;}
+.dd-stat:last-of-type{border-bottom:none;}
+.dd-stat-label{font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,.5);}
+.dd-stat-val{font-family:var(--font-head);font-size:15px;font-weight:700;color:#fff;}
+.dd-stat-val.teal{color:var(--teal-light);}
+
+/* PAYMENT RAIL */
+.payments{background:var(--navy-deeper);}
+.pay-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px;}
+.pay-card{padding:22px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;transition:border-color .2s;}
+.pay-card:hover{border-color:rgba(0,119,123,0.35);}
+.pay-icon{font-size:24px;margin-bottom:12px;}
+.pay-title{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:6px;}
+.pay-desc{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.6;}
+.pay-badge{margin-top:12px;display:inline-block;padding:3px 9px;background:rgba(0,119,123,0.12);border:1px solid rgba(0,119,123,0.25);border-radius:100px;font-family:var(--font-mono);font-size:10px;color:var(--teal-light);}
+
+/* CONTROLS */
+.controls{background:var(--navy-dark);}
+.ctrl-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:48px;}
+.ctrl-card{padding:24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;}
+.ctrl-icon{font-size:20px;margin-bottom:12px;}
+.ctrl-title{font-family:var(--font-head);font-size:14px;font-weight:700;margin-bottom:8px;}
+.ctrl-desc{font-family:var(--font-body);font-size:13px;font-weight:300;color:rgba(255,255,255,.48);line-height:1.65;}
+
+/* CTA */
+.cta-band{background:var(--teal-dark);padding:80px 60px;text-align:center;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 90% 50%,rgba(9,141,202,0.2),transparent 60%),linear-gradient(135deg,var(--teal-dark) 0%,#003A3D 50%,#002528 100%);}
+.cta-band::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px;}
+.cta-band>*{position:relative;z-index:1;}
+.cta-h{font-family:var(--font-head);font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px;}
+.cta-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.7);margin-bottom:32px;line-height:1.7;}
+.cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+.btn-cta-w{padding:14px 32px;font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--teal-dark);background:#fff;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:background .2s;box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.btn-cta-w:hover{background:rgba(255,255,255,.9);}
+.btn-cta-o{padding:14px 28px;font-family:var(--font-head);font-size:14px;font-weight:700;color:rgba(255,255,255,.9);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:8px;cursor:pointer;text-decoration:none;transition:background .2s;}
+.btn-cta-o:hover{background:rgba(255,255,255,.18);}
+
+/* FOOTER */
+footer{background:#050D18;padding:36px 60px 24px;border-top:1px solid rgba(0,119,123,.15);}
+.footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-legal{font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,.2);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--teal-light);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav,section,.hero,.cta-band,footer{padding-left:24px;padding-right:24px;}
+  .hero-inner{grid-template-columns:1fr;gap:40px;}
+  .flow-step{grid-template-columns:1fr;}
+  .fs-left{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .gd-grid,.ctrl-grid{grid-template-columns:1fr;}
+  .pay-grid{grid-template-columns:1fr 1fr;}
+  .dd-grid{grid-template-columns:1fr;}
+}
+@media(max-width:580px){
+  .pay-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="34" height="34" viewBox="0 0 36 36" fill="none">
+      <path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/>
+      <path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/>
+      <path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/>
+    </svg>
+    <div class="nav-wordmark"><span class="g">Gifting</span>Network</div>
+  </a>
+  <a href="index.html" class="nav-back">← Back to Platform</a>
+  <a href="mailto:support@giftingnetwork.com" class="nav-cta">Talk to Us</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Grant Administration</div>
+      <h1>Every grant,<br><em>from recommendation<br>to check.</em></h1>
+      <p class="hero-sub">End-to-end grant lifecycle management — donor recommendations, competitive programs, scholarships, and discretionary grantmaking — all with institutional-grade controls, full audit trail, and a complete disbursement rail.</p>
+      <div class="hero-btns">
+        <a href="#lifecycle" class="btn-primary">See the Lifecycle</a>
+        <a href="#grant-types" class="btn-ghost">Grant Programs</a>
+      </div>
+    </div>
+    <div class="grant-types">
+      <div class="gt-card">
+        <div class="gt-icon">🤝</div>
+        <div>
+          <div class="gt-name">Donor-Advised Grants</div>
+          <div class="gt-desc">Donor recommendations vetted, approved, and disbursed through the full advisory workflow.</div>
+        </div>
+        <div class="gt-pill">Core</div>
+      </div>
+      <div class="gt-card">
+        <div class="gt-icon">🏆</div>
+        <div>
+          <div class="gt-name">Competitive Grants</div>
+          <div class="gt-desc">Online applications, review panels, LOI-to-proposal workflow, and payment scheduling.</div>
+        </div>
+        <div class="gt-pill">Full Cycle</div>
+      </div>
+      <div class="gt-card">
+        <div class="gt-icon">🎓</div>
+        <div>
+          <div class="gt-name">Scholarship Programs</div>
+          <div class="gt-desc">Student or institution payee, joint checks, custom notifications, and institution records.</div>
+        </div>
+        <div class="gt-pill">Managed</div>
+      </div>
+      <div class="gt-card">
+        <div class="gt-icon">⚙️</div>
+        <div>
+          <div class="gt-name">Administrative Payments</div>
+          <div class="gt-desc">Vendor vouchers, recurring expenses, and operational disbursements with EFT or MICR check.</div>
+        </div>
+        <div class="gt-pill">Automated</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIFECYCLE FLOW -->
+<section class="lifecycle" id="lifecycle">
+  <div class="inner">
+    <span class="eyebrow">The Full Lifecycle</span>
+    <h2>Every step, tracked<br>and <em>auditable</em></h2>
+    <p class="sec-lead">GiftingNetwork manages the complete grant workflow — from the moment a donor submits a recommendation or a grant seeker submits an application through due diligence, approval, and final disbursement. Every action is logged, every status is visible.</p>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="fs-left">
+          <div class="fs-num">STEP 01</div>
+          <div class="fs-title">Recommendation or Application Received</div>
+        </div>
+        <div class="fs-right">
+          <span class="fs-task">Donor submits grant recommendation via portal</span>
+          <span class="fs-task">Fund balance & available-to-spend check</span>
+          <span class="fs-task">Anonymous grant option</span>
+          <span class="fs-task">Donor comment captured</span>
+          <span class="fs-task">Online application form published</span>
+          <span class="fs-task">Single-phase or LOI / full proposal</span>
+          <span class="fs-task">Public or restricted access</span>
+          <span class="fs-task">Scholarship application open</span>
+          <span class="fs-task">Staff notified of submission</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="fs-left">
+          <div class="fs-num">STEP 02</div>
+          <div class="fs-title">Grantee Vetting & Due Diligence</div>
+        </div>
+        <div class="fs-right">
+          <span class="fs-task">IRS 501(c)(3) status verification</span>
+          <span class="fs-task">Ad hoc grantee lookup or record creation</span>
+          <span class="fs-task">Organization profile linked to recommendation</span>
+          <span class="fs-task">Review panel setup</span>
+          <span class="fs-task">Review sheets published to panel</span>
+          <span class="fs-task">Reviewer assigned and notified</span>
+          <span class="fs-task">Review sheet completion and submission</span>
+          <span class="fs-task">LOI status updated — invited or declined</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="fs-left">
+          <div class="fs-num">STEP 03</div>
+          <div class="fs-title">Approval or Decline</div>
+        </div>
+        <div class="fs-right">
+          <span class="fs-task">Staff approves or declines recommendation</span>
+          <span class="fs-task">Pop-up warning if grant drives fund below minimum</span>
+          <span class="fs-task">Grantee approval notification sent</span>
+          <span class="fs-task">Decline notification with guidance</span>
+          <span class="fs-task">Grant agreement / conditions published</span>
+          <span class="fs-task">Grantee e-signature on conditions (optional)</span>
+          <span class="fs-task">Payment plan configured</span>
+          <span class="fs-task">Fund per payment assigned</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="fs-left">
+          <div class="fs-num">STEP 04</div>
+          <div class="fs-title">Payment & Disbursement</div>
+        </div>
+        <div class="fs-right">
+          <span class="fs-task">EFT disbursement to grantee</span>
+          <span class="fs-task">MICR check with authorized bitmap signature</span>
+          <span class="fs-task">Branded cover document printed</span>
+          <span class="fs-task">Direct mail or air freight to sponsor for co-sign</span>
+          <span class="fs-task">Scholarship: institution, student, or joint payee</span>
+          <span class="fs-task">Payment confirmation notification</span>
+          <span class="fs-task">GiftingNet updated with payment status</span>
+          <span class="fs-task">Grant payment plan and status visible in portal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE GRANT TYPES -->
+<section class="grant-detail" id="grant-types">
+  <div class="inner">
+    <span class="eyebrow">Grant Program Types</span>
+    <h2>One platform,<br><em>every grant type</em></h2>
+    <p class="sec-lead">Whether you administer a simple donor-advised fund program or a complex competitive scholarship with a multi-stage review, GiftingNetwork handles the full operational layer.</p>
+    <div class="gd-grid">
+      <div class="gd-card">
+        <div class="gd-accent" style="background:var(--teal);"></div>
+        <div class="gd-header">
+          <div class="gd-icon">🤝</div>
+          <div class="gd-title">Donor-Advised Grants</div>
+          <div class="gd-sub">Donor recommends. Staff reviews. GiftingNetwork disburses. The full advisory workflow, built into the platform.</div>
+        </div>
+        <div class="gd-body">
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Donor selects from charitable catalog, recommendation lookup list, or enters ad hoc grantee</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Available-to-spend balance check with real-time warning</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Grant to another component fund as recipient</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Anonymous option and donor comment captured</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Staff approval triggers EFT or MICR check disbursement</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">GL integration reflects approved grants in fund accounting</div></div>
+        </div>
+      </div>
+      <div class="gd-card">
+        <div class="gd-accent" style="background:var(--blue);"></div>
+        <div class="gd-header">
+          <div class="gd-icon">🏆</div>
+          <div class="gd-title">Competitive Grants</div>
+          <div class="gd-sub">Full program administration — online applications, multi-panel review, conditions management, and payment scheduling.</div>
+        </div>
+        <div class="gd-body">
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Configurable application form components published to website</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Single-phase or two-phase (LOI then full proposal) process</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Open to all registered grant seekers or restricted access</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Multiple review panels with custom review sheets</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Reviewers notified on assignment; submit sheets online</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Grant agreement with conditions, optional e-signature</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Multi-payment plan with fund assigned per installment</div></div>
+        </div>
+      </div>
+      <div class="gd-card">
+        <div class="gd-accent" style="background:var(--amber);"></div>
+        <div class="gd-header">
+          <div class="gd-icon">🎓</div>
+          <div class="gd-title">Scholarship Programs</div>
+          <div class="gd-sub">Student-facing applications, institution records, flexible payee options, and custom approval notifications.</div>
+        </div>
+        <div class="gd-body">
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Self-registration — immediately active for scholars</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Scholarship applications published to website</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Institution and associated contact records created</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Payee: institution, student, or joint check</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Custom branded approval notification to recipient</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">Payment detail synced to GiftingNet via data integration</div></div>
+          <div class="gd-feature"><div class="gd-check">→</div><div class="gd-text">MICR check printed, branded cover doc, mailed to payee</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DUE DILIGENCE -->
+<section class="due-diligence" id="due-diligence">
+  <div class="inner">
+    <span class="eyebrow">Compliance & Due Diligence</span>
+    <h2>Every grant checked.<br><em>Every approval documented.</em></h2>
+    <p class="sec-lead">GiftingNetwork's due diligence workflow ensures every grant meets IRS requirements before a dollar is disbursed — protecting the sponsor's tax-exempt status and creating a defensible audit trail for every transaction.</p>
+    <div class="dd-grid">
+      <div class="dd-steps">
+        <div class="dd-step">
+          <div class="dd-step-num">1</div>
+          <div>
+            <h4>Organization Verification</h4>
+            <p>Every grantee is verified as a qualifying public charity under IRC Section 170(b)(1)(A). IRS 501(c)(3) status is confirmed before approval. Ad hoc grantees entered by donors are looked up in the database — or a basic org and contact record is created — before the recommendation can proceed to approval.</p>
+          </div>
+        </div>
+        <div class="dd-step">
+          <div class="dd-step-num">2</div>
+          <div>
+            <h4>Available-to-Spend Enforcement</h4>
+            <p>Real-time balance checks prevent advisors or staff from approving grants that would drive a fund below its minimum balance threshold. Pop-up warnings fire at both the recommendation stage and the approval stage — two independent checkpoints before disbursement.</p>
+          </div>
+        </div>
+        <div class="dd-step">
+          <div class="dd-step-num">3</div>
+          <div>
+            <h4>Staff Approval Authority</h4>
+            <p>All donor-advised grant recommendations require staff approval before disbursement. Sponsors retain discretion over every grant — the platform enforces this by design. Declined recommendations trigger a notification workflow to the primary advisor with staff guidance.</p>
+          </div>
+        </div>
+        <div class="dd-step">
+          <div class="dd-step-num">4</div>
+          <div>
+            <h4>Grant Conditions Management</h4>
+            <p>For competitive grants, conditions can be attached to the approval. A PDF grant agreement is optionally published for grantee signature. Payment installments are withheld until conditions are satisfied — staff controls the release of each payment in the schedule.</p>
+          </div>
+        </div>
+        <div class="dd-step">
+          <div class="dd-step-num">5</div>
+          <div>
+            <h4>Full Audit Trail</h4>
+            <p>Every recommendation, review, approval, decline, and disbursement is logged with timestamp and user identity. The complete grant history is visible in the donor's fund portal, in the staff administration view, and in reporting exports — creating a permanent, searchable record for IRS compliance and board review.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="dd-box">
+          <div class="dd-box-title">Compliance at a Glance</div>
+          <div class="dd-stat"><span class="dd-stat-label">Grantee verification</span><span class="dd-stat-val teal">Every grant</span></div>
+          <div class="dd-stat"><span class="dd-stat-label">Balance check checkpoints</span><span class="dd-stat-val teal">2 independent</span></div>
+          <div class="dd-stat"><span class="dd-stat-label">Staff approval required</span><span class="dd-stat-val teal">Always</span></div>
+          <div class="dd-stat"><span class="dd-stat-label">Audit trail retention</span><span class="dd-stat-val">Permanent</span></div>
+          <div class="dd-stat"><span class="dd-stat-label">GL integration</span><span class="dd-stat-val">Real-time</span></div>
+          <div class="dd-stat"><span class="dd-stat-label">IRS tax receipts</span><span class="dd-stat-val">Auto-generated</span></div>
+          <div style="margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08);">
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:12px;">Supported Grant Recipient Types</div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;">
+              <span style="padding:4px 10px;background:rgba(0,119,123,0.12);border:1px solid rgba(0,119,123,0.25);border-radius:100px;font-family:var(--font-mono);font-size:10px;color:var(--teal-light);">Public charities</span>
+              <span style="padding:4px 10px;background:rgba(0,119,123,0.12);border:1px solid rgba(0,119,123,0.25);border-radius:100px;font-family:var(--font-mono);font-size:10px;color:var(--teal-light);">Component funds</span>
+              <span style="padding:4px 10px;background:rgba(0,119,123,0.12);border:1px solid rgba(0,119,123,0.25);border-radius:100px;font-family:var(--font-mono);font-size:10px;color:var(--teal-light);">Educational institutions</span>
+              <span style="padding:4px 10px;background:rgba(0,119,123,0.12);border:1px solid rgba(0,119,123,0.25);border-radius:100px;font-family:var(--font-mono);font-size:10px;color:var(--teal-light);">Individual scholars</span>
+              <span style="padding:4px 10px;background:rgba(0,119,123,0.12);border:1px solid rgba(0,119,123,0.25);border-radius:100px;font-family:var(--font-mono);font-size:10px;color:var(--teal-light);">Vendors & contractors</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT RAIL -->
+<section class="payments" id="payments">
+  <div class="inner">
+    <span class="eyebrow">Disbursement Rail</span>
+    <h2>Every payment method,<br><em>handled end-to-end</em></h2>
+    <p class="sec-lead">GiftingNetwork's disbursement rail supports every payment scenario — from same-day EFT to MICR check printing with branded cover documents, air freight to sponsors for co-signature, and joint scholarship payments to institutions and students.</p>
+    <div class="pay-grid">
+      <div class="pay-card">
+        <div class="pay-icon">⚡</div>
+        <div class="pay-title">EFT / ACH</div>
+        <div class="pay-desc">Electronic funds transfer direct to grantee bank account. Fastest path from approval to receipt.</div>
+        <div class="pay-badge">Preferred</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-icon">📄</div>
+        <div class="pay-title">MICR Check</div>
+        <div class="pay-desc">Printed with authorized bitmap signature. Branded cover document. Mailed direct to grantee or payee.</div>
+        <div class="pay-badge">Standard</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-icon">✍️</div>
+        <div class="pay-title">Co-Sign / Air Freight</div>
+        <div class="pay-desc">MICR check and cover letter air-freighted to sponsoring foundation for authorized signature before forwarding.</div>
+        <div class="pay-badge">Institutional</div>
+      </div>
+      <div class="pay-card">
+        <div class="pay-icon">🎓</div>
+        <div class="pay-title">Scholarship — Flexible Payee</div>
+        <div class="pay-desc">Institution only, student only, or joint payee. Payment detail synced to GiftingNet via data integration.</div>
+        <div class="pay-badge">Multi-Payee</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTROLS -->
+<section class="controls">
+  <div class="inner">
+    <span class="eyebrow">Platform Controls</span>
+    <h2>Visibility and control<br><em>at every stage</em></h2>
+    <p class="sec-lead">Sponsors, donors, advisors, and grant seekers each have role-specific access to the information that matters to them — and none of the information that doesn't.</p>
+    <div class="ctrl-grid">
+      <div class="ctrl-card">
+        <div class="ctrl-icon">👁️</div>
+        <div class="ctrl-title">Donor Portal Visibility</div>
+        <div class="ctrl-desc">Donors see fund balance, available-to-spend, pending recommendations, approved grants, and grant detail with status — Pending, Approved, Declined, or Paid — directly in their portal.</div>
+      </div>
+      <div class="ctrl-card">
+        <div class="ctrl-icon">🏛️</div>
+        <div class="ctrl-title">Staff Administration</div>
+        <div class="ctrl-desc">Foundation staff have full recommendation worksheet access, approval authority, grant seeker management, and the complete payment order workflow — all in one administration view.</div>
+      </div>
+      <div class="ctrl-card">
+        <div class="ctrl-icon">📊</div>
+        <div class="ctrl-title">GL Integration</div>
+        <div class="ctrl-desc">Approved grants and payments flow to GiftingNet via data integration in real time. Fund balances, grant detail, and payment status are always current — no manual reconciliation required.</div>
+      </div>
+      <div class="ctrl-card">
+        <div class="ctrl-icon">📋</div>
+        <div class="ctrl-title">Grant Seeker Portal</div>
+        <div class="ctrl-desc">Grant seekers self-register, submit applications, receive status notifications, and track proposal status through every phase — from LOI submission through approval or decline.</div>
+      </div>
+      <div class="ctrl-card">
+        <div class="ctrl-icon">📈</div>
+        <div class="ctrl-title">Reporting & Exports</div>
+        <div class="ctrl-desc">Full grant history, payment records, and grantee data available as reports and exports. Supports board reporting, audit preparation, and IRS Form 990 documentation.</div>
+      </div>
+      <div class="ctrl-card">
+        <div class="ctrl-icon">🔔</div>
+        <div class="ctrl-title">Notification Workflow</div>
+        <div class="ctrl-desc">Automated email notifications at every status change — recommendation received, reviewer assigned, approval or decline, payment confirmation — keeping every participant informed without staff follow-up.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2 class="cta-h">Ready to modernize<br>your grant program?</h2>
+  <p class="cta-sub">Talk to the GiftingNetwork team about your foundation's grant volume,<br>program types, and disbursement requirements.</p>
+  <div class="cta-btns">
+    <a href="mailto:support@giftingnetwork.com" class="btn-cta-w">Talk to Our Team</a>
+    <a href="index.html" class="btn-cta-o">← Back to Platform</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-row">
+    <div class="footer-legal">© 2026 GiftingNetwork LLC · Morristown, NJ</div>
+    <div class="footer-links">
+      <a href="index.html">Platform Home</a>
+      <a href="pbo-services.html">Back Office</a>
+      <a href="mailto:info@giftingnetwork.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CONTACT MODAL -->
+<div id="grant-modal" style="display:none;position:fixed;inset:0;background:rgba(5,10,20,0.85);z-index:300;overflow-y:auto;padding:40px 24px;backdrop-filter:blur(8px);">
+  <div style="max-width:560px;margin:0 auto;background:#0D2D4F;border:1px solid rgba(0,119,123,0.3);border-radius:14px;overflow:hidden;position:relative;">
+    <div style="background:rgba(0,0,0,0.3);padding:20px 28px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:4px;">Grant Administration</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;" id="modal-title">Talk to Our Team</div>
+      </div>
+      <button onclick="closeGrantModal()" style="background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer;font-size:22px;line-height:1;padding:4px;transition:color .15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">✕</button>
+    </div>
+    <div style="padding:32px 28px;">
+      <p id="modal-subtitle" style="font-family:'Lato',sans-serif;font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:24px;line-height:1.65;"></p>
+      <div id="modal-form-wrap">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <label style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);">First name</label>
+            <input type="text" placeholder="Jane" style="padding:11px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:6px;color:#fff;font-family:'Lato',sans-serif;font-size:14px;outline:none;width:100%;" onfocus="this.style.borderColor='rgba(0,180,180,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.14)'">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <label style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Last name</label>
+            <input type="text" placeholder="Smith" style="padding:11px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:6px;color:#fff;font-family:'Lato',sans-serif;font-size:14px;outline:none;width:100%;" onfocus="this.style.borderColor='rgba(0,180,180,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.14)'">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
+          <label style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Email</label>
+          <input type="email" placeholder="jane@yourfoundation.org" style="padding:11px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:6px;color:#fff;font-family:'Lato',sans-serif;font-size:14px;outline:none;width:100%;" onfocus="this.style.borderColor='rgba(0,180,180,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.14)'">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
+          <label style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Organization</label>
+          <input type="text" placeholder="Community Foundation of Example" style="padding:11px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:6px;color:#fff;font-family:'Lato',sans-serif;font-size:14px;outline:none;width:100%;" onfocus="this.style.borderColor='rgba(0,180,180,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.14)'">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px;">
+          <label style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Your role</label>
+          <select style="padding:11px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:6px;color:#fff;font-family:'Lato',sans-serif;font-size:14px;outline:none;width:100%;cursor:pointer;" onfocus="this.style.borderColor='rgba(0,180,180,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.14)'">
+            <option value="" style="background:#0D2D4F;">Select your role...</option>
+            <option style="background:#0D2D4F;">Foundation / DAF Sponsor Staff</option>
+            <option style="background:#0D2D4F;">Foundation Executive Director</option>
+            <option style="background:#0D2D4F;">Financial Advisor</option>
+            <option style="background:#0D2D4F;">Technology / Platform Decision Maker</option>
+            <option style="background:#0D2D4F;">Other</option>
+          </select>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:24px;">
+          <label style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Tell us about your grant program (optional)</label>
+          <textarea placeholder="Grant volume, program types, current platform..." rows="3" style="padding:11px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:6px;color:#fff;font-family:'Lato',sans-serif;font-size:14px;outline:none;width:100%;resize:vertical;" onfocus="this.style.borderColor='rgba(0,180,180,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.14)'"></textarea>
+        </div>
+        <button onclick="submitGrantForm()" style="width:100%;padding:13px;background:var(--teal);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:.03em;border:none;border-radius:7px;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='#009499'" onmouseout="this.style.background='var(--teal)'">Send Message →</button>
+      </div>
+      <div id="modal-success" style="display:none;text-align:center;padding:20px 0;">
+        <div style="font-size:36px;margin-bottom:16px;">✓</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;">Message sent.</div>
+        <div style="font-family:'Lato',sans-serif;font-size:14px;color:rgba(255,255,255,0.5);">We’ll be in touch within one business day.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+/* ── Nav scroll ─────────────────────────────────────── */
+var navEl = document.querySelector('nav');
+window.addEventListener('scroll', function() {
+  navEl.style.background = window.scrollY > 50
+    ? 'rgba(5,13,24,0.98)' : 'rgba(8,30,54,0.96)';
+});
+
+/* ── Smooth scroll ───────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+/* ── Modal ───────────────────────────────────────────── */
+var modalContexts = {
+  'donor-advised':   { title: 'Donor-Advised Grants',    subtitle: 'Tell us about your DAF program — grant volume, advisor relationships, and what you need from the platform.' },
+  'competitive':     { title: 'Competitive Grants',       subtitle: 'Tell us about your competitive grant program — application volume, review process, and disbursement requirements.' },
+  'scholarship':     { title: 'Scholarship Programs',     subtitle: 'Tell us about your scholarship program — award volume, institution relationships, and payee setup.' },
+  'admin-payments':  { title: 'Administrative Payments',  subtitle: 'Tell us about your operational disbursement needs — vendor types, payment frequency, and current workflow.' },
+  'default':         { title: 'Talk to Our Team',         subtitle: 'Tell us about your foundation’s grant program, volume, and what you’re looking to improve.' }
+};
+
+function openGrantModal(context) {
+  var ctx = modalContexts[context] || modalContexts['default'];
+  document.getElementById('modal-title').textContent = ctx.title;
+  document.getElementById('modal-subtitle').textContent = ctx.subtitle;
+  document.getElementById('modal-form-wrap').style.display = '';
+  document.getElementById('modal-success').style.display = 'none';
+  var m = document.getElementById('grant-modal');
+  m.style.display = 'block';
+  m.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGrantModal() {
+  document.getElementById('grant-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function submitGrantForm() {
+  document.getElementById('modal-form-wrap').style.display = 'none';
+  document.getElementById('modal-success').style.display = 'block';
+}
+
+document.getElementById('grant-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeGrantModal();
+});
+
+/* ── Wire gt-cards (hero tiles) ─────────────────────── */
+var gtContexts = ['donor-advised', 'competitive', 'scholarship', 'admin-payments'];
+document.querySelectorAll('.gt-card').forEach(function(card, i) {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', function() {
+    openGrantModal(gtContexts[i] || 'default');
+  });
+});
+
+/* ── Wire all fs-task checklist pills ───────────────── */
+document.querySelectorAll('.fs-task').forEach(function(task) {
+  task.style.cursor = 'pointer';
+  task.addEventListener('click', function() {
+    openGrantModal('default');
+  });
+});
+
+/* ── Wire CTA "Talk to Our Team" button ─────────────── */
+document.querySelectorAll('.btn-cta-w').forEach(function(btn) {
+  if (btn.getAttribute('href') === 'mailto:info@giftingnetwork.com') {
+    btn.setAttribute('href', '#');
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openGrantModal('default');
+    });
+  }
+});
+
+/* ── Wire nav "Schedule a Demo" ─────────────────────── */
+document.querySelectorAll('.nav-cta').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    if (btn.getAttribute('href') === '#' || btn.getAttribute('href') === '#contact') {
+      e.preventDefault();
+      openGrantModal('default');
+    }
+  });
+});
+
+/* ── Fade-in on scroll ───────────────────────────────── */
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'none';
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.gd-card, .ctrl-card, .pay-card, .dd-step').forEach(function(el) {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
