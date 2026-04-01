@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5CF2KTLQL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L5CF2KTLQL');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact Us — GiftingNetwork</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --teal:        #00777B;
+    --teal-light:  #009499;
+    --teal-dark:   #005558;
+    --navy:        #144270;
+    --navy-dark:   #0D2D4F;
+    --navy-deeper: #081E36;
+    --blue:        #098DCA;
+    --font-head:   'Montserrat', sans-serif;
+    --font-body:   'Lato', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--navy-deeper); color: #fff; overflow-x: hidden; line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: 72px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    background: rgba(8,30,54,0.94); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,119,123,0.2);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .nav-wordmark { font-family: var(--font-head); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: #fff; }
+  .nav-wordmark .g { color: var(--teal-light); }
+  .nav-wordmark .n { color: #fff; }
+  .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+  .nav-links > li > a, .nav-links > li > button {
+    display: flex; align-items: center; gap: 5px; padding: 8px 13px;
+    font-family: var(--font-head); font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.75); background: none; border: none;
+    cursor: pointer; text-decoration: none; border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-links > li > a:hover { color: var(--teal-light); background: rgba(255,255,255,0.05); }
+  .nav-actions { display: flex; align-items: center; gap: 10px; }
+  .btn-ghost {
+    padding: 8px 18px; font-family: var(--font-head); font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.8); background: none; border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 6px; cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--teal); color: var(--teal-light); }
+  .btn-teal {
+    padding: 9px 22px; font-family: var(--font-head); font-size: 13px; font-weight: 700;
+    color: #fff; background: var(--teal); border: none; border-radius: 6px;
+    cursor: pointer; text-decoration: none; transition: background 0.2s;
+  }
+  .btn-teal:hover { background: var(--teal-light); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+  .hamburger span { width: 22px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 2px; }
+
+  /* PAGE */
+  .page-wrap {
+    min-height: 100vh; padding: 120px 60px 80px;
+    background: linear-gradient(150deg, var(--navy-deeper) 0%, #0A2240 55%, #061525 100%);
+    position: relative; overflow: hidden;
+  }
+  .page-wrap::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(0,119,123,0.06) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,119,123,0.06) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 30%, black 20%, transparent 75%);
+  }
+  .inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .page-header { margin-bottom: 52px; }
+  .page-eyebrow { display: inline-block; font-family: var(--font-head); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 14px; }
+  .page-title { font-family: var(--font-head); font-size: clamp(34px, 4vw, 54px); font-weight: 800;
+    line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 14px; }
+  .page-title em { font-style: normal; color: var(--teal-light); }
+  .page-sub { font-family: var(--font-body); font-size: 17px; font-weight: 300;
+    color: rgba(255,255,255,0.6); max-width: 560px; line-height: 1.7; }
+
+  /* LAYOUT */
+  .contact-layout { display: grid; grid-template-columns: 1fr 400px; gap: 60px; align-items: start; }
+
+  /* FORM */
+  .form-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(0,119,123,0.25);
+    border-radius: 16px; padding: 44px 48px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+  .form-group label {
+    font-family: var(--font-head); font-size: 12px; font-weight: 700;
+    color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 8px; padding: 13px 16px; font-family: var(--font-body); font-size: 14px;
+    color: #fff; transition: border-color 0.2s, background 0.2s; outline: none;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: rgba(0,148,153,0.7); background: rgba(255,255,255,0.1);
+  }
+  .form-group select option { background: var(--navy-dark); color: #fff; }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.28); }
+  .btn-submit {
+    width: 100%; padding: 16px; font-family: var(--font-head); font-size: 14px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; color: #fff; background: var(--teal);
+    border: none; border-radius: 8px; cursor: pointer;
+    box-shadow: 0 8px 28px rgba(0,119,123,0.35); transition: background 0.2s, transform 0.15s;
+  }
+  .btn-submit:hover:not(:disabled) { background: var(--teal-light); transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+  .form-note { font-family: var(--font-body); font-size: 12px; color: rgba(255,255,255,0.3);
+    text-align: center; margin-top: 14px; line-height: 1.5; }
+  .form-status { display: none; margin-top: 20px; padding: 16px 20px; border-radius: 10px;
+    font-family: var(--font-body); font-size: 14px; font-weight: 400; text-align: center; }
+  .form-status.success { background: rgba(0,119,123,0.18); border: 1px solid rgba(0,148,153,0.5);
+    color: rgba(255,255,255,0.9); display: block; }
+  .form-status.error { background: rgba(180,40,40,0.18); border: 1px solid rgba(200,60,60,0.4);
+    color: rgba(255,180,180,0.9); display: block; }
+
+  /* SIDEBAR */
+  .sidebar { display: flex; flex-direction: column; gap: 20px; }
+  .info-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(0,119,123,0.2);
+    border-radius: 12px; padding: 24px 26px;
+  }
+  .info-card-head { font-family: var(--font-head); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 12px; }
+  .info-card p { font-family: var(--font-body); font-size: 14px; font-weight: 300;
+    color: rgba(255,255,255,0.55); line-height: 1.7; }
+  .info-card a { color: var(--teal-light); text-decoration: none; }
+  .info-card a:hover { text-decoration: underline; }
+  .response-badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
+    background: rgba(0,119,123,0.15); border: 1px solid rgba(0,119,123,0.35);
+    border-radius: 100px; font-family: var(--font-head); font-size: 11px; font-weight: 700;
+    color: var(--teal-light); letter-spacing: 0.06em; margin-top: 12px;
+  }
+  .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal-light); animation: pulse 2.5s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.6); } }
+  .photo-card {
+    border-radius: 12px; overflow: hidden; position: relative; min-height: 180px;
+    background: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+  }
+  .photo-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(8,30,54,0.2) 0%, rgba(8,30,54,0.88) 100%);
+    padding: 24px 26px; display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .photo-card-lbl { font-family: var(--font-head); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+  .photo-card-addr { font-family: var(--font-body); font-size: 14px; font-weight: 300;
+    color: rgba(255,255,255,0.8); line-height: 1.65; }
+
+  /* FOOTER */
+  footer { background: #050D18; padding: 36px 60px; border-top: 1px solid rgba(0,119,123,0.2);
+    text-align: center; }
+  .footer-legal { font-family: var(--font-head); font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.2); letter-spacing: 0.03em; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1260px) {
+    nav { padding: 0 40px; }
+    .page-wrap { padding-left: 40px; padding-right: 40px; }
+    footer { padding-left: 40px; padding-right: 40px; }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links, .nav-actions { display: none; }
+    .hamburger { display: flex; }
+    .page-wrap { padding-left: 20px; padding-right: 20px; padding-top: 100px; }
+    .contact-layout { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+    .form-card { padding: 28px 22px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    footer { padding-left: 20px; padding-right: 20px; }
+  }
+  @media (max-width: 480px) {
+    .page-title { font-size: clamp(28px, 8vw, 40px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/>
+      <path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/>
+      <path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/>
+    </svg>
+    <div class="nav-wordmark"><span class="g">Gifting</span><span class="n">Network</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#platform">Platform</a></li>
+    <li><a href="index.html#serve">Who We Serve</a></li>
+    <li><a href="index.html#news">News</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#team">Team</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="contact.html" class="btn-ghost">Contact Us</a>
+    <a href="contact.html?subject=demo" class="btn-teal">Request Demo</a>
+  </div>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MAIN -->
+<div class="page-wrap">
+  <div class="inner">
+    <div class="page-header">
+      <div class="page-eyebrow">Get in Touch</div>
+      <h1 class="page-title">Let's start a<br><em>conversation</em></h1>
+      <p class="page-sub">Whether you're exploring the platform, ready to request a demo, or have a specific question — we're here to help.</p>
+    </div>
+
+    <div class="contact-layout">
+
+      <!-- FORM -->
+      <div class="form-card">
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="jane@yourorganization.org" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company">Organization / Company *</label>
+              <input type="text" id="company" name="company" placeholder="Community Foundation of …" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">How can we help? *</label>
+            <select id="subject" name="subject" required>
+              <option value="" disabled selected>Select a topic…</option>
+              <option value="Request a Demo">Request a Demo</option>
+              <option value="DAF Sponsor Platform">DAF Sponsor Platform</option>
+              <option value="Grant Administration">Grant Administration</option>
+              <option value="Philanthropic Back Office">Philanthropic Back Office</option>
+              <option value="Portals">Portals</option>
+              <option value="AI Reporting Engine">AI Reporting Engine</option>
+              <option value="DAF Network">DAF Network</option>
+              <option value="GiftingPension">GiftingPension</option>
+              <option value="Partnership Inquiry">Partnership Inquiry</option>
+              <option value="Press / Media">Press / Media</option>
+              <option value="General Question">General Question</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" placeholder="Tell us about your organization and what you're looking for…" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
+          <p class="form-note">By submitting this form you agree to be contacted by GiftingNetwork regarding your inquiry. We never share your information with third parties.</p>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+
+        <div class="info-card">
+          <div class="info-card-head">Response Time</div>
+          <p>We typically respond within one business day. For urgent matters please call us directly.</p>
+          <div class="response-badge"><span class="badge-dot"></span>Usually within 24 hours</div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-head">Direct Contact</div>
+          <p>
+            📞 <a href="tel:9739848200">973.984.8200</a><br>
+            ✉️ <a href="mailto:info@giftingnetwork.com">info@giftingnetwork.com</a><br>
+            <br>
+            For platform support:<br>
+            <a href="mailto:support@giftingnetwork.com">support@giftingnetwork.com</a>
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-head">Request a Demo</div>
+          <p>See the GiftingNetwork platform in action. Our team will walk you through DAF sponsor capabilities, advisor integrations, and the donor experience — tailored to your organization.</p>
+        </div>
+
+        <div class="photo-card">
+          <div class="photo-card-overlay">
+            <div class="photo-card-lbl">Headquarters</div>
+            <div class="photo-card-addr">89 Headquarters Plaza<br>Suite 1446<br>Morristown, NJ 07960</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-legal">© 2026 GiftingNetwork — All Rights Reserved · <a href="index.html" style="color:rgba(255,255,255,0.35);text-decoration:none;">giftingnetwork.com</a></div>
+</footer>
+
+<script>
+// ── CREDENTIALS ─────────────────────────────────────────────────────────────
+const HUBSPOT_PORTAL_ID = 'YOUR_HUBSPOT_PORTAL_ID';
+const HUBSPOT_FORM_GUID = 'YOUR_HUBSPOT_FORM_GUID';
+const ZENDESK_SUBDOMAIN = 'YOUR_ZENDESK_SUBDOMAIN';
+
+// ── URL param pre-selection ──────────────────────────────────────────────────
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const subjectParam = (params.get('subject') || '').toLowerCase();
+  const subjectMap = {
+    'demo':        'Request a Demo',
+    'daf':         'DAF Sponsor Platform',
+    'grants':      'Grant Administration',
+    'grant':       'Grant Administration',
+    'pbo':         'Philanthropic Back Office',
+    'portals':     'Portals',
+    'ai':          'AI Reporting Engine',
+    'network':     'DAF Network',
+    'pension':     'GiftingPension',
+    'partnership': 'Partnership Inquiry',
+    'press':       'Press / Media',
+  };
+  if (subjectParam && subjectMap[subjectParam]) {
+    const sel = document.getElementById('subject');
+    if (sel) sel.value = subjectMap[subjectParam];
+  }
+})();
+
+// ── FORM SUBMISSION ──────────────────────────────────────────────────────────
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const btn    = document.getElementById('submitBtn');
+  const status = document.getElementById('formStatus');
+
+  // Gather data
+  const data = {
+    firstName: document.getElementById('firstName').value.trim(),
+    lastName:  document.getElementById('lastName').value.trim(),
+    email:     document.getElementById('email').value.trim(),
+    company:   document.getElementById('company').value.trim(),
+    phone:     document.getElementById('phone').value.trim(),
+    subject:   document.getElementById('subject').value,
+    message:   document.getElementById('message').value.trim(),
+  };
+
+  // Basic validation
+  if (!data.firstName || !data.lastName || !data.email || !data.company || !data.subject || !data.message) {
+    status.className = 'form-status error';
+    status.textContent = 'Please fill in all required fields.';
+    return;
+  }
+
+  gtag('event', 'contact_form_submit_attempt', { subject: data.subject });
+
+  btn.disabled    = true;
+  btn.textContent = 'Sending…';
+  status.className = 'form-status';
+
+  try {
+    const results = await Promise.allSettled([
+      submitHubSpot(data),
+      submitZendesk(data),
+    ]);
+
+    const hsOk = results[0].status === 'fulfilled';
+    const zdOk = results[1].status === 'fulfilled';
+
+    if (hsOk || zdOk) {
+      gtag('event', 'contact_form_success', { subject: data.subject });
+      status.className = 'form-status success';
+      status.textContent = '✓ Message received! We\'ll be in touch within one business day.';
+      document.getElementById('contactForm').reset();
+    } else {
+      throw new Error('Both submission channels failed.');
+    }
+  } catch (err) {
+    gtag('event', 'contact_form_error', { error: err.message });
+    status.className = 'form-status error';
+    status.textContent = 'Something went wrong. Please email us directly at info@giftingnetwork.com';
+    btn.disabled    = false;
+    btn.textContent = 'Send Message';
+    return;
+  }
+
+  btn.textContent = 'Message Sent ✓';
+});
+
+async function submitHubSpot(d) {
+  if (HUBSPOT_PORTAL_ID === 'YOUR_HUBSPOT_PORTAL_ID') return;
+  const url = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+  const payload = {
+    fields: [
+      { name: 'firstname',  value: d.firstName },
+      { name: 'lastname',   value: d.lastName },
+      { name: 'email',      value: d.email },
+      { name: 'company',    value: d.company },
+      { name: 'phone',      value: d.phone },
+      { name: 'subject',    value: d.subject },
+      { name: 'message',    value: d.message },
+    ],
+    context: { pageUri: window.location.href, pageName: document.title },
+  };
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error(`HubSpot ${res.status}`);
+}
+
+async function submitZendesk(d) {
+  if (ZENDESK_SUBDOMAIN === 'YOUR_ZENDESK_SUBDOMAIN') return;
+  const url = `https://${ZENDESK_SUBDOMAIN}.zendesk.com/api/v2/requests.json`;
+  const payload = {
+    request: {
+      subject: `[${d.subject}] ${d.firstName} ${d.lastName} — ${d.company}`,
+      comment: { body: `Name: ${d.firstName} ${d.lastName}\nEmail: ${d.email}\nCompany: ${d.company}\nPhone: ${d.phone || 'N/A'}\nTopic: ${d.subject}\n\nMessage:\n${d.message}` },
+      requester: { name: `${d.firstName} ${d.lastName}`, email: d.email },
+    },
+  };
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error(`Zendesk ${res.status}`);
+}
+</script>
+</body>
+</html>
