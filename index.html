@@ -221,7 +221,11 @@
   .p-lnk:hover::after { transform: translateX(4px); }
 
   /* SERVE */
-  #serve { background: var(--navy-deeper); }
+  #serve { background: var(--navy-deeper); position: relative; overflow: hidden; }
+  .serve-banner { position: relative; width: 100%; height: 320px; margin: 44px 0 52px; overflow: hidden; border-radius: 12px; }
+  .serve-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; filter: brightness(0.6) saturate(1.15); display: block; }
+  .serve-banner-fade { position: absolute; inset: 0; background: linear-gradient(to bottom, var(--navy-deeper) 0%, transparent 22%, transparent 78%, var(--navy-deeper) 100%); }
+  .serve-banner-overlay { position: absolute; inset: 0; background: rgba(10,34,64,0.28); }
   .serve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 52px; }
   .s-card { padding: 40px; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.25s; }
   .s-card:hover { border-color: rgba(0,119,123,0.5); transform: translateY(-3px); }
@@ -563,12 +567,13 @@
 
 <!-- SERVE -->
 <section id="serve">
-  <!-- Feature photo: Clay Banks diverse hands — Unsplash — unsplash.com/license -->
-  <div style="position:absolute;inset:0;z-index:0;pointer-events:none;">
-    <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;mix-blend-mode:luminosity;opacity:0.13;filter:brightness(0.62) saturate(1.1) sepia(0.1);"></div>
-    <div style="position:absolute;inset:0;background:rgba(180,90,20,0.12);"></div>
+  <div class="fi"><div class="eyebrow">Who We Serve</div><h2 class="sh2">Built for every corner of the<br><em>philanthropic ecosystem</em></h2></div>
+  <!-- Feature photo: Clay Banks — diverse hands together — Unsplash — unsplash.com/license -->
+  <div class="serve-banner fi">
+    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1920&q=80" alt="Diverse group of hands together symbolizing community, support, and giving" loading="lazy">
+    <div class="serve-banner-fade"></div>
+    <div class="serve-banner-overlay"></div>
   </div>
-  <div class="fi" style="position:relative;z-index:1;"><div class="eyebrow">Who We Serve</div><h2 class="sh2">Built for every corner of the<br><em>philanthropic ecosystem</em></h2></div>
   <div class="serve-grid">
     <div class="s-card ct fi"><div class="s-num">01 — Institutional Sponsors</div><div class="s-title">Community Foundations</div><div class="s-body">GiftingNetwork is the technology backbone for community foundations running donor-advised fund programs. We provide the SaaS platform, back-office operations, and advisor-channel distribution that let foundations serve donors more deeply and compete on a level playing field with national commercial DAF providers. Foundation For The Carolinas is among our recent implementation wins.</div><div class="s-tags"><span class="s-tag">DAF Sponsor Platform</span><span class="s-tag">White-Label Portals</span><span class="s-tag">Back Office</span><span class="s-tag">Advisor Distribution</span></div></div>
     <div class="s-card cb fi d1"><div class="s-num">02 — Faith & Mission</div><div class="s-title">Jewish Federations & Religious Foundations</div><div class="s-body">Jewish federations and faith-based foundations have distinct requirements — donor stewardship, mission-aligned grant recommendations, endowment management, and community engagement. GiftingNetwork's platform is designed to accommodate these nuances while delivering a modern, branded digital experience to your donors.</div><div class="s-tags"><span class="s-tag">Endowment Tracking</span><span class="s-tag">Mission-Aligned Grants</span><span class="s-tag">Branded Portals</span></div></div>
@@ -576,7 +581,6 @@
     <div class="s-card ct2 fi d1"><div class="s-num">04 — Wealth Management</div><div class="s-title">Financial Advisors & Wealth Managers</div><div class="s-body">We give financial advisors the tools to make charitable planning a seamless part of their client relationships — directly within the platforms they already use. Deep integrations with Orion and Envestnet put DAF access, tax-smart giving strategies, and impact reporting at advisors' fingertips, without disrupting existing workflows.</div><div class="s-tags"><span class="s-tag">Orion Integration</span><span class="s-tag">Envestnet Integration</span><span class="s-tag">Client Giving Plans</span><span class="s-tag">Orion & Envestnet Networks</span></div></div>
     <div class="s-card cb fi" style="grid-column: 1 / -1;"><div class="s-num">05 — Private Philanthropy</div><div class="s-title">Private Foundations</div><div class="s-body">Many wealth management firms have clients with private foundations — and those foundations often run on outdated systems, manual processes, and overstretched staff. GiftingNetwork provides private foundations with the operational infrastructure, grant management workflows, and compliance reporting tools to run a professional philanthropic operation without the overhead of building it in-house. For wealth managers already serving foundation clients, we become the back-office layer that makes those relationships stickier and more valuable.</div><div class="s-tags"><span class="s-tag">Grant Administration</span><span class="s-tag">Compliance Reporting</span><span class="s-tag">Back Office</span><span class="s-tag">Wealth Manager Support</span><span class="s-tag">Foundation Operations</span></div></div>
     <div class="s-card ct fi d1" style="grid-column: 1 / -1;"><div class="s-num">06 — Endowments & Foundations Channel</div><div class="s-title">Advisors to Nonprofits & Institutional Sponsors</div><div class="s-body">A small but growing segment of financial advisors work primarily in — or are expanding into — the endowments and foundations channel. These advisors don't just serve individual donors: they advise the nonprofit organizations themselves, helping community foundations, federations, and mission-driven institutions make decisions about investment strategy, platform infrastructure, and program design. For these advisors, GiftingNetwork opens a distinct institutional opportunity. By introducing a nonprofit client to the GiftingNetwork platform, the referring advisor can negotiate to have their firm's investment-managed products set as the default investment options across the sponsor's entire fund lineup — from day one of onboarding. Every new donor fund launched at that sponsor defaults to the advisor's managed products. The advisory fee relationship operates at the sponsor level, not the individual donor level, and grows as the sponsor's program grows.</div><div class="s-tags"><span class="s-tag">E&F Channel</span><span class="s-tag">Sponsor Referrals</span><span class="s-tag">Default Investment Products</span><span class="s-tag">Institutional AUM</span><span class="s-tag">DAF Program Consulting</span><span class="s-tag">Young PIF Sponsors</span></div></div>
-  </div>
   </div>
 </section>
 
