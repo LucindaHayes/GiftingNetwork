@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found — GiftingNetwork</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #081E36;
+      --teal: #00777B;
+      --teal-light: #00B4BC;
+      --font-head: 'Montserrat', sans-serif;
+      --font-body: 'Lato', sans-serif;
+    }
+    html, body {
+      height: 100%;
+      background: var(--navy);
+      color: #fff;
+      font-family: var(--font-body);
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .logo {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 60px;
+      display: inline-block;
+    }
+    .logo span { color: var(--teal-light); }
+    .code {
+      font-family: var(--font-head);
+      font-size: clamp(80px, 20vw, 140px);
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+      opacity: 0.4;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-family: var(--font-head);
+      font-size: clamp(22px, 5vw, 34px);
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-home {
+      padding: 13px 28px;
+      background: var(--teal);
+      color: #fff;
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-home:hover { background: #009499; }
+    .btn-contact {
+      padding: 13px 28px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.85);
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-contact:hover { background: rgba(255,255,255,0.15); }
+    .redirect-note {
+      margin-top: 48px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+    }
+    #countdown { color: var(--teal-light); }
+  </style>
+</head>
+<body>
+  <a href="/" class="logo">Gifting<span>Network</span></a>
+  <div class="code">404</div>
+  <h1>Page not found</h1>
+  <p>The page you're looking for may have moved or no longer exists. You'll be redirected to our homepage in <span id="countdown">10</span> seconds.</p>
+  <div class="btns">
+    <a href="/" class="btn-home">Go to Homepage</a>
+    <a href="/contact.html" class="btn-contact">Contact Us</a>
+  </div>
+  <p class="redirect-note">Redirecting automatically…</p>
+
+  <script>
+    // ── Smart redirects for old URLs ──────────────────────────────────────────
+    var redirectMap = {
+      '/services':                          '/#platform',
+      '/our-story':                         '/#about',
+      '/who-we-serve':                      '/#serve',
+      '/industry-insights':                 '/#news',
+      '/industry-insights/our-blog':        '/#news',
+      '/resources':                         '/#news',
+      '/latest-news':                       '/#news',
+      '/services/personalized-po':          '/pbo-services.html',
+      '/services/grant-administration':     '/grant-administration.html',
+      '/services/daf-network':              '/daf-network.html',
+      '/services/portals':                  '/portals.html',
+      '/contact':                           '/contact.html',
+      '/contact-us':                        '/contact.html',
+      '/demo':                              '/contact.html?subject=demo',
+      '/request-demo':                      '/contact.html?subject=demo',
+    };
+
+    var path = window.location.pathname.replace(/\/$/, '').toLowerCase();
+    var destination = null;
+
+    // Exact match first
+    if (redirectMap[path]) {
+      destination = redirectMap[path];
+    } else {
+      // Partial match — find the best prefix
+      var keys = Object.keys(redirectMap);
+      for (var i = 0; i < keys.length; i++) {
+        if (path.indexOf(keys[i]) === 0) {
+          destination = redirectMap[keys[i]];
+          break;
+        }
+      }
+    }
+
+    // If a known old URL, redirect immediately (no countdown)
+    if (destination) {
+      window.location.replace(destination);
+    }
+
+    // Otherwise countdown to homepage
+    var seconds = 10;
+    var el = document.getElementById('countdown');
+    var timer = setInterval(function() {
+      seconds--;
+      el.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = '/';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
