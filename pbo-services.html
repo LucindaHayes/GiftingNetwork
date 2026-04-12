@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L5CF2KTLQL"></script>
 <script>
@@ -153,6 +157,9 @@ footer{background:#050D18;padding:40px 60px 28px;border-top:1px solid rgba(0,119
     .sh2 { font-size:clamp(24px,7vw,36px) !important; }
     .hero-actions { flex-direction:column; align-items:flex-start; }
   }
+  /* Real logo image */
+  .nav-logo-img { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; background: #fff; padding: 3px; display: block; flex-shrink: 0; }
+  .footer-logo-img { width: 30px; height: 30px; border-radius: 6px; object-fit: contain; background: #fff; padding: 2px; display: block; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -160,11 +167,7 @@ footer{background:#050D18;padding:40px 60px 28px;border-top:1px solid rgba(0,119
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <svg class="nav-logo-mark" viewBox="0 0 36 36" fill="none">
-      <path d="M18 2L34 18L18 34L2 18Z" fill="#1A1A1A"/>
-      <path d="M18 8L28 18L18 28L8 18Z" fill="#00777B"/>
-      <path d="M15.5 13.5L22 18L15.5 22.5V19.2L19.2 18L15.5 16.8V13.5Z" fill="white"/>
-    </svg>
+    <img src="GiftingNetwork_Logo_Search_Icon.png" alt="GiftingNetwork" class="nav-logo-img">
     <div class="nav-wordmark"><span class="g">Gifting</span><span>Network</span></div>
   </a>
   <a href="index.html" class="nav-back">← Back to Platform</a>
