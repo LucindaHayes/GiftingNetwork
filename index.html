@@ -424,15 +424,49 @@
     .orbit-wrap { height: 280px; }
     .wealth-sticky { position: relative; top: 0; }
   }
-  /* ── Small phone ── */
-  @media (max-width: 480px) {
-    .hero-headline { font-size: clamp(30px, 10vw, 46px); }
-    .hero-actions  { flex-direction: column; align-items: flex-start; }
-    .sh2 { font-size: clamp(24px, 7vw, 36px); }
+/* ── Small phone ── */
+@media (max-width: 480px) {
+  .hero-headline { font-size: clamp(30px, 10vw, 46px); }
+  .hero-actions  { flex-direction: column; align-items: flex-start; }
+  .sh2 { font-size: clamp(24px, 7vw, 36px); }
+}
+/* Real logo image */
+.nav-logo-img { width: 36px; height: 36px; object-fit: contain; display: block; flex-shrink: 0; }
+.footer-logo-img { width: 30px; height: 30px; object-fit: contain; display: block; flex-shrink: 0; }
+
+/* >>> ADDED: mobile nav behavior & dropdown handling <<< */
+
+/* better iOS support for blurred nav */
+nav {
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Mobile: open/close nav & dropdowns when nav has .nav-open */
+@media (max-width: 860px) {
+  nav.nav-open {
+    z-index: 10001;
   }
-  /* Real logo image */
-  .nav-logo-img { width: 36px; height: 36px; object-fit: contain; display: block; flex-shrink: 0; }
-  .footer-logo-img { width: 30px; height: 30px; object-fit: contain; display: block; flex-shrink: 0; }
+
+  nav.nav-open .nav-links,
+  nav.nav-open .nav-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(8,30,54,0.98);
+    padding: 16px 20px 24px;
+    border-bottom: 1px solid rgba(0,119,123,0.12);
+  }
+
+  nav.nav-open .nav-links > li {
+    width: 100%;
+  }
+
+  nav.nav-open .nav-links a,
+  nav.nav-open .nav-links button {
 </style>
 </head>
 <body>
@@ -1018,7 +1052,7 @@
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
+<div class="footer-bottom">
     <div class="footer-legal">© 2026 GiftingNetwork LLC. All Rights Reserved. &nbsp;·&nbsp; Morristown, NJ</div>
     <div class="footer-social">
       <a href="https://www.linkedin.com/company/giftingnetwork" class="soc">in</a>
@@ -1038,7 +1072,10 @@
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   });
 
@@ -1058,12 +1095,6 @@
     // Only animate if the element is not already in view
     const rect = el.getBoundingClientRect();
     if (rect.top > window.innerHeight) {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    }
-  });
 </script>
 </body>
 </html>
