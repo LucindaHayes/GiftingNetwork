@@ -1,0 +1,97 @@
+<!--
+  GiftingNetwork Email Signature - v1 (with Web/Email word labels)
+  ------------------------------------------------------------------
+  HOW TO USE (per employee, one-time setup):
+  1. Replace the four placeholders below:
+       {{EMPLOYEE_NAME}}   e.g. Lucinda Hayes
+       {{JOB_TITLE}}       e.g. Marketing Director
+       {{EMPLOYEE_EMAIL}}  e.g. lucindahayes@giftingnetwork.com
+       {{LINKEDIN_URL}}    e.g. https://www.linkedin.com/in/lucinda-hayes
+     (Logo URL is preset to https://www.giftingnetwork.com/GNLogo.png)
+  2. Open this file in a browser (double-click it).
+  3. Select the entire signature block and copy it (Ctrl/Cmd + C).
+  4. In Gmail: gear icon -> See all settings -> General -> Signature.
+     Create a new signature, paste into the editor, save changes.
+  5. Set default signature for New mail and Reply/Forward.
+  ------------------------------------------------------------------
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GiftingNetwork Email Signature v1</title>
+</head>
+<body style="margin:0; padding:24px; background:#ffffff; font-family: Arial, Helvetica, sans-serif;">
+
+<!-- ===== START: copy everything between these markers ===== -->
+<table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; color:#333333; line-height:1.35;">
+  <tr>
+    <!-- Logo -->
+    <td style="vertical-align:middle; padding-right:16px;">
+      <a href="https://www.giftingnetwork.com" style="text-decoration:none; border:0;">
+        <img src="https://www.giftingnetwork.com/GNLogo.png"
+             alt="GiftingNetwork"
+             width="90"
+             style="display:block; width:90px; height:auto; border:0;">
+      </a>
+    </td>
+
+    <!-- Teal divider -->
+    <td style="border-left:2px solid #00777B; padding:6px 0;">&nbsp;</td>
+
+    <!-- Text block -->
+    <td style="vertical-align:middle; padding-left:16px;">
+
+      <!-- Employee Name -->
+      <div style="font-size:15px; font-weight:bold; color:#222222; letter-spacing:0.2px;">
+        {{EMPLOYEE_NAME}}
+      </div>
+
+      <!-- Job Title -->
+      <div style="font-size:11px; color:#666666; margin-top:2px; text-transform:uppercase; letter-spacing:0.6px;">
+        {{JOB_TITLE}}
+      </div>
+
+      <!-- Company Wordmark -->
+      <div style="font-size:16px; font-weight:bold; margin-top:8px;">
+        <span style="color:#00777B;">Gifting</span><span style="color:#000000;">Network</span>
+      </div>
+
+      <!-- Contact lines -->
+      <div style="font-size:12px; margin-top:6px; color:#333333;">
+        <span style="color:#00777B; font-weight:bold;">Web</span>&nbsp;
+        <a href="https://www.giftingnetwork.com"
+           style="color:#333333; text-decoration:none;">www.giftingnetwork.com</a>
+      </div>
+      <div style="font-size:12px; margin-top:2px; color:#333333;">
+        <span style="color:#00777B; font-weight:bold;">Email</span>&nbsp;
+        <a href="mailto:{{EMPLOYEE_EMAIL}}"
+           style="color:#333333; text-decoration:none;">{{EMPLOYEE_EMAIL}}</a>
+      </div>
+
+      <!-- Social Icons (PNG, pre-colored, hosted on giftingnetwork.com) -->
+      <div style="margin-top:10px;">
+        <a href="{{LINKEDIN_URL}}" style="text-decoration:none; border:0; margin-right:6px;">
+          <img src="https://www.giftingnetwork.com/icons/linkedin.png"
+               alt="LinkedIn" width="18" height="18"
+               style="display:inline-block; border:0; vertical-align:middle;">
+        </a>
+        <a href="https://www.facebook.com/giftingnetwork" style="text-decoration:none; border:0; margin-right:6px;">
+          <img src="https://www.giftingnetwork.com/icons/facebook.png"
+               alt="Facebook" width="18" height="18"
+               style="display:inline-block; border:0; vertical-align:middle;">
+        </a>
+        <a href="https://twitter.com/giftingnetwork" style="text-decoration:none; border:0;">
+          <img src="https://www.giftingnetwork.com/icons/x.png"
+               alt="X" width="18" height="18"
+               style="display:inline-block; border:0; vertical-align:middle;">
+        </a>
+      </div>
+
+    </td>
+  </tr>
+</table>
+<!-- ===== END: stop copying here ===== -->
+
+</body>
+</html>

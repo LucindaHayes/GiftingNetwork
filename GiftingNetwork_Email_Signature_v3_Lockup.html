@@ -1,0 +1,87 @@
+<!--
+  GiftingNetwork Email Signature - v3 Lockup
+  ------------------------------------------------------------------
+  Uses the horizontal "GN icon + GiftingNetwork wordmark" lockup as a
+  single image, eliminating the need for an HTML-rendered wordmark.
+  Layout: lockup on top, teal divider, employee details below.
+
+  Replace the placeholders before pasting into Gmail:
+       {{EMPLOYEE_NAME}}
+       {{JOB_TITLE}}
+       {{EMPLOYEE_EMAIL}}
+       {{LINKEDIN_URL}}
+
+  IMPORTANT: For this version to display the wordmark correctly, the
+  file gn-lockup.png must be live at:
+       https://www.giftingnetwork.com/icons/gn-lockup.png
+  (Upload the icons folder to your GitHub repo if not yet done.)
+  ------------------------------------------------------------------
+-->
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>GiftingNetwork Email Signature - v3 Lockup</title></head>
+<body style="margin:0; padding:24px; background:#ffffff; font-family: Arial, Helvetica, sans-serif;">
+
+<!-- ===== START: copy everything between these markers ===== -->
+<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif; color:#1f1f1f; line-height:1.4;">
+
+  <!-- Lockup row -->
+  <tr>
+    <td style="padding-bottom:8px;">
+      <a href="https://www.giftingnetwork.com" style="text-decoration:none; border:0;">
+        <img src="https://www.giftingnetwork.com/icons/gn-lockup.png"
+             alt="GiftingNetwork"
+             width="240"
+             style="display:block; width:240px; height:auto; border:0;">
+      </a>
+    </td>
+  </tr>
+
+  <!-- Teal divider -->
+  <tr>
+    <td style="border-top:2px solid #00777B; padding-top:10px;">
+
+      <!-- Name -->
+      <div style="font-size:15px; font-weight:bold; color:#1f1f1f; letter-spacing:0.2px;">
+        {{EMPLOYEE_NAME}}
+      </div>
+
+      <!-- Title -->
+      <div style="font-size:11px; color:#5a5a5a; margin-top:1px; text-transform:uppercase; letter-spacing:0.6px;">
+        {{JOB_TITLE}}
+      </div>
+
+      <!-- Contact lines: minimalist, no word labels -->
+      <div style="font-size:12px; margin-top:8px; color:#1f1f1f;">
+        <a href="mailto:{{EMPLOYEE_EMAIL}}" style="color:#1f1f1f; text-decoration:none;">{{EMPLOYEE_EMAIL}}</a>
+      </div>
+      <div style="font-size:12px; color:#1f1f1f;">
+        <a href="https://www.giftingnetwork.com" style="color:#1f1f1f; text-decoration:none;">giftingnetwork.com</a>
+      </div>
+
+      <!-- Social icons -->
+      <div style="margin-top:10px;">
+        <a href="{{LINKEDIN_URL}}" style="text-decoration:none; border:0; margin-right:6px;">
+          <img src="https://www.giftingnetwork.com/icons/linkedin.png"
+               alt="LinkedIn" width="16" height="16"
+               style="display:inline-block; border:0; vertical-align:middle;">
+        </a>
+        <a href="https://www.facebook.com/giftingnetwork" style="text-decoration:none; border:0; margin-right:6px;">
+          <img src="https://www.giftingnetwork.com/icons/facebook.png"
+               alt="Facebook" width="16" height="16"
+               style="display:inline-block; border:0; vertical-align:middle;">
+        </a>
+        <a href="https://twitter.com/giftingnetwork" style="text-decoration:none; border:0;">
+          <img src="https://www.giftingnetwork.com/icons/x.png"
+               alt="X" width="16" height="16"
+               style="display:inline-block; border:0; vertical-align:middle;">
+        </a>
+      </div>
+
+    </td>
+  </tr>
+</table>
+<!-- ===== END: stop copying here ===== -->
+
+</body>
+</html>
