@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L5CF2KTLQL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L5CF2KTLQL');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GiftingNetwork Privacy Policy — how we collect, use, and protect personal information." />
+  <title>Privacy Policy · GiftingNetwork</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal:        #00777B;
+      --teal-light:  #009499;
+      --teal-pale:   #E0F4F4;
+      --teal-dark:   #005558;
+      --navy:        #144270;
+      --navy-dark:   #0D2D4F;
+      --navy-deeper: #081E36;
+      --blue:        #098DCA;
+      --black:       #1A1A1A;
+      --white:       #FFFFFF;
+      --muted:       rgba(255,255,255,0.55);
+      --border:      rgba(0,119,123,0.25);
+      --glass:       rgba(255,255,255,0.05);
+      --font-head:   'Montserrat', sans-serif;
+      --font-body:   'Lato', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { font-family: var(--font-body); background: var(--navy-deeper); color: #fff; overflow-x: hidden; line-height: 1.7; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--navy-deeper); }
+    ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 2px; }
+    a { color: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+
+    /* NAV */
+    body > nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 60px;
+      background: rgba(8,30,54,0.94); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,119,123,0.2);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .nav-logo-img { height: 32px; width: auto; display: block; }
+    .nav-wordmark { font-family: var(--font-head); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: #fff; }
+    .nav-wordmark .g { color: var(--teal-light); }
+    .nav-wordmark .n { color: #fff; }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-links > li > a {
+      display: flex; align-items: center; gap: 5px; padding: 8px 13px;
+      font-family: var(--font-head); font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.75); text-decoration: none; border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links > li > a:hover { color: var(--teal-light); background: rgba(255,255,255,0.05); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-ghost {
+      padding: 8px 18px; font-family: var(--font-head); font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.8); background: none; border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 6px; text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal-light); }
+    .btn-teal {
+      padding: 9px 22px; font-family: var(--font-head); font-size: 13px; font-weight: 700;
+      color: #fff; background: var(--teal); border: none; border-radius: 6px;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-teal:hover { background: var(--teal-light); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+    .hamburger span { width: 22px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 2px; }
+
+    /* PAGE BANNER */
+    .page-wrap {
+      min-height: 100vh; padding: 120px 60px 80px;
+      background: linear-gradient(150deg, var(--navy-deeper) 0%, #0A2240 55%, #061525 100%);
+      position: relative; overflow: hidden;
+    }
+    .page-wrap::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,119,123,0.2) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
+
+    .page-eyebrow {
+      display: inline-block; font-family: var(--font-head); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal-light);
+      margin-bottom: 18px;
+    }
+    .page-title {
+      font-family: var(--font-head); font-size: clamp(34px, 5vw, 56px); font-weight: 800;
+      letter-spacing: -0.025em; line-height: 1.05; color: #fff; margin-bottom: 18px;
+    }
+    .page-title em { font-style: italic; color: var(--teal-light); font-weight: 400; }
+    .page-meta {
+      font-family: var(--font-body); font-size: 14px; font-weight: 300;
+      color: rgba(255,255,255,0.55); margin-bottom: 36px;
+    }
+    .page-meta strong { color: var(--teal-light); font-weight: 400; }
+
+    /* DOC CARD */
+    .doc {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(0,119,123,0.22);
+      border-radius: 14px;
+      padding: 44px 48px 50px;
+    }
+
+    .doc h2 {
+      font-family: var(--font-head); font-size: 22px; font-weight: 700;
+      color: #fff; margin: 38px 0 14px; letter-spacing: -0.01em;
+    }
+    .doc h2:first-of-type { margin-top: 0; }
+    .doc h3 {
+      font-family: var(--font-head); font-size: 14px; font-weight: 700;
+      color: var(--teal-light); margin: 24px 0 10px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .doc p {
+      font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.78);
+      margin-bottom: 14px; line-height: 1.75;
+    }
+    .doc p strong { color: #fff; font-weight: 600; }
+    .doc a { color: var(--teal-light); text-decoration: underline; text-underline-offset: 3px; transition: color 0.15s; }
+    .doc a:hover { color: var(--white); }
+    .doc ul.bullets { list-style: disc; padding-left: 22px; margin: 0 0 18px; }
+    .doc ul.bullets li {
+      font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.78);
+      margin-bottom: 6px; line-height: 1.7;
+    }
+    .doc ul.bullets li::marker { color: var(--teal); }
+
+    .doc .callout {
+      background: rgba(0,119,123,0.1);
+      border-left: 3px solid var(--teal);
+      padding: 16px 20px; border-radius: 0 8px 8px 0;
+      margin: 18px 0 24px;
+    }
+    .doc .callout p { margin-bottom: 0; font-size: 14px; }
+
+    .top-link {
+      display: inline-block; margin-top: 32px;
+      padding: 10px 24px; font-family: var(--font-head); font-size: 12px;
+      font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--teal-light); text-decoration: none;
+      border: 1px solid rgba(0,119,123,0.5); border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .top-link:hover { background: var(--teal); color: #fff; }
+
+    /* FOOTER */
+    footer { background: #050D18; padding: 60px 60px 32px; border-top: 1px solid rgba(0,119,123,0.2); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 52px; max-width: 1260px; margin-left: auto; margin-right: auto; }
+    .footer-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-logo-img { height: 32px; width: auto; }
+    .footer-desc { font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1.75; max-width: 270px; margin-bottom: 20px; }
+    .footer-contact { font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.3); line-height: 2.2; }
+    .footer-contact a { color: rgba(255,255,255,0.45); text-decoration: none; }
+    .footer-contact a:hover { color: var(--teal-light); }
+    .fc-head { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 18px; }
+    .fc-links { display: flex; flex-direction: column; gap: 10px; }
+    .fc-links a { font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.42); text-decoration: none; transition: color 0.2s; }
+    .fc-links a:hover { color: var(--teal-light); }
+    .footer-bottom { padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; max-width: 1260px; margin: 0 auto; }
+    .footer-legal { font-family: var(--font-head); font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.2); letter-spacing: 0.03em; }
+    .footer-social { display: flex; gap: 10px; }
+    .soc { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: rgba(255,255,255,0.4); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .soc:hover { border-color: var(--teal); color: var(--teal-light); background: rgba(0,119,123,0.12); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1260px) {
+      body > nav { padding: 0 40px; }
+      .page-wrap { padding-left: 40px; padding-right: 40px; }
+      footer { padding-left: 40px; padding-right: 40px; }
+    }
+    @media (max-width: 1100px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 860px) {
+      body > nav { padding: 0 20px; }
+      .nav-links, .nav-actions { display: none; }
+      .hamburger { display: flex; }
+      .page-wrap { padding: 100px 20px 60px; }
+      footer { padding: 50px 20px 28px; }
+      .doc { padding: 28px 22px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 14px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="GNLogo_Dark.png" alt="GiftingNetwork" class="nav-logo-img">
+    <div class="nav-wordmark"><span class="g">Gifting</span><span class="n">Network</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#platform">Platform</a></li>
+    <li><a href="index.html#serve">Who We Serve</a></li>
+    <li><a href="index.html#news">News</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#team">Team</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="contact.html" class="btn-ghost">Contact Us</a>
+    <a href="contact.html?subject=demo" class="btn-teal">Request Demo</a>
+  </div>
+  <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<main class="page-wrap">
+  <div class="inner">
+
+    <div class="page-eyebrow">Legal</div>
+    <h1 class="page-title">GiftingNetwork <em>Privacy Policy</em></h1>
+
+    <div class="doc">
+
+      <h2 id="purpose">Purpose of the Privacy Policy</h2>
+      <p>Gifting Network LLC respects the privacy of our users. This Privacy Policy describes how your personal information is collected, used, shared and safeguarded when you access the Gifting Network platform (including our websites, services and products) (collectively, the &ldquo;App&rdquo;). Please read this Privacy Policy carefully. By using the App or our services, you consent to the collection and use of your information by us as set out in this Privacy Policy. <strong>IF YOU DO NOT AGREE WITH THE TERMS OF THIS PRIVACY POLICY, YOU ARE NOT PERMITTED TO USE OR ACCESS THE APP OR ANY OF OUR PRODUCTS OR SERVICES.</strong></p>
+
+      <h2 id="collect">Personal Information We Collect</h2>
+      <p>When you use the App, we may automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device. Additionally, as you browse the App, we may collect information about the individual pages or areas that you view, what websites or search terms referred you to the App, and information about how you interact with the App. We refer to this automatically-collected information as &ldquo;Device Information.&rdquo;</p>
+
+      <p>We collect Device Information using the following technologies:</p>
+      <ul class="bullets">
+        <li>&ldquo;Cookies&rdquo; are data files that are placed on your device or computer and often include an anonymous unique identifier. For more information about cookies, and how to disable cookies, visit <a href="http://www.allaboutcookies.org" target="_blank" rel="noopener">http://www.allaboutcookies.org</a>.</li>
+        <li>&ldquo;Log files&rdquo; track actions occurring on the App, and collect data including your IP address, browser type, Internet service provider, referring/exit pages, and date/time stamps.</li>
+        <li>&ldquo;Web beacons&rdquo;, &ldquo;tags&rdquo;, and &ldquo;pixels&rdquo; are electronic files used to record information about how you browse the App.</li>
+      </ul>
+
+      <p>When we reference &ldquo;Personal Information&rdquo; in this Privacy Policy, we are talking both about personally identifiable Device Information and Transactional Information. You are under no obligation to provide us with personal information of any kind, however your refusal to do so may prevent you from using certain features of the App. You may not send us any sensitive personal information (e.g., social security number, information related to racial or ethnic origin, political opinions, religion or other beliefs, health, biometrics or genetic characteristics, criminal background or trade union membership) on or through the App or otherwise.</p>
+
+      <h2 id="use">How Do We Use Your Personal Information?</h2>
+      <p>We and our service providers use personal information for our legitimate business purposes, including those specifically described below. We engage in these activities to manage our contractual relationship with you, to comply with a legal obligation and/or because we have a legitimate business interest.</p>
+
+      <p>We use the Transactional Information that we collect generally to fulfill any transactional requests made through the App. Additionally, we use Transactional Information to:</p>
+      <ul class="bullets">
+        <li>communicate with you;</li>
+        <li>screen for potential risk or fraud;</li>
+        <li>personalize your experience on the App; and</li>
+        <li>when in line with the preferences you have shared with us, provide you with information or advertising relating to our services.</li>
+      </ul>
+
+      <p>We use the Device Information that we collect to help us screen for potential risk and fraud (in particular, your IP address), and more generally to improve and optimize the App.</p>
+
+      <h2 id="share">Sharing Your Personal Information</h2>
+      <p>We may share your Personal Information with third parties to help us use your Personal Information, as described above. By using our App, you consent to us sharing your information with third parties for marketing purposes, with consent as permitted by law. We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates may include a parent company and any subsidiaries, joint venture partners or other companies that we control or that are under common control with us. We may share your information with advertisers and actual and potential investors for the purpose of conducting general business analysis. If we reorganize or sell all or a portion of our assets, undergo a merger or are acquired by another entity, we may transfer your information to the successor entity. If we go out of business or enter bankruptcy, your information would be an asset transferred or acquired by a third party. You acknowledge that such transfers may occur and that the transferee may decline to honor commitments we made in this Privacy Policy. Finally, we may also share your Personal Information to comply with applicable laws and regulations, to respond to a subpoena, search warrant or other lawful request for information we receive, or to otherwise protect our rights.</p>
+
+      <h2 id="advertising">Behavioral Advertising</h2>
+      <p>As described above, we may use your Personal Information to provide you with targeted advertisements or we believe may be of interest to you. For more information about how targeted advertising works, you can visit the Network Advertising Initiative&rsquo;s (&ldquo;NAI&rdquo;) educational page at <a href="http://www.networkadvertising.org/understanding-online-advertising/how-does-it-work" target="_blank" rel="noopener">http://www.networkadvertising.org/understanding-online-advertising/how-does-it-work</a>.</p>
+
+      <p>You can opt out of certain targeted advertising by using the links below:</p>
+      <ul class="bullets">
+        <li>Facebook: <a href="http://www.facebook.com/settings/?tab=ads" target="_blank" rel="noopener">http://www.facebook.com/settings/?tab=ads</a></li>
+        <li>Google: <a href="http://www.google.com/settings/ads/anonymous" target="_blank" rel="noopener">http://www.google.com/settings/ads/anonymous</a></li>
+        <li>Bing: <a href="https://advertise.bingads.microsoft.com/en-us/resources/policies/personalized-ads" target="_blank" rel="noopener">advertise.bingads.microsoft.com/en-us/resources/policies/personalized-ads</a></li>
+      </ul>
+
+      <p>Additionally, you can opt out of some of these services by visiting the Digital Advertising Alliance&rsquo;s opt-out portal at: <a href="https://optout.aboutads.info" target="_blank" rel="noopener">optout.aboutads.info</a>.</p>
+
+      <h2 id="dnt">Do Not Track</h2>
+      <p>Most web browsers and some mobile operating systems include a Do-Not-Track (&ldquo;DNT&rdquo;) feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. No uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will revise this Privacy Policy accordingly.</p>
+
+      <h2 id="transfers">Jurisdiction and Cross-Border Transfer</h2>
+      <p>Your Personal Information may be stored and processed in any country where we have facilities or in which we engage service providers, and by using the App you consent to the transfer of information to countries outside of your country of residence, including the United States, which may have data protection rules that are different from those of your country. In certain circumstances, courts, law enforcement agencies, regulatory agencies or security authorities in those other countries may be entitled to access your personal information.</p>
+
+      <h2 id="options">Options Regarding Your Personal Information</h2>
+      <p>If you have an account in the App, you may at any time review or change the information in your account or terminate your account by emailing us at <a href="mailto:privacy@giftingnetwork.com">privacy@giftingnetwork.com</a> or by updating your account information directly in the App. Upon your request to terminate your account, we will deactivate or delete your account and Personal Information from our active databases. However, some information may be retained in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our Terms of Service and/or comply with legal requirements.</p>
+
+      <h2 id="emails">Emails and Other Communications</h2>
+      <p>If you no longer wish to receive correspondence, emails or other communications from us, you may opt-out by emailing us at <a href="mailto:privacy@giftingnetwork.com">privacy@giftingnetwork.com</a> or by updating your account settings page in the App. If you no longer wish to receive correspondence, emails or other communications from a third party, you are responsible for contacting the third party directly.</p>
+
+      <h2 id="retention">Data Retention</h2>
+      <p>We will retain your personal information for as long as needed or permitted for the purpose(s) for which it was obtained. The criteria used to determine our retention periods include the length of time we have an ongoing relationship with you, when we have a legal obligation to which we are subject, or other legal or government regulatory and compliance requirements.</p>
+
+      <h2 id="third-party">Third Party Websites</h2>
+      <p>The App may contain links to third party websites and applications of interest, including advertisements and external services, that are not affiliated with us. Once you have used these links to leave the App, any information you provide to these third parties is not covered by this Privacy Policy, and we cannot protect the safety and privacy of information that you provide to a third party outside of the App. Before visiting and providing any information to any third party websites or applications, you should inform yourself of the privacy policies and practices (if any) of the third party responsible for that website or application, and should take those steps necessary to, in your discretion, protect the privacy of your information. We are not responsible for the content or privacy and security practices and policies of any third parties, including other sites, services or applications that may be linked to or from the App.</p>
+
+      <h2 id="security">Security of Your Information</h2>
+      <p>We use administrative, technical and physical security measures to help protect your Personal Information. While we have taken reasonable steps to secure the Personal Information you provide to us, please be aware that despite our efforts no security measures are perfect or impenetrable and no method of data transmission can be guaranteed against any interception or other type of misuse. Any information disclosed online is vulnerable to interception and misuse by unauthorized parties. Therefore, we cannot guarantee complete security if you provide personal information to us.</p>
+
+      <h2 id="changes">Changes</h2>
+      <p>We reserve the right to make changes to this Privacy Policy at any time and for any reason. We will alert you about any changes by updating the &ldquo;Last Modified Date&rdquo; at the top of this Privacy Policy. Any changes or modifications will be effective immediately upon posting the updated Privacy Policy on the App, and you waive the right to receive specific notice of each such change or modification. You are encouraged to periodically review this Privacy Policy to stay informed of updates. You will be deemed to have been made aware of, will be subject to, and will be deemed to have accepted the changes in any revised Privacy Policy by your continued use of the App after the date such revised Privacy Policy is posted.</p>
+
+      <h2 id="minors">Minors</h2>
+      <p>The App is not intended for individuals under 18 years of age. We do not knowingly solicit information from or market to individuals under 18 years of age. If you become aware of any data we have collected from individuals under 18 years of age, please contact us using the contact information provided below.</p>
+
+      <h2 id="california">California Residents</h2>
+      <p>If you are a California resident, please see our Privacy Notice for California Residents, which is incorporated into this Privacy Policy by this reference.</p>
+
+      <h2 id="california-rights">Your California Privacy Rights</h2>
+      <p>The California Consumer Privacy Act of 2018 (&ldquo;CCPA&rdquo;), grants certain rights to our users who are California residents to access or delete the personal information that we have collected about them, to opt-out of the sale of their personal information by us to a third party and not to be discriminated against for exercising these rights. This Policy supplements the information contained in our Privacy Policy.</p>
+
+      <h3>Access</h3>
+      <p><strong>Right to Know of Personal Information Collected</strong></p>
+      <p>You have the right to request what personal information we have collected, used, disclosed, and sold about you within the preceding 12 months.</p>
+      <p>Once we receive your request and confirm your identity, we will disclose to you information we have collected about you as required by the CCPA.</p>
+      <p>We do not knowingly sell any personal information of minors under the age of 16 without receiving affirmative authorization to do so.</p>
+      <p>If you would like to know more about what personal information we collect and the purpose for which we collect it, please see our Privacy Policy. If you are a California resident and want to submit a request to know your personal information, you may make your request by email at <a href="mailto:privacy@GiftingNetwork.com">privacy@GiftingNetwork.com</a> or by submitting a request here. Please be advised that these rights are not absolute and are subject to some exceptions. In our response to you, should an exception exist, we will communicate which exception applies.</p>
+
+      <h3>Deletion</h3>
+      <p><strong>Right to have Personal Information Deleted</strong></p>
+      <p>You have the right to request the deletion of your personal information that we collect or maintain.</p>
+      <p>Once we receive your request and confirm your identity, we will delete (and direct our service providers to delete) your personal information from our records, unless an exception applies under the CCPA.</p>
+      <p>If you are a California resident and want to submit a request to delete your personal information, you may make your request by email at <a href="mailto:privacy@GiftingNetwork.com">privacy@GiftingNetwork.com</a>. Please be advised that these rights are not absolute and are subject to some exceptions. In our response to you, should an exception exist, we will communicate which exception applies.</p>
+
+      <h3>Opt-Out</h3>
+      <p><strong>Right to Opt-Out of the Sale of Personal Information to Third Parties</strong></p>
+      <p>You have the right to opt-out of the sale of your personal information to third parties.</p>
+      <p>In the past twelve (12) months, we have disclosed personal information to third parties who assist us in analyzing our Site and to third parties that provide you with tailored content and advertising based on your interactions with our Site. These disclosures relate to your interactions with our Site and you may opt-out of the use of these cookies following the instructions in the section titled &ldquo;Your Choice With Regard To Your Information&rdquo; in the Privacy Policy. If you opt-out of cookies and then access our website from another device, you will need to opt-out of cookies on the other device as well. These disclosures may constitute a sale of your personal information under the CCPA. See &ldquo;Cookies and Other Similar Technologies Through Your Use of Our Site&rdquo; in the Privacy Policy for how to opt out of these disclosures.</p>
+
+      <h3>Non-Discrimination</h3>
+      <p><strong>Right to Not Be Discriminated Against for Exercising Your Privacy Rights</strong></p>
+      <p>You have the right to not receive discriminatory treatment if and when you exercise your rights to access, delete, or opt-out under the CCPA. For example, this means we cannot deny goods or services to you or charge different prices or rates for goods or services, including through the use of discounts or other benefits or imposing penalties, due to you having exercised your rights.</p>
+
+      <h3>Exercising Your Rights</h3>
+      <p>As provided above, in order to exercise your right to access or delete the personal information we have collected about you, you may submit a request by email at <a href="mailto:privacy@GiftingNetwork.com">privacy@GiftingNetwork.com</a>. In order to exercise your right to opt-out of our use of the cookies, please follow the instructions in the section titled &ldquo;Your Choices With Regard To Your Information&rdquo; in the Privacy Policy.</p>
+
+      <p>Once we receive your access or deletion request, we will contact you via email or by phone to verify your identity and review your request.</p>
+
+      <p>If we are not able to verify your identity for access and deletion requests with the information provided, we may ask you for additional pieces of information.</p>
+
+      <p>We aim to respond to your request for access or deletion within 60 days of receiving the request. If we need more time to respond to your request, we will let you know the reason and how much additional time we will need.</p>
+
+      <h2 id="other-states">Notice to Residents of Other US States</h2>
+      <p>Residents of certain other US states &mdash; including Virginia, Colorado, Connecticut, Utah, Texas, Oregon, and Montana &mdash; have rights under their respective state privacy laws that are similar to (though not identical to) the rights described above for California residents. These rights may include the right to access, correct, or delete personal information; the right to opt out of targeted advertising, the sale of personal information, or certain types of profiling; and the right to appeal a denied request. To exercise any of these rights, please contact us by email at <a href="mailto:privacy@giftingnetwork.com">privacy@giftingnetwork.com</a>. If we deny your request, you may appeal by replying to our denial and explaining the basis for your appeal.</p>
+
+      <h2 id="contact">Contact Us</h2>
+      <p>For more information about our privacy practices, if you have questions, or if you would like to make a complaint, please contact us by e-mail at <a href="mailto:privacy@giftingnetwork.com">privacy@giftingnetwork.com</a> or by mail using the details provided below:</p>
+      <div class="callout">
+        <p>GiftingNetwork, LLC.<br/>
+           89 Headquarters Plaza, Suite 1446<br/>
+           Morristown, NJ 07960</p>
+      </div>
+
+      <a href="#" class="top-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to top</a>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-row">
+        <img src="GNLogo_Dark.png" alt="GiftingNetwork" class="footer-logo-img">
+        <div class="nav-wordmark" style="font-size:16px;"><span class="g">Gifting</span><span class="n">Network</span></div>
+      </div>
+      <p class="footer-desc">The philanthropic infrastructure platform powering donor-advised funds, grants, and giving programs for community foundations, institutional sponsors, and the wealth management ecosystem.</p>
+      <div class="footer-contact">
+        <div>89 Headquarters Plaza, Suite 1446</div>
+        <div>Morristown, New Jersey 07960</div>
+        <div><a href="tel:9739848200">973.984.8200</a></div>
+        <div><a href="mailto:info@giftingnetwork.com">info@giftingnetwork.com</a></div>
+      </div>
+    </div>
+    <div>
+      <div class="fc-head">Solutions</div>
+      <ul class="fc-links">
+        <li><a href="giftingnet-platform.html">GiftingNet Platform</a></li>
+        <li><a href="daf-network.html">DAF Network</a></li>
+        <li><a href="portals.html">Donor Portals</a></li>
+        <li><a href="grant-administration.html">Grant Administration</a></li>
+        <li><a href="pbo-services.html">Philanthropic Back Office</a></li>
+        <li><a href="giftingpension.html">GiftingPension</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-head">Who We Serve</div>
+      <ul class="fc-links">
+        <li><a href="index.html#serve">Institutional Sponsors</a></li>
+        <li><a href="index.html#serve">Community Foundations</a></li>
+        <li><a href="index.html#serve">Faith &amp; Mission Organizations</a></li>
+        <li><a href="index.html#wealth">Wealth Management</a></li>
+        <li><a href="index.html#wealth">Financial Advisors</a></li>
+        <li><a href="index.html#serve">Private Foundations</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-head">Company</div>
+      <ul class="fc-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#team">Leadership</a></li>
+        <li><a href="index.html#news">News &amp; Insights</a></li>
+        <li><a href="index.html#partnerships">Partnerships</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="privacy.html">Privacy Statement</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2026 GiftingNetwork LLC. All Rights Reserved. &nbsp;·&nbsp; Morristown, NJ</div>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/company/giftingnetwork" class="soc">in</a>
+      <a href="#" class="soc">𝕏</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

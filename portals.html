@@ -16,20 +16,20 @@
 </script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Portals — GiftingNetwork</title>
-<meta name="description" content="Five purpose-built portals for every participant in your DAF program — donors, financial advisors, grant seekers, reviewers, and scholarship recipients.">
+<title>Portals, GiftingNetwork</title>
+<meta name="description" content="Five purpose-built portals for every participant in your DAF program, donors, financial advisors, grant seekers, reviewers, and scholarship recipients.">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Lato:wght@300;400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 
 :root{
-  --teal:#00777B;--teal-light:#009499;--teal-dark:#005558;
-  --navy:#144270;--navy-dark:#0D2D4F;--navy-deeper:#081E36;
-  --blue:#098DCA;--amber:#C89A3A;
-  --border:rgba(0,119,123,0.2);--border-w:rgba(255,255,255,0.1);
+  --teal:#00777B;teal-light:#009499;teal-dark:#005558;
+  --navy:#144270;navy-dark:#0D2D4F;navy-deeper:#081E36;
+  --blue:#098DCA;amber:#C89A3A;
+  --border:rgba(0,119,123,0.2);border-w:rgba(255,255,255,0.1);
   --glass:rgba(255,255,255,0.04);
-  --font-head:'Montserrat',sans-serif;--font-body:'Lato',sans-serif;
+  --font-head:'Montserrat',sans-serif;font-body:'Lato',sans-serif;
   --max:1100px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -67,7 +67,7 @@ h1 em{font-style:normal;color:var(--teal-light);}
 .btn-ghost{padding:13px 28px;font-family:var(--font-head);font-size:14px;font-weight:600;color:rgba(255,255,255,.8);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:7px;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block;}
 .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:var(--teal);}
 
-/* Hero right — network access card */
+/* Hero right, network access card */
 .network-card{background:rgba(255,255,255,0.04);border:1px solid rgba(0,119,123,0.3);border-radius:14px;padding:32px;position:relative;overflow:hidden;}
 .network-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--blue));}
 .nc-label{font-family:var(--font-head);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:18px;}
@@ -181,6 +181,57 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
   /* Real logo image */
   .nav-logo-img { width: 36px; height: 36px; object-fit: contain; display: block; flex-shrink: 0; }
   .footer-logo-img { width: 30px; height: 30px; object-fit: contain; display: block; flex-shrink: 0; }
+
+  /* ── PORTALS HERO (missing styles) ─────────────────── */
+  .portals-hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 140px 60px 90px; overflow: hidden; }
+  .portals-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 65% 60% at 80% 25%, rgba(9,141,202,0.18), transparent 60%), radial-gradient(ellipse 55% 55% at 15% 75%, rgba(0,119,123,0.2), transparent 55%), linear-gradient(150deg, var(--navy-deeper) 0%, #0A2240 55%, #061525 100%); }
+  .portals-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,119,123,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,119,123,0.06) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 20%, transparent 75%); }
+  .portals-hero-inner { max-width: var(--max); margin: 0 auto; width: 100%; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .portals-hero-sub { font-family: var(--font-body); font-size: 17px; font-weight: 300; color: rgba(255,255,255,.62); line-height: 1.75; margin-bottom: 36px; }
+  .portal-pill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .portal-pill { padding: 20px 22px; background: rgba(255,255,255,0.04); border: 1px solid rgba(0,119,123,0.25); border-radius: 12px; transition: border-color .2s, background .2s; }
+  .portal-pill:hover { border-color: rgba(0,148,153,0.45); background: rgba(0,119,123,0.08); }
+  .portal-pill-icon { font-size: 22px; margin-bottom: 10px; }
+  .portal-pill-name { font-family: var(--font-head); font-size: 14px; font-weight: 700; margin-bottom: 5px; color: #fff; }
+  .portal-pill-desc { font-family: var(--font-body); font-size: 13px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.6; }
+
+  /* ── PORTALS CTA (missing styles) ──────────────────── */
+  .portals-cta { background: var(--teal); padding: 80px 60px; text-align: center; position: relative; overflow: hidden; }
+  .portals-cta::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 52px 52px; }
+  .portals-cta::after { content: ''; position: absolute; top: -80px; right: -80px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(9,141,202,.3), transparent 65%); pointer-events: none; }
+  .portals-cta-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+  .portals-cta-inner h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 16px; color: #fff; }
+  .portals-cta-inner p { font-family: var(--font-body); font-size: 17px; font-weight: 300; color: rgba(255,255,255,.75); margin-bottom: 36px; line-height: 1.7; }
+  .portals-cta-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+  /* ── FOOTER (missing styles) ────────────────────────── */
+  footer { background: #050D18; padding: 56px 60px 32px; border-top: 1px solid rgba(0,119,123,.15); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; max-width: var(--max); margin-left: auto; margin-right: auto; }
+  .footer-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .footer-brand-name { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: #fff; }
+  .footer-brand-name .g { color: var(--teal-light); }
+  .footer-tagline { font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(255,255,255,.35); line-height: 1.75; max-width: 260px; margin-bottom: 16px; }
+  .footer-contact { font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(255,255,255,.3); line-height: 2.0; }
+  .footer-contact a { color: rgba(255,255,255,.45); text-decoration: none; }
+  .footer-contact a:hover { color: var(--teal-light); }
+  .footer-links-col { display: flex; flex-direction: column; gap: 12px; }
+  .footer-col-head { font-family: var(--font-head); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.25); margin-bottom: 4px; }
+  .footer-links-col a { font-family: var(--font-body); font-size: 14px; font-weight: 300; color: rgba(255,255,255,.42); text-decoration: none; transition: color .2s; }
+  .footer-links-col a:hover { color: var(--teal-light); }
+  .footer-bottom { padding-top: 24px; border-top: 1px solid rgba(255,255,255,.05); font-family: var(--font-head); font-size: 12px; font-weight: 600; color: rgba(255,255,255,.2); max-width: var(--max); margin: 0 auto; }
+
+  /* ── RESPONSIVE additions ───────────────────────────── */
+  @media (max-width: 900px) {
+    .portals-hero { padding: 120px 20px 60px; }
+    .portals-hero-inner { grid-template-columns: 1fr; gap: 44px; }
+    .portals-cta { padding: 60px 20px; }
+    footer { padding: 44px 20px 28px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+  @media (max-width: 700px) {
+    .portal-pill-grid { grid-template-columns: 1fr; }
+    .portals-cta-btns { flex-direction: column; align-items: center; }
+  }
 </style>
 </head>
 <body>
@@ -203,7 +254,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
     <div>
       <div class="hero-eyebrow"><span class="eyebrow-dot"></span>GiftingNet Portals</div>
       <h1>Five portals.<br>Every person in the<br><em>giving ecosystem.</em></h1>
-      <p class="portals-hero-sub">GiftingNet delivers a purpose-built, white-labeled portal experience for every participant in your DAF program — from donors managing their funds to advisors tracking client giving, grant seekers submitting applications, reviewers scoring proposals, and scholarship students checking award status.</p>
+      <p class="portals-hero-sub">GiftingNet delivers a purpose-built, white-labeled portal experience for every participant in your DAF program, from donors managing their funds to advisors tracking client giving, grant seekers submitting applications, reviewers scoring proposals, and scholarship students checking award status.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
         <a href="#portals" class="btn-primary">See All Portals</a>
         <a href="giftingnet-platform.html" style="display:inline-block;padding:13px 22px;font-family:var(--font-head);font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:7px;text-decoration:none;">Full Platform Overview</a>
@@ -245,7 +296,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
   <div style="max-width:var(--max);margin:0 auto;">
     <span class="eyebrow">The GiftingNet Portal Suite</span>
     <h2>One platform. Every<br>user sees <em>their world.</em></h2>
-    <p class="sec-lead" style="margin-bottom:40px;">GiftingNet delivers a completely different experience depending on who's logged in — all under your foundation's brand. Explore each portal below.</p>
+    <p class="sec-lead" style="margin-bottom:40px;">GiftingNet delivers a completely different experience depending on who's logged in, all under your foundation's brand. Explore each portal below.</p>
 
     <style>
       .ps-wrap{font-family:var(--font-head);width:100%;}
@@ -374,7 +425,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
                   </div>
                 </div>
               </div>
-              <div style="font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px;">Pending Grants — From AROS Fund</div>
+              <div style="font-family:var(--font-head);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px;">Pending Grants, From AROS Fund</div>
               <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;overflow:hidden;">
                 <table style="width:100%;border-collapse:collapse;font-size:12px;">
                   <thead><tr style="border-bottom:1px solid rgba(255,255,255,.1);"><th style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-align:left;padding:8px 12px;letter-spacing:.06em;">Organization</th><th style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:8px 12px;letter-spacing:.06em;">Amount</th><th style="font-family:var(--font-head);font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-align:right;padding:8px 12px;letter-spacing:.06em;">Status</th></tr></thead>
@@ -516,7 +567,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
               </div>
               <div style="display:grid;grid-template-columns:1fr 155px;gap:14px;align-items:start;">
                 <div>
-                  <div style="font-family:var(--font-head);font-size:13px;font-weight:700;margin-bottom:12px;">Endowment Pool — Performance Summary</div>
+                  <div style="font-family:var(--font-head);font-size:13px;font-weight:700;margin-bottom:12px;">Endowment Pool, Performance Summary</div>
                   <div style="display:flex;gap:6px;margin-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:8px;">
                     <div style="padding:5px 11px;font-family:var(--font-head);font-size:10px;font-weight:700;color:#fff;border-bottom:2px solid var(--teal);cursor:default;">Total Fund</div>
                     <div style="padding:5px 11px;font-family:var(--font-head);font-size:10px;color:rgba(255,255,255,.4);cursor:default;">Equity</div>
@@ -594,7 +645,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
 
           </div>
         </div>
-        <p class="ps-portal-caption">The actual GiftingNet donor portal — white-labeled to your foundation in production. Navigate the left menu above: Dashboard shows all your funds and pending grants. Fund Overview has live balances, investment pool composition, and activity. Grant History shows every disbursement with charts. Pool Performance shows returns across investment pools. Recommend a Grant walks through the full form.</p>
+        <p class="ps-portal-caption">The actual GiftingNet donor portal, white-labeled to your foundation in production. Navigate the left menu above: Dashboard shows all your funds and pending grants. Fund Overview has live balances, investment pool composition, and activity. Grant History shows every disbursement with charts. Pool Performance shows returns across investment pools. Recommend a Grant walks through the full form.</p>
       </div>
 
 
@@ -603,7 +654,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
         <div class="ps-chrome">
           <div class="ps-topbar">
             <div class="ps-logo"><span>Gifting</span>Network &nbsp;·&nbsp; Carolinas Community Foundation</div>
-            <div class="ps-user"><div class="ps-avatar">LP</div><span>Linda Park — Arts Council</span></div>
+            <div class="ps-user"><div class="ps-avatar">LP</div><span>Linda Park, Arts Council</span></div>
           </div>
           <div class="ps-body">
             <div class="ps-nav">
@@ -627,7 +678,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
                 <div class="ps-btn-row"><button class="ps-btn">View submitted application</button></div>
               </div>
               <div class="ps-card">
-                <div class="ps-card-head"><div class="ps-card-title">2024 Community Impact Grant — Progress report due</div><span class="ps-badge green">Awarded $18,000</span></div>
+                <div class="ps-card-head"><div class="ps-card-title">2024 Community Impact Grant, Progress report due</div><span class="ps-badge green">Awarded $18,000</span></div>
                 <div class="ps-row"><div class="ps-row-lbl">Interim report due</div><div class="ps-row-val" style="color:var(--amber);font-weight:700;">April 1, 2026</div></div>
                 <div class="ps-row"><div class="ps-row-lbl">Payments received</div><div class="ps-row-val">$9,000 of $18,000</div></div>
                 <div class="ps-btn-row"><button class="ps-btn primary">Submit progress report</button></div>
@@ -641,7 +692,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
             </div>
           </div>
         </div>
-        <p class="ps-portal-caption">Grant seekers track all active and awarded grants, progress report deadlines, payment schedules, and required document compliance — all in the same branded foundation portal.</p>
+        <p class="ps-portal-caption">Grant seekers track all active and awarded grants, progress report deadlines, payment schedules, and required document compliance, all in the same branded foundation portal.</p>
       </div>
 
       <!-- REVIEWER -->
@@ -649,7 +700,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
         <div class="ps-chrome">
           <div class="ps-topbar">
             <div class="ps-logo"><span>Gifting</span>Network &nbsp;·&nbsp; Carolinas Community Foundation</div>
-            <div class="ps-user"><div class="ps-avatar">RK</div><span>Dr. Rachel Kim — Panel member</span></div>
+            <div class="ps-user"><div class="ps-avatar">RK</div><span>Dr. Rachel Kim, Panel member</span></div>
           </div>
           <div class="ps-body">
             <div class="ps-nav">
@@ -659,7 +710,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
               <div class="ps-nav-item">My account</div>
             </div>
             <div class="ps-content">
-              <div class="ps-section-label">2025 Arts & Culture Grant — 4 applications assigned</div>
+              <div class="ps-section-label">2025 Arts & Culture Grant, 4 applications assigned</div>
               <div class="ps-card">
                 <div class="ps-card-head"><div class="ps-card-title">Arts Council of Charlotte</div><span class="ps-badge amber">Not started</span></div>
                 <div class="ps-row"><div class="ps-row-lbl">Amount requested</div><div class="ps-row-val">$25,000</div></div>
@@ -684,7 +735,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
             </div>
           </div>
         </div>
-        <p class="ps-portal-caption">Reviewers only see their assigned applications. Custom scoring forms, criteria, and recommendation fields are configured by the grants manager — reviewers need no backend access.</p>
+        <p class="ps-portal-caption">Reviewers only see their assigned applications. Custom scoring forms, criteria, and recommendation fields are configured by the grants manager, reviewers need no backend access.</p>
       </div>
 
       <!-- STUDENT -->
@@ -728,7 +779,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
             </div>
           </div>
         </div>
-        <p class="ps-portal-caption">Students register and apply in a single visit — awarded scholarships, payment schedules, and open applications all in the same branded portal. Payments can be directed to the institution, the student, or jointly.</p>
+        <p class="ps-portal-caption">Students register and apply in a single visit, awarded scholarships, payment schedules, and open applications all in the same branded portal. Payments can be directed to the institution, the student, or jointly.</p>
       </div>
 
       <!-- FINANCIAL ADVISOR -->
@@ -815,10 +866,10 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
                       <div style="display:flex;gap:10px;margin-top:2px;"><span style="font-family:var(--font-body);font-size:10px;color:var(--blue);">Fund Overview</span><span style="font-family:var(--font-body);font-size:10px;color:var(--blue);">Disbursement History</span><span style="font-family:var(--font-body);font-size:10px;color:var(--blue);">Clients</span></div>
                     </div>
                   </div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Bon Secours Mercy Health Foundation</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);">$1,990,890.84</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Foundation For The Carolinas</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">JCF San Diego</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Provision - Baptist Fdn of NC</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Heritage Health Foundation</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:var(--teal-light);">$1,990,890.84</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Lakewood Community Foundation</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Pacific Coast Giving Fund</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-family:var(--font-body);font-size:11px;">Northgate Community Foundation</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
                   <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 10px;"><span style="font-family:var(--font-body);font-size:11px;">Dechomai Foundation</span><span style="font-family:var(--font-head);font-size:11px;font-weight:700;color:rgba(255,255,255,.4);">$0.00</span></div>
                 </div>
               </div>
@@ -869,12 +920,12 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
                         <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;">$21,000</td>
                       </tr>
                       <tr style="border-bottom:1px solid rgba(255,255,255,.06);">
-                        <td style="font-family:var(--font-body);font-size:11px;padding:7px 6px;">Bon Secours Mercy Health Fdn</td>
+                        <td style="font-family:var(--font-body);font-size:11px;padding:7px 6px;">Heritage Health Foundation</td>
                         <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;color:var(--teal-light);">$1,990,891</td>
                         <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;">$110,000</td>
                       </tr>
                       <tr>
-                        <td style="font-family:var(--font-body);font-size:11px;padding:7px 6px;">Foundation For The Carolinas</td>
+                        <td style="font-family:var(--font-body);font-size:11px;padding:7px 6px;">Lakewood Community Foundation</td>
                         <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;color:rgba(255,255,255,.35);">$0</td>
                         <td style="font-family:var(--font-head);font-size:11px;font-weight:700;text-align:right;padding:7px 6px;color:rgba(255,255,255,.35);">$0</td>
                       </tr>
@@ -891,7 +942,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
             </div>
           </div>
         </div>
-        <p class="ps-portal-caption">The financial advisor dashboard shows all client funds across every sponsor in the network — Bon Secours, Foundation For The Carolinas, JCF San Diego, Dechomai, and more — with pending recommendations, service tickets, institutional AUM claims, and DAF applications in a single view.</p>
+        <p class="ps-portal-caption">The financial advisor dashboard shows all client funds across every sponsor in the network, community foundations, health system foundations, giving funds, and more, with pending recommendations, service tickets, institutional AUM claims, and DAF applications in a single view.</p>
       </div>
     </div>
 
@@ -928,23 +979,23 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
       <div class="feature-content">
         <div class="feature-tag">Donor Experience</div>
         <div class="feature-h">A donor portal as good as your<br><em>best relationship</em></div>
-        <div class="feature-desc">Your donors log in to a branded, personal giving dashboard — where their funds, history, and giving tools live. Fund status, statements, grant history, and the Charitable Catalog are all one click away. The portal deepens donor engagement between major gift conversations.</div>
+        <div class="feature-desc">Your donors log in to a branded, personal giving dashboard, where their funds, history, and giving tools live. Fund status, statements, grant history, and the Charitable Catalog are all one click away. The portal deepens donor engagement between major gift conversations.</div>
         <div class="feature-list">
-          <div class="fl-item"><div class="fl-dot">✓</div>Fund balance and available-to-spend — live from back-office</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Historic fund statements — HTML with drill-down or uploaded PDF</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Grant recommendation worksheet — bulk recommendations, pre-populated from history</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Fund balance and available-to-spend, live from back-office</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Historic fund statements, HTML with drill-down or uploaded PDF</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Grant recommendation worksheet, bulk recommendations, pre-populated from history</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Board vote capability for majority/unanimous fund types</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Gift entry — credit card, check, wire, or securities transfer</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Gift entry, credit card, check, wire, or securities transfer</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Philanthropic interest preferences that filter the Charitable Catalog</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Investment performance page linked by fund type</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Targeted content articles based on donor interests — automated charitable guidance</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Targeted content articles based on donor interests, automated charitable guidance</div>
         </div>
       </div>
       <div class="feature-visual">
-        <div class="fv-card"><div class="fv-title">Fund Dashboard</div><div class="fv-body">Donors see real-time balances, available-to-spend, and a full history of gifts and grants — all synced directly from your fund accounting system.</div><span class="fv-tag">Live Data</span></div>
-        <div class="fv-card"><div class="fv-title">Grant Recommendation Worksheet</div><div class="fv-body">Donors make multiple grant recommendations at once from a pre-populated worksheet of previous grantees — or discover new nonprofits from the Charitable Catalog.</div><span class="fv-tag">Self-Service</span></div>
-        <div class="fv-card"><div class="fv-title">Personalized Content</div><div class="fv-body">Articles and funding opportunity notices are automatically surfaced based on each donor's self-reported philanthropic interests — keeping donors engaged between major gifts.</div><span class="fv-tag">Targeted</span></div>
-        <div class="fv-card"><div class="fv-title">Multi-Fund View</div><div class="fv-body">Donors associated with multiple funds see all funds in a single dashboard — with per-fund drill-down to balances, statements, and grantmaking tools.</div><span class="fv-tag">Multi-Fund</span></div>
+        <div class="fv-card"><div class="fv-title">Fund Dashboard</div><div class="fv-body">Donors see real-time balances, available-to-spend, and a full history of gifts and grants, all synced directly from your fund accounting system.</div><span class="fv-tag">Live Data</span></div>
+        <div class="fv-card"><div class="fv-title">Grant Recommendation Worksheet</div><div class="fv-body">Donors make multiple grant recommendations at once from a pre-populated worksheet of previous grantees, or discover new nonprofits from the Charitable Catalog.</div><span class="fv-tag">Self-Service</span></div>
+        <div class="fv-card"><div class="fv-title">Personalized Content</div><div class="fv-body">Articles and funding opportunity notices are automatically surfaced based on each donor's self-reported philanthropic interests, keeping donors engaged between major gifts.</div><span class="fv-tag">Targeted</span></div>
+        <div class="fv-card"><div class="fv-title">Multi-Fund View</div><div class="fv-body">Donors associated with multiple funds see all funds in a single dashboard, with per-fund drill-down to balances, statements, and grantmaking tools.</div><span class="fv-tag">Multi-Fund</span></div>
       </div>
     </div>
 
@@ -953,22 +1004,22 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
       <div class="feature-content">
         <div class="feature-tag">Competitive Grantmaking</div>
         <div class="feature-h">The most configurable grant<br>system in <em>the industry</em></div>
-        <div class="feature-desc">GiftingNet's grant lifecycle system handles every phase from application to final payment — for discretionary competitive grants, RFP processes, and scholarship programs. Every form component, qualification rule, and review workflow is configurable to your foundation's specific process.</div>
+        <div class="feature-desc">GiftingNet's grant lifecycle system handles every phase from application to final payment, for discretionary competitive grants, RFP processes, and scholarship programs. Every form component, qualification rule, and review workflow is configurable to your foundation's specific process.</div>
         <div class="feature-list">
-          <div class="fl-item"><div class="fl-dot">✓</div>One or two-phase applications — LOI followed by full proposal</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>One or two-phase applications, LOI followed by full proposal</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Pre-qualifying questions that gate application access</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Limit applications by org type, profile completion, or invitation only (RFP)</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Custom form builder — questions, budgets, matrices, document uploads, board lists</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Assign review panels with custom evaluation forms — staff or committee</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Grantee progress reports — custom forms, published at set intervals</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Grant agreements and payment plans — grantees review, print, and sign online</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Custom form builder, questions, budgets, matrices, document uploads, board lists</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Assign review panels with custom evaluation forms, staff or committee</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Grantee progress reports, custom forms, published at set intervals</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Grant agreements and payment plans, grantees review, print, and sign online</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Syncs to back-office accounting software for posting and payment processing</div>
         </div>
       </div>
       <div class="feature-visual">
         <div class="fv-card"><div class="fv-title">Application Form Builder</div><div class="fv-body">Build grant applications from reusable components: instruction pages, pre-qualifying questions, budget forms, matrix data collectors, document uploads, board lists, and custom question panels.</div><span class="fv-tag">No-Code Builder</span></div>
         <div class="fv-card"><div class="fv-title">Reviewer Dashboard</div><div class="fv-body">Panel members log in to see assigned applications, complete custom evaluation forms, and submit reviews. Dockets are created directly from GiftingNet data.</div><span class="fv-tag">Panel Management</span></div>
-        <div class="fv-card"><div class="fv-title">Due Diligence System</div><div class="fv-body">Required documents (990s, IRS letters) are managed through a structured review, approval, and update workflow — with document expiry reminders and barcode-based FAX ingestion.</div><span class="fv-tag">Compliance</span></div>
+        <div class="fv-card"><div class="fv-title">Due Diligence System</div><div class="fv-body">Required documents (990s, IRS letters) are managed through a structured review, approval, and update workflow, with document expiry reminders and barcode-based FAX ingestion.</div><span class="fv-tag">Compliance</span></div>
         <div class="fv-card"><div class="fv-title">Progress Reporting</div><div class="fv-body">Custom progress report forms are assigned to grants and automatically published to grantees at pre-selected intervals. Past-due reminders sent to both grantee and staff.</div><span class="fv-tag">Automated</span></div>
       </div>
     </div>
@@ -978,23 +1029,23 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
       <div class="feature-content">
         <div class="feature-tag">Charitable Catalog</div>
         <div class="feature-h">Your community's giving<br><em>marketplace</em></div>
-        <div class="feature-desc">The Charitable Catalog is an illustrated, searchable directory of vetted nonprofits and charitable programs — maintained by the organizations themselves. It powers donor grant recommendations, serves as the RFP invitation pool, and functions as an open community resource when you choose to share it publicly.</div>
+        <div class="feature-desc">The Charitable Catalog is an illustrated, searchable directory of vetted nonprofits and charitable programs, maintained by the organizations themselves. It powers donor grant recommendations, serves as the RFP invitation pool, and functions as an open community resource when you choose to share it publicly.</div>
         <div class="feature-list">
-          <div class="fl-item"><div class="fl-dot">✓</div>Organization profiles — mission, history, interest areas, geographic reach, budgets, board</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Program-level profiles for specific charitable projects — earmarkable by donors</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Organization profiles, mission, history, interest areas, geographic reach, budgets, board</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Program-level profiles for specific charitable projects, earmarkable by donors</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Keyword search, interest area, geography, program type, and capital campaign calendar</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Catalog filtered to each donor's self-reported philanthropic interests</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Gift Basket — shopping cart for grant recommendations and outright contributions</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Gift Basket, shopping cart for grant recommendations and outright contributions</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Foundation controls which catalog components are visible per user type</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Org Group Icons — visual identifiers for any organization category throughout the catalog</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>NTEE area codes supported — maps to standard nonprofit taxonomy</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Org Group Icons, visual identifiers for any organization category throughout the catalog</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>NTEE area codes supported, maps to standard nonprofit taxonomy</div>
         </div>
       </div>
       <div class="feature-visual">
-        <div class="fv-card"><div class="fv-title">Donor-Filtered Discovery</div><div class="fv-body">Each donor's catalog view is filtered by their self-reported philanthropic interests — surfacing the most relevant nonprofits and programs for their giving priorities.</div><span class="fv-tag">Personalized</span></div>
+        <div class="fv-card"><div class="fv-title">Donor-Filtered Discovery</div><div class="fv-body">Each donor's catalog view is filtered by their self-reported philanthropic interests, surfacing the most relevant nonprofits and programs for their giving priorities.</div><span class="fv-tag">Personalized</span></div>
         <div class="fv-card"><div class="fv-title">Nonprofit Self-Service Profiles</div><div class="fv-body">Grant seekers maintain their own organization and program profiles through the portal. Foundation staff reviews and approves profile changes before they appear in the catalog.</div><span class="fv-tag">Self-Maintained</span></div>
-        <div class="fv-card"><div class="fv-title">Capital Campaign Tracking</div><div class="fv-body">Capital campaigns have dedicated catalog search tools — donors can discover and contribute to capital projects as a distinct giving category separate from operating support.</div><span class="fv-tag">Capital Campaigns</span></div>
-        <div class="fv-card"><div class="fv-title">Community Resource</div><div class="fv-body">The catalog can be opened to the general public as an informational resource — or kept private for donors and advisors only. Your call, your configuration.</div><span class="fv-tag">Configurable Access</span></div>
+        <div class="fv-card"><div class="fv-title">Capital Campaign Tracking</div><div class="fv-body">Capital campaigns have dedicated catalog search tools, donors can discover and contribute to capital projects as a distinct giving category separate from operating support.</div><span class="fv-tag">Capital Campaigns</span></div>
+        <div class="fv-card"><div class="fv-title">Community Resource</div><div class="fv-body">The catalog can be opened to the general public as an informational resource, or kept private for donors and advisors only. Your call, your configuration.</div><span class="fv-tag">Configurable Access</span></div>
       </div>
     </div>
 
@@ -1007,18 +1058,18 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
         <div class="feature-list">
           <div class="fl-item"><div class="fl-dot">✓</div>Bidirectional sync: contacts, funds, gifts, grants, statements, investment performance</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Compatible with FIMS, FoundationPower, and any third-party XML client</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Blackbaud SKY API integration — Raiser's Edge NXT and Financial Edge NXT</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Blackbaud SKY API integration, Raiser's Edge NXT and Financial Edge NXT</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Orion Advisor Solutions and Envestnet platform integrations</div>
           <div class="fl-item"><div class="fl-dot">✓</div>Salesforce CRM, Black Diamond Trust, Greenhill, NetSuite</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>API Transfer Report monitors all data jobs — find by job number or record ID</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Alternative text file import for all data categories — no API required</div>
-          <div class="fl-item"><div class="fl-dot">✓</div>Hosted on Google Cloud / AWS — Level 1 PCI certified, nightly backups</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>API Transfer Report monitors all data jobs, find by job number or record ID</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Alternative text file import for all data categories, no API required</div>
+          <div class="fl-item"><div class="fl-dot">✓</div>Hosted on Google Cloud / AWS, Level 1 PCI certified, nightly backups</div>
         </div>
       </div>
       <div class="feature-visual">
-        <div class="fv-card"><div class="fv-title">Back-Office Sync</div><div class="fv-body">Fund values, gift confirmations, grant postings, and investment performance flow from your accounting system into GiftingNet — keeping every donor's portal view accurate in real time.</div><span class="fv-tag">Real-Time</span></div>
-        <div class="fv-card"><div class="fv-title">Advisor Platform Integration</div><div class="fv-body">Deep integrations with Orion Advisor Solutions and Envestnet put your DAF program directly in the workflow of advisors managing client relationships — distributed through their networks.</div><span class="fv-tag">Orion · Envestnet</span></div>
-        <div class="fv-card"><div class="fv-title">Open Architecture</div><div class="fv-body">GiftingNet's web-service API is open to any third-party XML client — so your existing technology stack can connect without proprietary lock-in. File import available as a fallback.</div><span class="fv-tag">Open API</span></div>
+        <div class="fv-card"><div class="fv-title">Back-Office Sync</div><div class="fv-body">Fund values, gift confirmations, grant postings, and investment performance flow from your accounting system into GiftingNet, keeping every donor's portal view accurate in real time.</div><span class="fv-tag">Real-Time</span></div>
+        <div class="fv-card"><div class="fv-title">Advisor Platform Integration</div><div class="fv-body">Deep integrations with Orion Advisor Solutions and Envestnet put your DAF program directly in the workflow of advisors managing client relationships, distributed through their networks.</div><span class="fv-tag">Orion · Envestnet</span></div>
+        <div class="fv-card"><div class="fv-title">Open Architecture</div><div class="fv-body">GiftingNet's web-service API is open to any third-party XML client, so your existing technology stack can connect without proprietary lock-in. File import available as a fallback.</div><span class="fv-tag">Open API</span></div>
         <div class="fv-card"><div class="fv-title">Security & Compliance</div><div class="fv-body">Hosted on Level 1 PCI-certified cloud infrastructure. Configurable file upload controls, auto-logout, document expiry management, and granular role permissions throughout.</div><span class="fv-tag">PCI Level 1</span></div>
       </div>
     </div>
@@ -1029,7 +1080,7 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
 <div class="portals-cta">
   <div class="portals-cta-inner">
     <h2>See the portals in<br>your foundation's brand</h2>
-    <p>Request a live demo and we'll walk through each portal experience using your foundation's name, colors, and logo — so you can show your board exactly what your donors and advisors will see.</p>
+    <p>Request a live demo and we'll walk through each portal experience using your foundation's name, colors, and logo, so you can show your board exactly what your donors and advisors will see.</p>
     <div class="portals-cta-btns">
       <a href="contact.html?subject=demo" class="btn-cta-w">Request a Demo</a>
       <a href="index.html" class="btn-cta-o">← Back to Platform</a>
@@ -1054,14 +1105,13 @@ footer{background:#050D18;padding:36px 60px 28px;border-top:1px solid rgba(0,119
       <a href="daf-network.html">DAF Network</a>
       <a href="portals.html">Portals</a>
       <a href="pbo-services.html">Back Office</a>
-      <a href="ai-reporting-engine.html">AI Reporting</a>
     </div>
     <div class="footer-links-col">
       <div class="footer-col-head">Company</div>
       <a href="index.html#about">About</a>
       <a href="index.html#news">News</a>
       <a href="mailto:info@giftingnetwork.com">Contact</a>
-      <a href="#">Privacy</a>
+      <a href="privacy.html">Privacy</a>
     </div>
   </div>
   <div class="footer-bottom">
