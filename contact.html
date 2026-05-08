@@ -15,7 +15,7 @@
   gtag('config', 'G-L5CF2KTLQL');
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Contact Us — GiftingNetwork</title>
+<title>Contact Us, GiftingNetwork</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
@@ -129,7 +129,7 @@
   .btn-submit {
     width: 100%; padding: 16px; font-family: var(--font-head); font-size: 14px; font-weight: 700;
     letter-spacing: 0.05em; text-transform: uppercase; color: #fff; background: var(--teal);
-    border: none; border-radius: 8px; cursor: pointer;
+    --border: none; border-radius: 8px; cursor: pointer;
     box-shadow: 0 8px 28px rgba(0,119,123,0.35); transition: background 0.2s, transform 0.15s;
   }
   .btn-submit:hover:not(:disabled) { background: var(--teal-light); transform: translateY(-1px); }
@@ -236,7 +236,7 @@
     <div class="page-header">
       <div class="page-eyebrow">Get in Touch</div>
       <h1 class="page-title">Let's start a<br><em>conversation</em></h1>
-      <p class="page-sub">Whether you're exploring the platform, ready to request a demo, or have a specific question — we're here to help.</p>
+      <p class="page-sub">Whether you're exploring the platform, ready to request a demo, or have a specific question, we're here to help.</p>
     </div>
 
     <div class="contact-layout">
@@ -277,7 +277,6 @@
               <option value="Grant Administration">Grant Administration</option>
               <option value="Philanthropic Back Office">Philanthropic Back Office</option>
               <option value="Portals">Portals</option>
-              <option value="AI Reporting Engine">AI Reporting Engine</option>
               <option value="DAF Network">DAF Network</option>
               <option value="GiftingPension">GiftingPension</option>
               <option value="Partnership Inquiry">Partnership Inquiry</option>
@@ -317,7 +316,7 @@
 
         <div class="info-card">
           <div class="info-card-head">Request a Demo</div>
-          <p>See the GiftingNetwork platform in action. Our team will walk you through DAF sponsor capabilities, advisor integrations, and the donor experience — tailored to your organization.</p>
+          <p>See the GiftingNetwork platform in action. Our team will walk you through DAF sponsor capabilities, advisor integrations, and the donor experience, tailored to your organization.</p>
         </div>
 
         <div class="photo-card">
@@ -334,7 +333,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-legal">© 2026 GiftingNetwork — All Rights Reserved · <a href="index.html" style="color:rgba(255,255,255,0.35);text-decoration:none;">giftingnetwork.com</a></div>
+  <div class="footer-legal">© 2026 GiftingNetwork, All Rights Reserved · <a href="index.html" style="color:rgba(255,255,255,0.35);text-decoration:none;">giftingnetwork.com</a> · <a href="privacy.html" style="color:rgba(255,255,255,0.35);text-decoration:none;">Privacy Policy</a></div>
 </footer>
 
 <script>
@@ -354,7 +353,6 @@ const ZENDESK_SUBDOMAIN = 'giftingnetwork';
     'grant':       'Grant Administration',
     'pbo':         'Philanthropic Back Office',
     'portals':     'Portals',
-    'ai':          'AI Reporting Engine',
     'network':     'DAF Network',
     'pension':     'GiftingPension',
     'referral':    'Partnership Inquiry',
@@ -454,7 +452,7 @@ async function submitZendesk(d) {
   const url = `https://${ZENDESK_SUBDOMAIN}.zendesk.com/api/v2/requests.json`;
   const payload = {
     request: {
-      subject: `[${d.subject}] ${d.firstName} ${d.lastName} — ${d.company}`,
+      subject: `[${d.subject}] ${d.firstName} ${d.lastName}, ${d.company}`,
       comment: { body: `Name: ${d.firstName} ${d.lastName}\nEmail: ${d.email}\nCompany: ${d.company}\nPhone: ${d.phone || 'N/A'}\nTopic: ${d.subject}\n\nMessage:\n${d.message}` },
       requester: { name: `${d.firstName} ${d.lastName}`, email: d.email },
     },
