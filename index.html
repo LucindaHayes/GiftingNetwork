@@ -426,7 +426,30 @@
 
   /* RESPONSIVE */
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
-  .hamburger span { width: 22px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 2px; }
+  .hamburger span { width: 22px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 2px; transition: transform 0.25s ease, opacity 0.2s ease; }
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE NAV PANEL */
+  .mob-nav {
+    position: fixed; top: 72px; left: 0; right: 0;
+    background: rgba(5,13,24,0.98); backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,119,123,0.25);
+    z-index: 998; padding: 0 24px 32px;
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .mob-nav.open { max-height: calc(100vh - 72px); overflow-y: auto; }
+  .mob-sec { padding: 18px 0 8px; font-family: var(--font-head); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal-light); }
+  .mob-sub { display: block; padding: 11px 14px; font-family: var(--font-head); font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.62); text-decoration: none; border-radius: 6px; }
+  .mob-sub:active { background: rgba(0,119,123,0.15); color: var(--teal-light); }
+  .mob-link { display: block; padding: 15px 0; font-family: var(--font-head); font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.82); text-decoration: none; border-top: 1px solid rgba(255,255,255,0.07); }
+  .mob-link:last-of-type { border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .mob-link:active { color: var(--teal-light); }
+  .mob-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; padding-top: 22px; border-top: 1px solid rgba(0,119,123,0.22); }
+  .mob-ghost { padding: 14px; font-family: var(--font-head); font-size: 14px; font-weight: 600; text-align: center; color: rgba(255,255,255,0.82); border: 1px solid rgba(255,255,255,0.22); border-radius: 7px; text-decoration: none; display: block; }
+  .mob-teal { padding: 14px; font-family: var(--font-head); font-size: 14px; font-weight: 700; text-align: center; color: #fff; background: var(--teal); border-radius: 7px; text-decoration: none; display: block; }
 
   /* ── Laptop / narrow desktop ── */
   @media (max-width: 1260px) {
@@ -509,8 +532,30 @@
     <a href="contact.html" class="btn-ghost">Contact Us</a>
     <a href="contact.html?subject=demo" class="btn-teal">Request Demo</a>
   </div>
-  <div class="hamburger"><span></span><span></span><span></span></div>
+  <div class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></div>
 </nav>
+
+<!-- MOBILE NAV PANEL -->
+<div class="mob-nav" id="mobNav" aria-hidden="true">
+  <div class="mob-sec">Solutions</div>
+  <a href="giftingnet-platform.html" class="mob-sub">GiftingNet, DAF Sponsor Platform</a>
+  <a href="daf-network.html" class="mob-sub">DAF Network</a>
+  <a href="portals.html" class="mob-sub">Donor Portals</a>
+  <a href="grant-administration.html" class="mob-sub">Grant Administration</a>
+  <a href="pbo-services.html" class="mob-sub">Philanthropic Back Office</a>
+  <a href="giftingpension.html" class="mob-sub">GiftingPension</a>
+  <div class="mob-sec">Who We Serve</div>
+  <a href="#serve" class="mob-sub">Institutional Sponsors</a>
+  <a href="#wealth" class="mob-sub">Wealth Management</a>
+  <a href="#serve" class="mob-sub">Private Foundations</a>
+  <a href="#partnerships" class="mob-link">Partnerships</a>
+  <a href="#news" class="mob-link">News</a>
+  <a href="#about" class="mob-link">About</a>
+  <div class="mob-btns">
+    <a href="contact.html" class="mob-ghost">Contact Us</a>
+    <a href="contact.html?subject=demo" class="mob-teal">Request a Demo</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -1157,6 +1202,53 @@
       observer.observe(el);
     }
   });
+
+  // ── MOBILE HAMBURGER MENU ─────────────────────────────────────
+  (function() {
+    var hbg = document.getElementById('hamburger');
+    var mob = document.getElementById('mobNav');
+    if (!hbg || !mob) return;
+
+    function openMenu() {
+      mob.classList.add('open');
+      hbg.classList.add('active');
+      hbg.setAttribute('aria-expanded', 'true');
+      mob.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      mob.classList.remove('open');
+      hbg.classList.remove('active');
+      hbg.setAttribute('aria-expanded', 'false');
+      mob.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    hbg.addEventListener('click', function(e) {
+      e.stopPropagation();
+      mob.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    // Close when any link inside the panel is tapped
+    mob.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on tap outside the menu panel or hamburger
+    document.addEventListener('click', function(e) {
+      if (mob.classList.contains('open') &&
+          !mob.contains(e.target) &&
+          !hbg.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
 </script>
 </body>
 </html>
