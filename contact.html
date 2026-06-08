@@ -364,7 +364,6 @@
 // ── CREDENTIALS ─────────────────────────────────────────────────────────────
 const HUBSPOT_PORTAL_ID = '21379602';
 const HUBSPOT_FORM_GUID = '30cd1791-16b8-4ee0-adb5-0671079d93a6';
-const ZENDESK_SUBDOMAIN = 'giftingnetwork';
 
 // ── URL param pre-selection ──────────────────────────────────────────────────
 (function () {
@@ -420,22 +419,11 @@ document.getElementById('contactForm').addEventListener('submit', async function
   status.className = 'form-status';
 
   try {
-    const results = await Promise.allSettled([
-      submitHubSpot(data),
-      submitZendesk(data),
-    ]);
-
-    const hsOk = results[0].status === 'fulfilled';
-    const zdOk = results[1].status === 'fulfilled';
-
-    if (hsOk || zdOk) {
-      gtag('event', 'contact_form_success', { subject: data.subject });
-      status.className = 'form-status success';
-      status.textContent = '✓ Message received! We\'ll be in touch within one business day.';
-      document.getElementById('contactForm').reset();
-    } else {
-      throw new Error('Both submission channels failed.');
-    }
+    await submitHubSpot(data);
+    gtag('event', 'contact_form_success', { subject: data.subject });
+    status.className = 'form-status success';
+    status.textContent = '✓ Message received! We\'ll be in touch within one business day.';
+    document.getElementById('contactForm').reset();
   } catch (err) {
     gtag('event', 'contact_form_error', { error: err.message });
     status.className = 'form-status error';
@@ -471,23 +459,6 @@ async function submitHubSpot(d) {
   if (!res.ok) throw new Error(`HubSpot ${res.status}`);
 }
 
-async function submitZendesk(d) {
-  if (ZENDESK_SUBDOMAIN === 'YOUR_ZENDESK_SUBDOMAIN') return;
-  const url = `https://${ZENDESK_SUBDOMAIN}.zendesk.com/api/v2/requests.json`;
-  const payload = {
-    request: {
-      subject: `[${d.subject}] ${d.firstName} ${d.lastName}, ${d.company}`,
-      comment: { body: `Name: ${d.firstName} ${d.lastName}\nEmail: ${d.email}\nCompany: ${d.company}\nPhone: ${d.phone || 'N/A'}\nTopic: ${d.subject}\n\nMessage:\n${d.message}` },
-      requester: { name: `${d.firstName} ${d.lastName}`, email: d.email },
-    },
-  };
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-  if (!res.ok) throw new Error(`Zendesk ${res.status}`);
-}
 
 // ── MOBILE HAMBURGER MENU ────────────────────────────────────
 (function() {
