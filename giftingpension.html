@@ -911,14 +911,15 @@ function runCalc(){
     taxVals.push(+(taxAcc).toFixed(0));
     pifAcc*=(1+totalRet);taxAcc*=(1+totalRet);
   }
-  var ctx=document.getElementById('wc').getContext('2d');
-  if(wChart)wChart.destroy();
-  wChart=new Chart(ctx,{type:'line',data:{labels:labels,datasets:[{label:'Young PIF',data:pifVals,borderColor:'#00777B',backgroundColor:'rgba(0,119,123,0.12)',borderWidth:2.5,fill:true,tension:.4,pointRadius:0},{label:'Taxable sale',data:taxVals,borderColor:'rgba(255,255,255,0.25)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[4,4],fill:false,tension:.4,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+f$(c.raw);}}}},scales:{x:{grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'rgba(255,255,255,0.3)',font:{family:'DM Mono',size:10}}},y:{grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'rgba(255,255,255,0.3)',font:{family:'DM Mono',size:10},callback:function(v){return f$(v);}}}}}});
+  try{
+    var ctx=document.getElementById('wc').getContext('2d');
+    if(wChart)wChart.destroy();
+    wChart=new Chart(ctx,{type:'line',data:{labels:labels,datasets:[{label:'Young PIF',data:pifVals,borderColor:'#00777B',backgroundColor:'rgba(0,119,123,0.12)',borderWidth:2.5,fill:true,tension:.4,pointRadius:0},{label:'Taxable sale',data:taxVals,borderColor:'rgba(255,255,255,0.25)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[4,4],fill:false,tension:.4,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+f$(c.raw);}}}},scales:{x:{grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'rgba(255,255,255,0.5)',font:{family:'DM Mono',size:10}}},y:{grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'rgba(255,255,255,0.5)',font:{family:'DM Mono',size:10},callback:function(v){return f$(v);}}}}}});
+  }catch(e){console.warn('Chart.js unavailable:',e);}
 }
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('input[type=range]').forEach(function(el){el.addEventListener('input',runCalc);});
-  runCalc();
-});
+document.querySelectorAll('input[type=range]').forEach(function(el){el.addEventListener('input',runCalc);});
+runCalc();
+window.addEventListener('load',runCalc);
 
 /* ARTICLE MODAL */
 var articles = {};
