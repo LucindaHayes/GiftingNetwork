@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media | GiftingNetwork Press Releases &amp; News</title>
+<meta name="description" content="GiftingNetwork press releases and news coverage: announcements and articles about the DAF infrastructure platform for institutional sponsors, financial advisors, and donors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Lato:wght@400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#00777B;
+  --teal-light:#009499;
+  --teal-dark:#005558;
+  --navy:#144270;
+  --navy-dark:#0D2D4F;
+  --navy-deeper:#081E36;
+  --blue:#098DCA;
+  --amber:#C89A3A;
+  --white:#FFFFFF;
+  --text:#D7E3EF;
+  --muted:#8FA6BF;
+  --line:rgba(255,255,255,0.10);
+  --card:rgba(255,255,255,0.04);
+  --font-head:'Montserrat',sans-serif;
+  --font-body:'Lato',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --max:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy-deeper);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.65}
+a{color:var(--teal-light);text-decoration:none}
+a:hover{color:var(--white)}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+/* ---------- Header (replace with the site's shared header from index.html) ---------- */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(8,30,54,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:var(--font-head);font-weight:800;font-size:20px;color:var(--white)}
+.logo span{color:var(--teal-light)}
+.nav{display:flex;gap:28px;align-items:center;font-family:var(--font-head);font-size:14px;font-weight:600}
+.nav a{color:var(--text)}
+.nav a:hover,.nav a.active{color:var(--teal-light)}
+.btn{display:inline-block;font-family:var(--font-head);font-weight:700;font-size:14px;padding:11px 22px;border-radius:6px;background:var(--teal);color:var(--white);transition:background .2s}
+.btn:hover{background:var(--teal-dark);color:var(--white)}
+.btn-outline{background:transparent;border:1px solid var(--teal-light);color:var(--teal-light)}
+.btn-outline:hover{background:var(--teal-light);color:var(--white)}
+.menu-toggle{display:none;background:none;border:0;color:var(--white);font-size:26px;cursor:pointer}
+
+/* ---------- Hero ---------- */
+.hero{padding:96px 0 64px;background:radial-gradient(ellipse at top right,rgba(0,148,153,0.18),transparent 60%),linear-gradient(180deg,var(--navy-dark),var(--navy-deeper))}
+.eyebrow{font-family:var(--font-mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:16px}
+.hero h1{font-family:var(--font-head);font-weight:800;font-size:clamp(34px,5vw,52px);line-height:1.12;color:var(--white);max-width:760px}
+.hero p{margin-top:20px;max-width:640px;color:var(--muted);font-size:19px}
+
+/* ---------- Filters ---------- */
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--font-head);font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer}
+.chip:hover{border-color:var(--teal-light)}
+.chip.active{background:var(--teal);border-color:var(--teal);color:var(--white)}
+.search{flex:1;min-width:220px;max-width:320px;padding:10px 14px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--white);font-family:var(--font-body);font-size:15px}
+.search::placeholder{color:var(--muted)}
+.filters-right{display:flex;flex-wrap:wrap;gap:10px;flex:1;justify-content:flex-end}
+.search.year{flex:none;min-width:0;width:auto;cursor:pointer}
+.search.year option{background:var(--navy-deeper)}
+.release-tag .src{color:var(--teal-light)}
+
+/* ---------- Release list ---------- */
+.releases{padding:40px 0 80px}
+.release{display:grid;grid-template-columns:180px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--line)}
+.release-date{font-family:var(--font-mono);font-size:14px;color:var(--muted);padding-top:4px}
+.release-tag{display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.release h2{font-family:var(--font-head);font-weight:700;font-size:22px;line-height:1.3;color:var(--white)}
+.release h2 a{color:var(--white)}
+.release h2 a:hover{color:var(--teal-light)}
+.release .subhead{margin-top:6px;color:var(--text);font-style:italic}
+.release .summary{margin-top:12px;color:var(--muted)}
+.release-links{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px 20px;font-family:var(--font-head);font-size:13px;font-weight:600}
+.release-links .label{color:var(--muted);font-weight:500}
+.featured{background:linear-gradient(135deg,rgba(0,119,123,0.16),rgba(20,66,112,0.16));border:1px solid rgba(0,148,153,0.35);border-radius:12px;padding:32px;margin:0 -32px}
+.full{margin-top:16px}
+.full summary{cursor:pointer;font-family:var(--font-head);font-weight:600;font-size:14px;color:var(--teal-light);list-style:none}
+.full summary::-webkit-details-marker{display:none}
+.full summary::after{content:" \25BE"}
+.full[open] summary::after{content:" \25B4"}
+.full summary:hover{color:var(--white)}
+.full-body{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);color:var(--text);max-width:760px}
+.full-body p{margin-bottom:14px}
+.full-body h3{font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--white);margin:26px 0 10px}
+.full-body ul{margin:0 0 14px 20px}
+.full-body li{margin-bottom:6px}
+.full-body blockquote{margin:18px 0;padding:4px 0 4px 18px;border-left:3px solid var(--teal);font-style:italic;color:var(--white)}
+.empty{padding:48px 0;color:var(--muted);text-align:center}
+
+/* ---------- Media contact ---------- */
+.media{padding:20px 0;border-top:1px solid var(--line)}
+.media p{font-size:14px;color:var(--muted)}
+
+/* ---------- Footer (replace with the site's shared footer from index.html) ---------- */
+.site-footer{padding:40px 0;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.site-footer .container{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+
+@media (max-width:860px){
+  .nav{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:18px;padding:24px;background:var(--navy-deeper);border-bottom:1px solid var(--line)}
+  .nav.open{display:flex}
+  .menu-toggle{display:block}
+  .release{grid-template-columns:1fr;gap:8px}
+  .featured{margin:0;padding:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER: swap this block for the exact header markup used on index.html -->
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">Gifting<span>Network</span></a>
+    <button class="menu-toggle" aria-label="Open menu" onclick="document.querySelector('.nav').classList.toggle('open')">&#9776;</button>
+    <nav class="nav">
+      <a href="giftingnet-platform.html">Solutions</a>
+      <a href="index.html">Who We Serve</a>
+      <a href="index.html">Partnerships</a>
+      <a href="media.html" class="active">Media</a>
+      <a href="client-recognition.html">Client Recognition</a>
+      <a href="contact.html" class="btn">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Media</div>
+    <h1>GiftingNetwork Press Releases &amp; News Articles</h1>
+    <p>Our latest announcements, plus coverage of GiftingNetwork and our clients in the news.</p>
+  </div>
+</section>
+
+<main class="container">
+  <div class="toolbar">
+    <div class="chips" id="typeChips"></div>
+    <div class="filters-right">
+      <select class="search year" id="year" aria-label="Filter by year"></select>
+      <input type="search" class="search" id="search" placeholder="Search media…" aria-label="Search press releases and news">
+    </div>
+  </div>
+  <div class="releases" id="releaseList"></div>
+</main>
+
+<section class="media">
+  <div class="container">
+    <p>Media inquiries: <a href="mailto:jen@giftingnetwork.com?subject=Media%20Inquiry">jen@giftingnetwork.com</a></p>
+  </div>
+</section>
+
+<!-- FOOTER: swap this block for the exact footer markup used on index.html -->
+<footer class="site-footer">
+  <div class="container">
+    <span>&copy; 2026 GiftingNetwork LLC. All Rights Reserved. &middot; Morristown, NJ</span>
+    <span><a href="privacy.html">Privacy Statement</a> &middot; <a href="contact.html">Contact</a></span>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   ADD A NEW ITEM: copy one object below and paste it at the TOP of the
+   list (the page sorts newest first automatically). Fields:
+     type      "Press Release" or "News Article"
+     date      "YYYY-MM-DD"
+     title     headline
+     source    News Article: outlet name, e.g. "InvestmentNews"
+               Press Release: leave ""
+     url       News Article: link to the article
+               Press Release: optional link to a full-text page ("" if none)
+     subhead   optional one-line subhead ("" to skip)
+     summary   2–3 sentences: opening paragraph, or what the article covers
+     body      optional full text as HTML (adds a "Read full release" toggle)
+     pdf       optional PDF in this folder, e.g. "GN_Release.pdf"
+     outlets   Press Release only: where it was also published [{name, url}]
+     featured  true to highlight it (use on one item at a time)
+   ===================================================================== */
+const items = [
+  {
+    type: "Press Release",
+    date: "2026-09-23",
+    title: "GiftingNetwork’s Donor Portal Live at Foundation for the Carolinas",
+    source: "",
+    url: "",
+    subhead: "The 5th largest community foundation in the U.S. has run its fundholder experience on GiftingNetwork’s platform since July 1, 2026",
+    summary: "GiftingNetwork today announced that Foundation for the Carolinas (FFTC) has been running a new donor portal on the GiftingNetwork platform since July 1, 2026. More than two months into production, the portal gives the Foundation’s fundholders a clearer, more intuitive way to manage their philanthropy online.",
+    body: `
+      <p><strong>MORRISTOWN, N.J. &ndash; Sept. 23, 2026</strong> &ndash; GiftingNetwork today announced that Foundation for the Carolinas (FFTC) has been running a new donor portal on the GiftingNetwork platform since July 1, 2026. More than two months into production, the portal gives the Foundation&rsquo;s fundholders a clearer, more intuitive way to manage their philanthropy online.</p>
+      <p>As one of the nation&rsquo;s largest community foundations, FFTC manages nearly $5 billion in charitable assets across approximately 3,000 funds established by families, nonprofits and businesses. Serving 13 counties throughout the Carolinas, FFTC sought a modern fundholder experience that would make online giving easier, more accessible and more engaging for its fundholders.</p>
+      <h3>Modernizing the Digital Experience of Philanthropy</h3>
+      <p>As FFTC&rsquo;s fundholder base has grown, the Foundation set out to modernize how fundholders interact with their funds, giving them an experience as simple and familiar as the everyday apps they already use. Working closely with GiftingNetwork, FFTC tailored the new donor portal around the experience its fundholders wanted: fewer steps, clearer information and a more intuitive user experience.</p>
+      <blockquote>&ldquo;A launch is a promise. Two months in production is proof,&rdquo; said Eric Swerdlin, CEO of GiftingNetwork. &ldquo;Fundholders should not have to learn a new system in order to give. They should open the portal and have it work the way everything else on their phone works. That is the standard we built to with FFTC, and it has been running at that standard since July 1.&rdquo;</blockquote>
+      <h3>Built to Support Philanthropy at Scale</h3>
+      <ul>
+        <li>A streamlined, mobile-friendly interface designed around how FFTC&rsquo;s donors give</li>
+        <li>One-click grant recommendations and real-time visibility into fund balances and activity</li>
+        <li>A step-by-step setup process that walks FFTC&rsquo;s 3,000-plus fundholders through their first visit</li>
+        <li>Quick access to giving history and fund activity in one place</li>
+        <li>Self-service tools that let fundholders check balances, review grant history and submit grant recommendations whenever it suits them</li>
+      </ul>
+      <p>The portal reflects GiftingNetwork&rsquo;s ongoing commitment to helping community foundations and philanthropic organizations deliver exceptional experiences to their fundholders.</p>
+      <h3>About GiftingNetwork</h3>
+      <p>GiftingNetwork is the technology and administration backbone for donor-advised funds and charitable giving programs. The company serves community foundations, DAF sponsors, nonprofits and the wealth management ecosystem, and distributes its platform through the Orion and Envestnet advisor networks. GiftingNetwork is headquartered in Morristown, New Jersey. Learn more at <a href="index.html">GiftingNetwork.com</a>.</p>
+      <h3>About Foundation for the Carolinas</h3>
+      <p>Founded in 1958, Foundation for the Carolinas is a community foundation serving a 13-county region across the Carolinas. Remarkable impact is at the heart of the Foundation&rsquo;s mission, and the driving force of that impact is the thousands of nonprofits, families and companies who partner with FFTC to amplify the power of giving. Visit <a href="https://www.fftc.org" target="_blank" rel="noopener">www.fftc.org</a>.</p>
+      <h3>Media Contact</h3>
+      <p>Jen Katstra<br><a href="mailto:jen@giftingnetwork.com">jen@giftingnetwork.com</a><br>973.984.8200</p>
+    `,
+    pdf: "",
+    outlets: [
+      { name: "PRLog",  url: "" },
+      { name: "openPR", url: "" },
+      { name: "PR.com", url: "" }
+    ],
+    featured: true
+  }
+  /* Example news article: copy it above the ]; line, put a comma after the
+     previous item's closing }, fill it in, and remove these comment marks.
+  {
+    type: "News Article",
+    date: "2026-10-01",
+    title: "Headline of the article",
+    source: "Publication Name",
+    url: "https://link-to-the-article",
+    subhead: "",
+    summary: "One or two sentences on what the article covers.",
+    body: "",
+    pdf: "",
+    outlets: [],
+    featured: false
+  }
+  */
+];
+
+const fmt = d => new Date(d + "T12:00:00").toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
+const esc = s => String(s||"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TYPES = [["All","All"],["Press Release","Press Releases"],["News Article","News Articles"]];
+let activeType = "All";
+
+function renderChips(){
+  const el = document.getElementById("typeChips");
+  el.innerHTML = TYPES.map(([v,l]) => `<button class="chip${v===activeType?' active':''}" data-type="${v}">${l}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(b => b.onclick = () => { activeType = b.dataset.type; renderChips(); renderList(); });
+}
+
+function renderYears(){
+  const years = [...new Set(items.map(r => r.date.slice(0,4)))].sort().reverse();
+  document.getElementById("year").innerHTML = `<option value="All">All years</option>` + years.map(y => `<option>${y}</option>`).join("");
+}
+
+function renderList(){
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const yr = document.getElementById("year").value;
+  const list = items
+    .slice().sort((a,b) => b.date.localeCompare(a.date))
+    .filter(r => activeType==="All" || r.type===activeType)
+    .filter(r => yr==="All" || r.date.startsWith(yr))
+    .filter(r => !q || [r.title,r.subhead,r.summary,r.source,r.type,(r.body||"").replace(/<[^>]+>/g," ")].join(" ").toLowerCase().includes(q));
+  const el = document.getElementById("releaseList");
+  if(!list.length){ el.innerHTML = `<p class="empty">Nothing matches your filters yet.</p>`; return; }
+  el.innerHTML = list.map(r => {
+    const isNews = r.type === "News Article";
+    const href = r.url || r.pdf;
+    const titleHtml = href ? `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(r.title)}</a>` : esc(r.title);
+    const links = [];
+    if(isNews && r.url) links.push(`<a href="${esc(r.url)}" target="_blank" rel="noopener">Read the article${r.source ? " on " + esc(r.source) : ""} &rarr;</a>`);
+    if(r.pdf) links.push(`<a href="${esc(r.pdf)}" target="_blank" rel="noopener">Download PDF &rarr;</a>`);
+    const live = (r.outlets||[]).filter(o => o.url);
+    if(live.length) links.push(`<span class="label">Also on:</span>` + live.map(o => `<a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>`).join(""));
+    return `<article class="release${r.featured?' featured':''}">
+      <div class="release-date">${fmt(r.date)}</div>
+      <div>
+        <span class="release-tag">${esc(r.type)}${isNews && r.source ? ` &middot; <span class="src">${esc(r.source)}</span>` : ""}</span>
+        <h2>${titleHtml}</h2>
+        ${r.subhead ? `<p class="subhead">${esc(r.subhead)}</p>` : ""}
+        <p class="summary">${esc(r.summary)}</p>
+        ${r.body ? `<details class="full"><summary>Read full release</summary><div class="full-body">${r.body}</div></details>` : ""}
+        ${links.length ? `<div class="release-links">${links.join("")}</div>` : ""}
+      </div>
+    </article>`;
+  }).join("");
+}
+
+document.getElementById("search").addEventListener("input", renderList);
+document.getElementById("year").addEventListener("change", renderList);
+renderChips(); renderYears(); renderList();
+</script>
+</body>
+</html>

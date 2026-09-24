@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Recognition | GiftingNetwork</title>
+<meta name="description" content="Celebrating GiftingNetwork clients recognized for their philanthropic impact and the programs they have built with our team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Lato:wght@400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#00777B;
+  --teal-light:#009499;
+  --teal-dark:#005558;
+  --navy:#144270;
+  --navy-dark:#0D2D4F;
+  --navy-deeper:#081E36;
+  --blue:#098DCA;
+  --amber:#C89A3A;
+  --white:#FFFFFF;
+  --text:#D7E3EF;
+  --muted:#8FA6BF;
+  --line:rgba(255,255,255,0.10);
+  --card:rgba(255,255,255,0.04);
+  --font-head:'Montserrat',sans-serif;
+  --font-body:'Lato',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --max:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy-deeper);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.65}
+a{color:var(--teal-light);text-decoration:none}
+a:hover{color:var(--white)}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+/* ---------- Header (replace with the site's shared header from index.html) ---------- */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(8,30,54,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:var(--font-head);font-weight:800;font-size:20px;color:var(--white)}
+.logo span{color:var(--teal-light)}
+.nav{display:flex;gap:28px;align-items:center;font-family:var(--font-head);font-size:14px;font-weight:600}
+.nav a{color:var(--text)}
+.nav a:hover,.nav a.active{color:var(--teal-light)}
+.btn{display:inline-block;font-family:var(--font-head);font-weight:700;font-size:14px;padding:11px 22px;border-radius:6px;background:var(--teal);color:var(--white);transition:background .2s}
+.btn:hover{background:var(--teal-dark);color:var(--white)}
+.btn-outline{background:transparent;border:1px solid var(--teal-light);color:var(--teal-light)}
+.btn-outline:hover{background:var(--teal-light);color:var(--white)}
+.menu-toggle{display:none;background:none;border:0;color:var(--white);font-size:26px;cursor:pointer}
+
+/* ---------- Hero ---------- */
+.hero{padding:96px 0 64px;background:radial-gradient(ellipse at top left,rgba(200,154,58,0.16),transparent 55%),radial-gradient(ellipse at bottom right,rgba(0,148,153,0.16),transparent 60%),linear-gradient(180deg,var(--navy-dark),var(--navy-deeper))}
+.eyebrow{font-family:var(--font-mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:16px}
+.hero h1{font-family:var(--font-head);font-weight:800;font-size:clamp(34px,5vw,52px);line-height:1.12;color:var(--white);max-width:780px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero p{margin-top:20px;max-width:660px;color:var(--muted);font-size:19px}
+
+/* ---------- Filters ---------- */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;padding:28px 0;border-bottom:1px solid var(--line)}
+.chip{font-family:var(--font-head);font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer}
+.chip:hover{border-color:var(--teal-light)}
+.chip.active{background:var(--teal);border-color:var(--teal);color:var(--white)}
+
+/* ---------- Award cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;padding:40px 0 80px}
+.award{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .2s,transform .2s}
+.award:hover{border-color:rgba(0,148,153,0.5);transform:translateY(-2px)}
+.award-top{display:flex;align-items:center;gap:16px;padding:24px 24px 0}
+.award-logo{width:56px;height:56px;flex:none;border-radius:10px;background:var(--white);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.award-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.award-logo .initials{font-family:var(--font-head);font-weight:800;font-size:18px;color:var(--navy)}
+.award-client{font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--white);line-height:1.3}
+.award-type{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-top:2px}
+.award-body{padding:20px 24px 24px;display:flex;flex-direction:column;flex:1}
+.award-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(200,154,58,0.45);border-radius:999px;padding:5px 12px}
+.award h2{margin-top:14px;font-family:var(--font-head);font-weight:700;font-size:20px;line-height:1.3;color:var(--white)}
+.award .by{margin-top:4px;color:var(--teal-light);font-size:15px;font-weight:700}
+.award .story{margin-top:12px;color:var(--muted);font-size:16px;flex:1}
+.award blockquote{margin-top:16px;padding-left:14px;border-left:3px solid var(--teal);color:var(--text);font-style:italic;font-size:15px}
+.award blockquote cite{display:block;margin-top:6px;font-style:normal;font-size:13px;color:var(--muted)}
+.award .more{margin-top:18px;font-family:var(--font-head);font-weight:600;font-size:13px}
+.award-main{display:flex;flex-direction:column;flex:1}
+.award.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr minmax(0,504px);gap:0;border-color:rgba(200,154,58,0.4);background:linear-gradient(135deg,rgba(200,154,58,0.08),rgba(0,119,123,0.10))}
+.award.featured:hover{transform:none}
+.award.featured .award-top{padding:36px 36px 0}
+.award.featured .award-body{padding:24px 36px 36px}
+.award.featured h2{font-size:26px}
+.award.featured .story{font-size:17px;flex:none}
+.award-embed{padding:24px;border-left:1px solid var(--line);display:flex;justify-content:center}
+.award-embed iframe{width:100%;max-width:504px;height:1216px;border:0;border-radius:10px;background:var(--white)}
+.empty{grid-column:1/-1;padding:48px 0;color:var(--muted);text-align:center}
+
+/* ---------- CTA ---------- */
+
+/* ---------- Footer (replace with the site's shared footer from index.html) ---------- */
+.site-footer{padding:40px 0;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.site-footer .container{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
+
+@media (max-width:860px){
+  .nav{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:18px;padding:24px;background:var(--navy-deeper);border-bottom:1px solid var(--line)}
+  .nav.open{display:flex}
+  .menu-toggle{display:block}
+  .grid{grid-template-columns:1fr}
+  .award.featured{grid-template-columns:1fr}
+  .award.featured .award-top{padding:24px 24px 0}
+  .award.featured .award-body{padding:20px 24px 24px}
+  .award-embed{border-left:0;border-top:1px solid var(--line);padding:16px}
+  .award-embed iframe{height:1100px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER: swap this block for the exact header markup used on index.html -->
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">Gifting<span>Network</span></a>
+    <button class="menu-toggle" aria-label="Open menu" onclick="document.querySelector('.nav').classList.toggle('open')">&#9776;</button>
+    <nav class="nav">
+      <a href="giftingnet-platform.html">Solutions</a>
+      <a href="index.html">Who We Serve</a>
+      <a href="index.html">Partnerships</a>
+      <a href="media.html">Media</a>
+      <a href="client-recognition.html" class="active">Client Recognition</a>
+      <a href="contact.html" class="btn">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Client Recognition</div>
+    <h1>Celebrating Our Clients&rsquo; <em>Impact</em></h1>
+    <p>The sponsors, advisors, and foundations we work with are doing remarkable things for their communities. When their work earns recognition, we&rsquo;re proud to celebrate it here.</p>
+  </div>
+</section>
+
+<main class="container">
+  <div class="toolbar" id="chips"></div>
+  <div class="grid" id="awardGrid"></div>
+</main>
+
+<!-- FOOTER: swap this block for the exact footer markup used on index.html -->
+<footer class="site-footer">
+  <div class="container">
+    <span>&copy; 2026 GiftingNetwork LLC. All Rights Reserved. &middot; Morristown, NJ</span>
+    <span><a href="privacy.html">Privacy Statement</a> &middot; <a href="contact.html">Contact</a></span>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   ADD A NEW CLIENT AWARD: copy one object below and paste it at the TOP.
+   Fields:
+     client     organization name
+     clientType e.g. "Community Foundation", "Wealth Management Firm"
+     logo       optional image file in this folder, e.g. "client-logo.png"
+                ("" shows the client's initials instead)
+     award      name of the award / honor
+     awardedBy  organization that gave it
+     year       e.g. 2026
+     category   filter group: "Innovation", "Community Impact",
+                "Leadership", or "Industry" (add new ones freely)
+     story      2–3 sentences on the work that earned it and GN's role
+     quote      optional { text, name } from the client ({} to skip)
+     link       optional URL to the announcement ("" to skip)
+     linkLabel  optional text for that link (default "Read the announcement")
+     embed      optional LinkedIn embed URL: the src="..." value from
+                LinkedIn's "Embed this post" code ("" to skip)
+     featured   true to show it full width at the top
+   ===================================================================== */
+const awards = [
+  {
+    client: "Foundation for the Carolinas",
+    clientType: "Community Foundation",
+    logo: "",
+    initials: "FFTC",
+    award: "[Award Name]",
+    awardedBy: "[Awarding Organization]",
+    year: 2026,
+    category: "Innovation",
+    story: "Foundation for the Carolinas, one of the largest community foundations in the U.S., has run its fundholder experience on a donor portal built on the GiftingNetwork platform since July 1, 2026, giving its fundholders fewer steps, clearer information and a more intuitive way to manage their giving.",
+    quote: {},
+    link: "media.html",
+    linkLabel: "Read the press release",
+    embed: "https://www.linkedin.com/embed/feed/update/urn:li:share:7490809503261655040",
+    featured: true
+  }
+  /* Template for the next award: copy it above the ]; line, put a comma after
+     the previous item's closing }, fill it in, and remove these comment marks.
+  {
+    client: "Client Name",
+    clientType: "Wealth Management Firm",
+    logo: "",
+    award: "Award Name",
+    awardedBy: "Awarding Organization",
+    year: 2026,
+    category: "Community Impact",
+    story: "Two or three sentences on the work that earned it and GiftingNetwork's role.",
+    quote: { text: "Optional quote from the client.", name: "Name, Title" },
+    link: "",
+    linkLabel: "",
+    embed: "",
+    featured: false
+  }
+  */
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const initials = n => n.replace(/[^A-Za-z ]/g,"").split(/\s+/).filter(Boolean).slice(0,2).map(w => w[0]).join("").toUpperCase() || "GN";
+let active = "All";
+
+function renderChips(){
+  const cats = ["All", ...new Set(awards.map(a => a.category))];
+  const el = document.getElementById("chips");
+  el.innerHTML = cats.map(c => `<button class="chip${c===active?' active':''}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(b => b.onclick = () => { active = b.dataset.cat; renderChips(); renderGrid(); });
+}
+
+function renderGrid(){
+  const items = awards.slice().sort((a,b) => (b.featured?1:0)-(a.featured?1:0) || b.year - a.year).filter(a => active==="All" || a.category===active);
+  const grid = document.getElementById("awardGrid");
+  if(!items.length){ grid.innerHTML = `<p class="empty">No recognitions in this category yet.</p>`; return; }
+  grid.innerHTML = items.map(a => `
+    <article class="award${a.featured?' featured':''}">
+      <div class="award-main">
+      <div class="award-top">
+        <div class="award-logo">${a.logo ? `<img src="${esc(a.logo)}" alt="${esc(a.client)} logo">` : `<span class="initials"${(a.initials||"").length>2?' style="font-size:13px"':''}>${esc(a.initials||initials(a.client))}</span>`}</div>
+        <div>
+          <div class="award-client">${esc(a.client)}</div>
+          <div class="award-type">${esc(a.clientType)}</div>
+        </div>
+      </div>
+      <div class="award-body">
+        <span class="award-badge">&#9733; ${esc(a.year)} &middot; ${esc(a.category)}</span>
+        <h2>${esc(a.award)}</h2>
+        <div class="by">${esc(a.awardedBy)}</div>
+        <p class="story">${esc(a.story)}</p>
+        ${a.quote && a.quote.text ? `<blockquote>&ldquo;${esc(a.quote.text)}&rdquo;<cite>&mdash; ${esc(a.quote.name||"")}</cite></blockquote>` : ""}
+        ${a.link ? `<a class="more" href="${esc(a.link)}"${/^https?:/.test(a.link)?' target="_blank" rel="noopener"':''}>${esc(a.linkLabel||"Read the announcement")} &rarr;</a>` : ""}
+      </div>
+      </div>
+      ${a.embed ? `<div class="award-embed"><iframe src="${esc(a.embed)}" height="1216" width="504" frameborder="0" allowfullscreen title="${esc(a.client)} LinkedIn post" loading="lazy"></iframe></div>` : ""}
+    </article>`).join("");
+}
+
+renderChips(); renderGrid();
+</script>
+</body>
+</html>
