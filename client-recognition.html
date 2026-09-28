@@ -81,7 +81,7 @@ a:hover{color:var(--white)}
 .award blockquote cite{display:block;margin-top:6px;font-style:normal;font-size:13px;color:var(--muted)}
 .award .more{margin-top:18px;font-family:var(--font-head);font-weight:600;font-size:13px}
 .award-main{display:flex;flex-direction:column;flex:1}
-.award.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr minmax(0,504px);gap:0;border-color:rgba(200,154,58,0.4);background:linear-gradient(135deg,rgba(200,154,58,0.08),rgba(0,119,123,0.10))}
+.award.featured{grid-column:1/-1;margin-bottom:0;display:grid;grid-template-columns:1fr minmax(0,504px);gap:0;border-color:rgba(200,154,58,0.4);background:linear-gradient(135deg,rgba(200,154,58,0.08),rgba(0,119,123,0.10))}
 .award.featured:hover{transform:none}
 .award.featured .award-top{padding:36px 36px 0}
 .award.featured .award-body{padding:24px 36px 36px}
@@ -89,6 +89,9 @@ a:hover{color:var(--white)}
 .award.featured .story{font-size:17px;flex:none}
 .award-embed{padding:24px;border-left:1px solid var(--line);display:flex;justify-content:center}
 .award-embed iframe{width:100%;max-width:504px;height:1216px;border:0;border-radius:10px;background:var(--white)}
+.award-photo{margin:0;padding:24px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:12px;justify-content:center}
+.award-photo img{width:100%;border-radius:10px;display:block}
+.award-photo figcaption{font-size:13px;line-height:1.5;color:var(--muted)}
 .empty{grid-column:1/-1;padding:48px 0;color:var(--muted);text-align:center}
 
 /* ---------- CTA ---------- */
@@ -105,6 +108,7 @@ a:hover{color:var(--white)}
   .award.featured{grid-template-columns:1fr}
   .award.featured .award-top{padding:24px 24px 0}
   .award.featured .award-body{padding:20px 24px 24px}
+  .award-photo{border-left:0;border-top:1px solid var(--line);padding:16px}
   .award-embed{border-left:0;border-top:1px solid var(--line);padding:16px}
   .award-embed iframe{height:1100px}
 }
@@ -166,6 +170,9 @@ a:hover{color:var(--white)}
      quote      optional { text, name } from the client ({} to skip)
      link       optional URL to the announcement ("" to skip)
      linkLabel  optional text for that link (default "Read the announcement")
+     photo      optional photo file in this folder, e.g. "award-photo.jpg"
+                (shown on the right; takes the place of embed)
+     photoCaption optional line under the photo
      embed      optional LinkedIn embed URL: the src="..." value from
                 LinkedIn's "Embed this post" code ("" to skip)
      featured   true to show it full width at the top
@@ -176,15 +183,35 @@ const awards = [
     clientType: "Community Foundation",
     logo: "",
     initials: "FFTC",
-    award: "[Award Name]",
-    awardedBy: "[Awarding Organization]",
+    award: "IGNITE Award",
+    awardedBy: "Presented by Foundation for the Carolinas to its Donor Portal Team",
     year: 2026,
     category: "Innovation",
-    story: "Foundation for the Carolinas, one of the largest community foundations in the U.S., has run its fundholder experience on a donor portal built on the GiftingNetwork platform since July 1, 2026, giving its fundholders fewer steps, clearer information and a more intuitive way to manage their giving.",
+    story: "Foundation for the Carolinas named its Donor Portal Team the first recipients of its new IGNITE Award (Inspiring Giving, Nonprofit Innovation & Transformational Excellence). The award recognizes the team's leadership, perseverance and collaboration in launching FFTC's new donor portal, built on the GiftingNetwork platform and live since July 1, 2026.",
     quote: {},
-    link: "media.html",
-    linkLabel: "Read the press release",
-    embed: "https://www.linkedin.com/embed/feed/update/urn:li:share:7490809503261655040",
+    link: "https://lnkd.in/p/gxXSKF9Z",
+    linkLabel: "See FFTC's announcement on LinkedIn",
+    photo: "fftc-ignite-award.jpg",
+    photoCaption: "Pictured, left to right: Andrea Phelps, Caitlin James, Amber Morgan and Perrine Iannacchione. Not pictured: Kelley Graham, Jennifer McClave and Rebecca Rodriguez.",
+    embed: "",
+    featured: true
+  },
+  {
+    client: "Provision Financial Resources",
+    clientType: "Trust & Wealth Management",
+    logo: "",
+    initials: "PFR",
+    award: "Recognition for Exemplary Work",
+    awardedBy: "Presented by Provision Financial Resources to its Black Diamond Trust conversion lead team",
+    year: 2026,
+    category: "Leadership",
+    story: "Provision Financial Resources honored the four-person team that led its Black Diamond Trust conversion, one of the most significant projects in the company's history. The team was recognized for the expertise, problem-solving and patience they brought to a project of that scale.",
+    quote: {},
+    link: "https://www.linkedin.com/company/provision-nc/",
+    linkLabel: "Visit Provision on LinkedIn",
+    photo: "provision-award.jpg",
+    photoCaption: "Pictured, left to right: Dolly Pierce, Erich Hamm, CTFA, AAMS, Lori and Chris Jones.",
+    embed: "",
     featured: true
   }
   /* Template for the next award: copy it above the ]; line, put a comma after
@@ -201,6 +228,8 @@ const awards = [
     quote: { text: "Optional quote from the client.", name: "Name, Title" },
     link: "",
     linkLabel: "",
+    photo: "",
+    photoCaption: "",
     embed: "",
     featured: false
   }
@@ -241,7 +270,7 @@ function renderGrid(){
         ${a.link ? `<a class="more" href="${esc(a.link)}"${/^https?:/.test(a.link)?' target="_blank" rel="noopener"':''}>${esc(a.linkLabel||"Read the announcement")} &rarr;</a>` : ""}
       </div>
       </div>
-      ${a.embed ? `<div class="award-embed"><iframe src="${esc(a.embed)}" height="1216" width="504" frameborder="0" allowfullscreen title="${esc(a.client)} LinkedIn post" loading="lazy"></iframe></div>` : ""}
+      ${a.photo ? `<figure class="award-photo"><img src="${esc(a.photo)}" alt="${esc(a.client)} ${esc(a.award)} recipients" loading="lazy" onerror="this.closest('figure').remove()">${a.photoCaption ? `<figcaption>${esc(a.photoCaption)}</figcaption>` : ""}</figure>` : a.embed ? `<div class="award-embed"><iframe src="${esc(a.embed)}" height="1216" width="504" frameborder="0" allowfullscreen title="${esc(a.client)} LinkedIn post" loading="lazy"></iframe></div>` : ""}
     </article>`).join("");
 }
 
