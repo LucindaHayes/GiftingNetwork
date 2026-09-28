@@ -52,6 +52,10 @@ a:hover{color:var(--white)}
 /* ---------- Hero ---------- */
 .hero{padding:96px 0 64px;background:radial-gradient(ellipse at top right,rgba(0,148,153,0.18),transparent 60%),linear-gradient(180deg,var(--navy-dark),var(--navy-deeper))}
 .eyebrow{font-family:var(--font-mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-light);margin-bottom:16px}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero-photo{margin:0}
+.hero-photo img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.hero-photo figcaption{margin-top:12px;font-size:13px;color:var(--muted)}
 .hero h1{font-family:var(--font-head);font-weight:800;font-size:clamp(34px,5vw,52px);line-height:1.12;color:var(--white);max-width:760px}
 .hero p{margin-top:20px;max-width:640px;color:var(--muted);font-size:19px}
 
@@ -94,7 +98,7 @@ a:hover{color:var(--white)}
 .full-body li{margin-bottom:6px}
 .full-body blockquote{margin:18px 0;padding:4px 0 4px 18px;border-left:3px solid var(--teal);font-style:italic;color:var(--white)}
 /* ---------- Videos ---------- */
-.watch{padding:56px 0 8px}
+.watch{padding:8px 0 72px}
 .watch-head{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:28px}
 .watch-head h2{font-family:var(--font-head);font-weight:800;font-size:28px;color:var(--white)}
 .watch-head p{margin-top:10px;max-width:640px;color:var(--muted)}
@@ -118,6 +122,7 @@ a:hover{color:var(--white)}
 .site-footer .container{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between}
 
 @media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:32px}
   .nav{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:18px;padding:24px;background:var(--navy-deeper);border-bottom:1px solid var(--line)}
   .nav.open{display:flex}
   .menu-toggle{display:block}
@@ -145,12 +150,29 @@ a:hover{color:var(--white)}
 </header>
 
 <section class="hero">
-  <div class="container">
-    <div class="eyebrow">Media</div>
-    <h1>GiftingNetwork Press Releases &amp; News Articles</h1>
-    <p>Our latest announcements, plus coverage of GiftingNetwork and our clients in the news.</p>
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Media</div>
+      <h1>GiftingNetwork Press Releases &amp; News Articles</h1>
+      <p>Our latest announcements, plus coverage of GiftingNetwork and our clients in the news.</p>
+    </div>
+    <figure class="hero-photo">
+      <img src="gn-conference-session.jpg" alt="A GiftingNetwork presenter speaks to a seated conference audience in front of a screen showing donor-advised fund statistics" width="1800" height="1255" onerror="this.closest('figure').remove()">
+      <figcaption>GiftingNetwork presenting on donor-advised fund trends</figcaption>
+    </figure>
   </div>
 </section>
+
+<main class="container">
+  <div class="toolbar">
+    <div class="chips" id="typeChips"></div>
+    <div class="filters-right">
+      <select class="search year" id="year" aria-label="Filter by year"></select>
+      <input type="search" class="search" id="search" placeholder="Search media…" aria-label="Search press releases and news">
+    </div>
+  </div>
+  <div class="releases" id="releaseList"></div>
+</main>
 
 <section class="watch" id="watch" hidden>
   <div class="container">
@@ -165,17 +187,6 @@ a:hover{color:var(--white)}
     <div class="video-grid" id="videoGrid"></div>
   </div>
 </section>
-
-<main class="container">
-  <div class="toolbar">
-    <div class="chips" id="typeChips"></div>
-    <div class="filters-right">
-      <select class="search year" id="year" aria-label="Filter by year"></select>
-      <input type="search" class="search" id="search" placeholder="Search media…" aria-label="Search press releases and news">
-    </div>
-  </div>
-  <div class="releases" id="releaseList"></div>
-</main>
 
 <section class="media">
   <div class="container">
