@@ -93,6 +93,20 @@ a:hover{color:var(--white)}
 .full-body ul{margin:0 0 14px 20px}
 .full-body li{margin-bottom:6px}
 .full-body blockquote{margin:18px 0;padding:4px 0 4px 18px;border-left:3px solid var(--teal);font-style:italic;color:var(--white)}
+/* ---------- Videos ---------- */
+.watch{padding:56px 0 8px}
+.watch-head{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:28px}
+.watch-head h2{font-family:var(--font-head);font-weight:800;font-size:28px;color:var(--white)}
+.watch-head p{margin-top:10px;max-width:640px;color:var(--muted)}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.video{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.video-frame{position:relative;aspect-ratio:16/9;background:#000}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-body{padding:18px 20px 22px}
+.video-meta{font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+.video-body h3{font-family:var(--font-head);font-weight:700;font-size:18px;color:var(--white);margin:8px 0 8px}
+.video-body p{font-size:15px;color:var(--text)}
+
 .empty{padding:48px 0;color:var(--muted);text-align:center}
 
 /* ---------- Media contact ---------- */
@@ -135,6 +149,20 @@ a:hover{color:var(--white)}
     <div class="eyebrow">Media</div>
     <h1>GiftingNetwork Press Releases &amp; News Articles</h1>
     <p>Our latest announcements, plus coverage of GiftingNetwork and our clients in the news.</p>
+  </div>
+</section>
+
+<section class="watch" id="watch" hidden>
+  <div class="container">
+    <div class="watch-head">
+      <div>
+        <div class="eyebrow">Watch</div>
+        <h2>Eric Swerdlin on Inside WealthTech</h2>
+        <p>Short clips from our CEO&rsquo;s conversation with Blake Wood and Becca Endryck on Envestnet&rsquo;s Inside WealthTech podcast, recorded at Envestnet Elevate in Phoenix.</p>
+      </div>
+      <a class="btn btn-outline" href="https://www.youtube.com/@GiftingNetwork_DAF" target="_blank" rel="noopener">More on YouTube &rarr;</a>
+    </div>
+    <div class="video-grid" id="videoGrid"></div>
   </div>
 </section>
 
@@ -290,6 +318,45 @@ function renderList(){
 document.getElementById("search").addEventListener("input", renderList);
 document.getElementById("year").addEventListener("change", renderList);
 renderChips(); renderYears(); renderList();
+</script>
+<script>
+/* =====================================================================
+   VIDEOS: paste each clip's YouTube link into "youtube" (a youtu.be/...
+   or youtube.com/watch?v=... link both work). Clips with no link stay
+   hidden, and the whole Watch section stays hidden until one has a link.
+   ===================================================================== */
+const videos = [
+  {
+    youtube: "",
+    title: "DoorDash for DAFs",
+    length: "0:29",
+    summary: "Sponsors on one side, families on the other, and the advisor in the middle choosing the sponsor that fits. Eric explains what GiftingNetwork does in 30 seconds."
+  },
+  {
+    youtube: "",
+    title: "Family philanthropy as a retention strategy",
+    length: "1:03",
+    summary: "When grandparents hold grant authority and the next generation makes recommendations, every grant becomes a conversation with the advisor."
+  },
+  {
+    youtube: "",
+    title: "Community foundations are bigger than advisors think",
+    length: "0:25",
+    summary: "Our clients The Chicago Community Trust and Foundation For The Carolinas hold more than $12 billion between them. Ease of transacting, not size, was the real barrier."
+  }
+];
+(function(){
+  const id = u => { const m = String(u).match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/)([\w-]{11})/); return m ? m[1] : (/^[\w-]{11}$/.test(u) ? u : ""); };
+  const e = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const live = videos.map(v => ({...v, vid: id(v.youtube)})).filter(v => v.vid);
+  if(!live.length) return;
+  document.getElementById("videoGrid").innerHTML = live.map(v => `
+    <article class="video">
+      <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/${v.vid}?rel=0" title="${e(v.title)}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="video-body"><div class="video-meta">Video &middot; ${e(v.length)}</div><h3>${e(v.title)}</h3><p>${e(v.summary)}</p></div>
+    </article>`).join("");
+  document.getElementById("watch").hidden = false;
+})();
 </script>
 </body>
 </html>
